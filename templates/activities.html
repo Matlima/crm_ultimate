@@ -1,40 +1,37 @@
 {% extends "template.html" %}
 {% block conteudo %}
-<div class="d-flex justify-content-end">
-    <a class="btn btn-primary" href="{{ url_for('new_activity') }}">Adicionar Atividade</a>
-</div>
-<table class="table table-striped table-responsive table-bordered">
+<div class="container">
+    <div class="row my-3">
+        <div class="col text-end">
+            <a class="btn btn-primary color-alcance" href="{{ url_for('new_activity') }}">Adicionar Atividade</a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
             <thead class="thead-default">
                 <tr>
+                    <th>Data</th>
                     <th>Usuário</th>
                     <th>Cliente</th>
-                    <th>Início</th>
-                    <th>Fim</th>
                     <th>Tipo</th>
-                    <th>Titulo</th>
+                    <th>Título</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 {% for atividade in atividades %}
                 <tr>
+                    <td>{{ atividade.data_inicio }}</td>
                     <td>{{ atividade.usuario.nome }}</td>
                     <td>{{ atividade.cliente.razao_social }}</td>
-                    <td>{{ atividade.data_inicio }}</td>
-                    <td>{{ atividade.data_fim }}</td>
                     <td>{{ atividade.tipo }}</td>
                     <td>{{ atividade.titulo }}</td>
                     <td>
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button type="button" class="btn btn-primary dropdown-toggle color-alcance" data-bs-toggle="dropdown" aria-expanded="false">
                                 Ações
                             </button>
                             <ul class="dropdown-menu">
-                                <form action="{{ url_for('complete_activity', id=atividade.id) }}" method="post">
-                                    {{ form.csrf_token() }}
-                                    <input type="hidden" name="id" value="{{ atividade.id }}">
-                                    <button type="submit" class="dropdown-item">Concluir</button>
-                                </form>
                                 <li><a class="dropdown-item" href="{{ url_for('info_activity', id=atividade.id) }}">Informações</a></li>
                                 <li><a class="dropdown-item" href="{{ url_for('delete_activity', id=atividade.id) }}">Excluir</a></li>
                             </ul>
@@ -42,7 +39,8 @@
                     </td>
                 </tr>
                 {% endfor %}
-
             </tbody>
         </table>
+    </div>
+</div>
 {% endblock %}

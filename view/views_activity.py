@@ -12,7 +12,7 @@ def activity():
     adm = is_admin()
     activities = db.session.query(Activity).join(User).all()
     form = FormActivity()
-    return render_template('activities.html', titulo='Atividades', atividades=activities, is_admin=adm, form=form)
+    return render_template('main-menu.html', titulo='Menu Principal', atividades=activities, is_admin=adm, form=form)
 
 
 @app.route('/activity')
