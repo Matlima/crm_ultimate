@@ -1,0 +1,60 @@
+[33mcommit 16ba26f7bf65c88c4b7d4c458408a642d625fa91[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Matheus <limarios18@outlook.com>
+Date:   Wed Jun 12 18:52:39 2024 -0300
+
+    Criação do method DELETE no Customer (Cliente)
+
+[33mcommit 0e688e0d31cbdbbfc042de7b8e8091afe65887b2[m
+Author: Matheus <limarios18@outlook.com>
+Date:   Wed Jun 12 18:48:02 2024 -0300
+
+    Criação da estrutura de dados e POST do Cliente
+
+[33mcommit d53132a212577968c52e9f8df8fc26920af84c9a[m
+Author: Matheus <limarios18@outlook.com>
+Date:   Wed Jun 12 14:17:16 2024 -0300
+
+    Finalizando alteração total do login para o novo, e cadastro de usuario
+    com a entrada de novos usuarios cadastrado.
+
+[33mcommit 27a683baaac11fab178f02520b2a8680cacdcc73[m
+Author: Matheus <limarios18@outlook.com>
+Date:   Wed Jun 12 13:29:46 2024 -0300
+
+    Integrando nova tela de Login com a autenticação
+
+[33mcommit 9b17cfa96eca8d9d55cbf853abc17341bf9516e5[m
+Author: Matheus <limarios18@outlook.com>
+Date:   Wed Jun 12 12:00:19 2024 -0300
+
+    criação da nova página de login personalizada
+
+[33mcommit bcece3e969775c39085303d2a1158afceb914a41[m[33m ([m[1;31morigin/cadastro_atividades[m[33m, [m[1;32mcadastro_atividades[m[33m)[m
+Author: Matheus <limarios18@outlook.com>
+Date:   Wed Jun 12 11:27:42 2024 -0300
+
+    Adicionando logomarca no header
+
+[33mcommit 7403df7681516faf337a1d05c5bee9cea0a91095[m[33m ([m[1;32mcadastro_usuario[m[33m)[m
+Author: Matheus <limarios18@outlook.com>
+Date:   Wed Jun 12 09:52:24 2024 -0300
+
+    adicionando header na aplicacao
+
+[33mcommit 4237b9265974ed75ad760f1d39c682f9db674cd9[m
+Author: Matheus <limarios18@outlook.com>
+Date:   Wed Jun 12 09:22:02 2024 -0300
+
+    Funcionalidade de cadastro completa
+
+[33mcommit 49ed8b6254b1a740073d06afbb79fcb75b722b8d[m
+Author: Matheus <limarios18@outlook.com>
+Date:   Wed Jun 12 08:44:41 2024 -0300
+
+    Upload de aplicação novamente
+
+[33mcommit 5f185b77e05ae63954cfe5d9dd7ad9a77a30ea17[m
+Author: Matheus <limarios18@outlook.com>
+Date:   Tue Jun 11 19:40:44 2024 -0300
+
+    Upload de aplicação para github

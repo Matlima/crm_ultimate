@@ -1,0 +1,53 @@
+{% extends "template.html" %}
+{% block conteudo %}
+<form class="row g-3" action="{{ url_for('created_activity') }}" method="post">
+    <fieldset class="p-3">
+        {{ form.csrf_token() }}
+        <div class="form-row mb-3">
+            <div class="form-group col-md-4 px-2">
+                {{ form.usuario_id.label(class="form-label") }}
+                {{ form.usuario_id(class="form-select") }}
+            </div>
+            <div class="form-group col-md-2 px-2">
+                {{ form.data_inicio.label(class="form-label") }}
+                {{ form.data_inicio(class="form-control") }}
+            </div>
+            <div class="form-group col-md-2 px-2">
+                {{ form.data_fim.label(class="form-label") }}
+                {{ form.data_fim(class="form-control") }}
+            </div>
+            <div class="form-group col-md-2 px-2">
+                {{ form.tipo.label(class="form-label") }}
+                {{ form.tipo(class="form-select") }}
+            </div>
+            <div class="form-group col-md-2 px-2">
+                {{ form.status.label(class="form-label") }}
+                {{ form.status(class="form-select") }}
+            </div>
+
+        </div>
+        <div class="form-row mb-3">
+            <div class="form-group col-md-4 px-2">
+                {{ form.cliente_id.label(class="form-label") }}
+                {{ form.cliente_id(class="form-select") }}
+            </div>
+            <div class="form-group col-md-8 px-2">
+                {{ form.titulo.label(class="form-label") }}
+                {{ form.titulo(class="form-control") }}
+            </div>
+        </div>
+        <div class="form-row mb-3">
+            <div class="form-group col-md-12 px-2">
+                {{ form.descricao.label(class="form-label") }}
+                {{ form.descricao(class="form-control") }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-12 text-center">
+                <a href="{{ url_for('activity') }}" class="btn btn-secondary">Voltar</a>
+            </div>
+        </div>
+    </fieldset>
+</form>
+{% endblock %}
