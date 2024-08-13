@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, session, flash, url_for, send_from_directory
 from application import app, db
 from models import User
-from helpers import FormUser
+from helpers.helpers_forms import FormUser
 from flask_bcrypt import generate_password_hash
 from sqlalchemy.exc import IntegrityError
 

@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, session, flash, url_for
 from application import app, db
 from models import Customer
-from helpers import FormCustomer, is_admin
+from helpers.helpers_forms import FormCustomer, is_admin
 from uploads import *
 
 @app.route('/customer')

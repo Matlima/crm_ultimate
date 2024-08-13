@@ -1,0 +1,55 @@
+{% extends "template.html" %}
+{% block conteudo %}
+
+<!-- Menu -->
+<div class="container">
+    <div class="row g-3">
+        <div class="col-12 col-sm-6 col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title">Usuários</h4>
+                    <p class="card-text">Acesse os dados e informações relacionadas aos usuários do sistema.</p>
+                    <a class="btn btn-primary color-alcance" href="{{ url_for('users') }}">Acessar</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title">Clientes</h4>
+                    <p class="card-text">Acesse os dados e informações relacionadas aos clientes do sistema.</p>
+                    <a class="btn btn-primary color-alcance" href="{{ url_for('customer') }}">Acessar</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title">Atividades</h4>
+                    <p class="card-text">Acesse os dados e informações relacionadas as atividades realizadas no sistema.</p>
+                    <a class="btn btn-primary color-alcance" href="{{ url_for('activity') }}">Acessar</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title">Configurações</h4>
+                    <p class="card-text">Acesse o menu e funcionalidades de configurações do sistema.</p>
+                    <a class="btn btn-primary color-alcance" href="{{ url_for('settings') }}">Acessar</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title">Voltar</h4>
+                    <p class="card-text">Retornar para o menu principal</p>
+                    <a class="btn btn-secondary" href="{{ url_for('index') }}">Voltar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

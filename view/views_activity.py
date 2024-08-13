@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, session, flash, url_for
 from application import app, db
 from models import Activity, User, Customer
-from helpers import FormActivity, is_admin
+from helpers.helpers_forms import FormActivity, is_admin
 from datetime import datetime
 
 @app.route('/')
@@ -12,7 +12,7 @@ def index():
     adm = is_admin()
     activities = db.session.query(Activity).join(User).all()
     form = FormActivity()
-    return render_template('main-menu.html', titulo='Menu Principal', atividades=activities, is_admin=adm, form=form)
+    return render_template('menu/main-menu.html', titulo='Menu Principal', atividades=activities, is_admin=adm, form=form)
 
 
 @app.route('/activity')

@@ -1,7 +1,7 @@
 from application import app
 from flask import render_template, request, redirect, session, flash, url_for
 from models import Usuarios, User
-from helpers import FormularioUsuario, FormUser, is_admin
+from helpers.helpers_forms import FormularioUsuario, FormUser, is_admin
 from flask_bcrypt import check_password_hash
 
 @app.route('/login')
