@@ -1,39 +1,37 @@
 
-{% extends "template.html" %}
+{% extends "/shared/template.html" %}
 {% block conteudo %}
 
 <!-- Menu -->
 <div class="container">
     <div class="row g-3">
-        {% if grupo == 'Administrador' or grupo == 'Funcionario' or grupo == 'Diretoria' %}
-            {% if grupo == 'Administrador' or grupo == 'Diretoria' %}
+        
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="card h-100">
                     <div class="card-body">
                         <h4 class="card-title">Administração</h4>
                         <p class="card-text">Acesse os dados e informações relacionadas a administração geral do sistema.</p>
-                        <a class="btn btn-primary color-alcance" href="{{ url_for('menu_administration') }}">Acessar</a>
+                        <a class="btn btn-primary color-alcance" href="#">Acessar</a>
                     </div>
                 </div>
             </div>
-            {% endif %}
-            {% if grupo == 'Funcionario' %}
+            
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="card h-100">
                     <div class="card-body">
                         <h4 class="card-title">Minhas atividades</h4>
                         <p class="card-text">Acesse as informações de todas as atividades realizadas no sistema.</p>
-                        <a class="btn btn-primary color-alcance" href="{{ url_for('my_activities') }}">Acessar</a>
+                        <a class="btn btn-primary color-alcance" href="#">Acessar</a>
                     </div>
                 </div>
             </div>
-            {% endif %}
+            
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="card h-100">
                     <div class="card-body">
                         <h4 class="card-title">Pessoal</h4>
                         <p class="card-text">Acesse o menu e funcionalidades de automações para o setor pessoal.</p>
-                        <a class="btn btn-primary color-alcance" href="{{ url_for('menu_personal') }}">Acessar</a>
+                        <a class="btn btn-primary color-alcance" href="#">Acessar</a>
                     </div>
                 </div>
             </div>
@@ -82,7 +80,7 @@
                     </div>
                 </div>
             </div>
-        {% endif %}
+        
         {% if grupo == 'Cliente' %}
         <div class="col-12 col-sm-6 col-md-4">
             <div class="card h-100">
