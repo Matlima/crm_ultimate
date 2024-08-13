@@ -8,7 +8,7 @@ SQLALCHEMY_DATABASE_URI = \
         usuario = 'root',
         senha = '',
         servidor = 'localhost',
-        database = 'jogoteca'
+        database = 'automation_alcance'
     )
 
 UPLOAD_PATH = os.path.dirname(os.path.abspath(__file__)) + '/uploads'

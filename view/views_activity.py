@@ -5,10 +5,10 @@ from helpers import FormActivity, is_admin
 from datetime import datetime
 
 @app.route('/')
-def activity():
+def index():
     lista = Activity.query.order_by(Activity.id)
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        return redirect(url_for('login', proxima=url_for('activity')))
+        return redirect(url_for('login', proxima=url_for('index')))
     adm = is_admin()
     activities = db.session.query(Activity).join(User).all()
     form = FormActivity()
@@ -16,7 +16,7 @@ def activity():
 
 
 @app.route('/activity')
-def index():
+def activity():
     lista = Activity.query.order_by(Activity.id)
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('activity')))

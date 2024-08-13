@@ -36,3 +36,12 @@ def logout():
     session['usuario_logado'] = None
     flash('Logout efetuado com sucesso!')
     return redirect(url_for('index'))
+
+
+"""
+@app.route('/home')
+def home():
+    proxima = request.args.get('proxima')
+    form = FormUser()
+    return render_template('home.html', proxima=proxima, form=form)
+"""
