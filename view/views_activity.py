@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, session, flash, url_for
 from application import app, db
-from models import Activity, User, Customer
+from models.models import Activity, User, Customer
 from helpers.helpers_forms import FormActivity, is_admin
 from datetime import datetime
 

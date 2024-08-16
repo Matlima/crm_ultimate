@@ -1,152 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>App Base</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinBank Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <div class="container">
-        <header class="d-flex flex-wrap justify-content-between align-items-center py-3 mb-4 border-bottom">
-            <div class="col-12 col-md-4">
-                <a href="{{ url_for('index') }}" class="d-flex align-items-center mb-3 mb-md-0 link-body-emphasis text-decoration-none">
-                    <img class="img-fluid" style="max-width: 50%;" src="{{ url_for('static', filename='img/logo.jpg') }}">
-                </a>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <nav class="sidebar bg-light p-3">
+            <div class="d-flex align-items-center mb-4">
+                <img src="https://via.placeholder.com/40" alt="FinBank Logo" class="me-2">
+                <h3 class="text-primary">CRMApp</h3>
             </div>
-            <div class="col-12 col-md-8">
-                <nav class="navbar navbar-expand-md navbar-light">
-                    <div class="container-fluid">
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                            <ul class="navbar-nav ms-auto">
-                                <li class="nav-item"><a href="{{ url_for('index') }}" class="nav-link" style="color: #0d6efd;">Início</a></li>
-                                {% if grupo == 'Administrador' or grupo == 'Diretoria' %}
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #0d6efd;">
-                                        Administração
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="adminDropdown">
-                                        <li><a href="{{ url_for('users') }}" class="dropdown-item" style="color: #0d6efd;">Usuários</a></li>
-                                        <li><a href="{{ url_for('customer') }}" class="dropdown-item" style="color: #0d6efd;">Clientes</a></li>
-                                        <li><a href="{{ url_for('activity') }}" class="dropdown-item" style="color: #0d6efd;">Atividades</a></li>
-                                        <li><a href="{{ url_for('settings') }}" class="dropdown-item" style="color: #0d6efd;">Configurações</a></li>
-                                    </ul>
-                                </li>
-                                {% endif %}
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="personalDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #0d6efd;">
-                                        Pessoal
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="personalDropdown">
-                                        <li><a class="dropdown-item" style="color: #0d6efd;">Domésticos</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item"><a href="#" class="nav-link" style="color: #0d6efd;">Fiscal</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link" style="color: #0d6efd;">Contábil</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link" style="color: #0d6efd;">Comercial</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link" style="color: #0d6efd;">Financeiro</a></li>
-                                <li class="nav-item"><a href="{{ url_for('logout') }}" class="nav-link" style="color:red">Sair</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </header>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-3">
+                    <a href="{{ url_for('index') }}" class="nav-link active"><i class="fas fa-home me-2"></i> Dashboard</a>
+                </li>
+                <li class="nav-item mb-3">
+                    <a href="#" class="nav-link"><i class="fas fa-credit-card me-2"></i> Prospect</a>
+                </li>
+                <li class="nav-item mb-3">
+                    <a href="{{ url_for('customer') }}" class="nav-link"><i class="fas fa-wallet me-2"></i> Clientes</a>
+                </li>
+                <li class="nav-item mb-3">
+                    <a href="{{ url_for('activity') }}" class="nav-link"><i class="fas fa-university me-2"></i> Atividades</a>
+                </li>
+                <li class="nav-item mb-3">
+                    <a href="#" class="nav-link"><i class="fas fa-cog me-2"></i> Configurações</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('logout') }}" class="nav-link"><i class="fas fa-sign-out-alt me-2"></i> Log Out</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="content p-4 w-100">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul id="messages" class="list-unstyled">
+                        {% for message in messages %}
+                            <li class="alert alert-success">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+            {% block conteudo %}{% endblock %}
+
+
+        </div>
     </div>
 
-    <div class="container">
-        <!-- Toast -->
-        <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <svg class="bd-placeholder-img rounded me-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <rect width="100%" height="100%" fill="#198754"></rect>
-                    </svg>
-                    <strong class="me-auto">Automação</strong>
-                    <small>Agora</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    Em andamento, aguarde...
-                </div>
-            </div>
-
-            <div id="liveToast2" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <svg class="bd-placeholder-img rounded me-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <rect width="100%" height="100%" fill="#198754"></rect>
-                    </svg>
-                    <strong class="me-auto">Automação</strong>
-                    <small>Agora</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    Essa automação demora mais, aguarde...
-                </div>
-            </div>
-        </div>
-
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <ul id="messages" class="list-unstyled">
-                    {% for message in messages %}
-                        <li class="alert alert-success">{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
-
-        <div class="page-header">
-            <h2>{{ titulo }}</h2>
-        </div>
-        {% block conteudo %}{% endblock %}
-    </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        function showLoadingToast() {
-            var toastEl = document.getElementById('loadingToast');
-            var toast = new bootstrap.Toast(toastEl);
-            toast.show();
-        }
-
-        function hideLoadingToast() {
-            var toastEl = document.getElementById('loadingToast');
-            var toast = new bootstrap.Toast(toastEl);
-            toast.hide();
-        }
-
-        function startAutomation() {
-            showLoadingToast();
-            fetch('/run_automation')
-                .then(response => response.text())
-                .then(data => {
-                    console.log(data);
-                    hideLoadingToast();
-                    alert("Automação concluída!");
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    hideLoadingToast();
-                    alert("Ocorreu um erro!");
-                });
-        }
+        // Expense Chart
+        var ctx = document.getElementById('expenseChart').getContext('2d');
+        var expenseChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Spent', 'Remaining'],
+                datasets: [{
+                    data: [85.5, 14.5],
+                    backgroundColor: ['#4CAF50', '#d4edda'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                cutoutPercentage: 70,
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
     </script>
-
-    <!-- JS dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='jquery.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='app.js') }}"></script>
 </body>
+
 </html>

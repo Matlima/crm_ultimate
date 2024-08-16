@@ -1,7 +1,7 @@
 import os
 from application import app
 from flask import session
-from models import User,Customer, Activity
+from models.models import User,Customer, Activity
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField, SelectField, DateTimeField, TextAreaField, validators
 from wtforms.validators import DataRequired, Email, EqualTo, Optional, Length

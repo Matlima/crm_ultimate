@@ -8,7 +8,7 @@ SQLALCHEMY_DATABASE_URI = \
         usuario = 'root',
         senha = '',
         servidor = 'localhost',
-        database = 'automation_alcance'
+        database = 'crm'
     )
 
 UPLOAD_PATH = os.path.dirname(os.path.abspath(__file__)) + '/uploads'
