@@ -17,6 +17,7 @@ from view.views_user import *
 from view.views_login import *
 from view.views_customer import *
 from view.views_activity import *
+from view.views_prospect import *
 
 if __name__ == '__main__':
     app.run(debug=True)

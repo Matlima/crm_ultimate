@@ -1,0 +1,102 @@
+{% extends "shared/template.html" %}
+{% block conteudo %}
+    <div class="card mx-auto shadow-lg" style="max-width: 100%; border-radius: 20px;">
+            <div class="card-body p-5">
+                <h2 class="text-center mb-4">Novo Prospect</h2>
+                <!-- Form Start -->
+                <form>
+                    <!-- Basic Details -->
+                    <div class="mb-4">
+                        <h4>Informações básicas</h4>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="fullName" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="fullName" placeholder="Enter your full name">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="profession" class="form-label">Profession</label>
+                                <input type="text" class="form-control" id="profession" placeholder="Enter your profession">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="party" class="form-label">Select Party You Wish For</label>
+                                <select id="party" class="form-select">
+                                    <option>Select Party</option>
+                                    <option>Party 1</option>
+                                    <option>Party 2</option>
+                                    <option>Party 3</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="position" class="form-label">Position</label>
+                                <select id="position" class="form-select">
+                                    <option>Select</option>
+                                    <option>Position 1</option>
+                                    <option>Position 2</option>
+                                    <option>Position 3</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="dob" class="form-label">Date of Birth</label>
+                                <input type="date" class="form-control" id="dob">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label d-block">Gender</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+                                    <label class="form-check-label" for="male">Male</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                                    <label class="form-check-label" for="female">Female</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="vision" class="form-label">Vision & Mission</label>
+                            <textarea class="form-control" id="vision" rows="3" placeholder="Type here..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Education Details -->
+                    <div class="mb-4">
+                        <h4>Education</h4>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="degree" class="form-label">Degree</label>
+                                <input type="text" class="form-control" id="degree" placeholder="Your Degree">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="college" class="form-label">College/University</label>
+                                <input type="text" class="form-control" id="college" placeholder="Your College">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="graduationYear" class="form-label">Graduation Year</label>
+                                <input type="text" class="form-control" id="graduationYear" placeholder="Year">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 mb-3">
+                                <label for="degreeName" class="form-label">Degree Name</label>
+                                <input type="text" class="form-control" id="degreeName" placeholder="Degree name as appears here">
+                            </div>
+                            <div class="col-md-4 mb-3 d-flex align-items-end">
+                                <button type="button" class="btn btn-outline-primary w-100">Save</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-warning px-5">Save & Continue</button>
+                    </div>
+                </form>
+                <!-- Form End -->
+            </div>
+{% endblock %}

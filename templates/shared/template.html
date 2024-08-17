@@ -32,9 +32,9 @@
                     <a href="{{ url_for('profile') }}" class="nav-link"><i class="fas fa-user me-2"></i> Perfil</a>
                 </li>
                 <li class="nav-item dropdown mb-3">
-                  <a href="{{ url_for('profile') }}" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user me-2"></i> Administração</a>
+                  <a href="{{ url_for('profile') }}" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-book me-2"></i> Administração</a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('new_prospect') }}">Novo Prospect</a></li>
                     <li><a class="dropdown-item" href="#">Another action</a></li>
                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                   </ul>
