@@ -1,14 +1,6 @@
 from application import db
 from datetime import datetime
 
-class Jogos(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    nome = db.Column(db.String(50), nullable=False)
-    categoria = db.Column(db.String(40), nullable=False)
-    console = db.Column(db.String(20), nullable=False)
-
-    def __repr__(self):
-        return '<Name %r>' % self.name
 
 
 class Usuarios(db.Model):
@@ -43,8 +35,7 @@ class Customer(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)
     razao_social = db.Column(db.String(200), nullable=False)
     nome_fantasia = db.Column(db.String(200), nullable=False)
-    cnpj = db.Column(db.String(30))
-    cpf = db.Column(db.String(30))
+    cpfecnpj = db.Column(db.String(30))
     inscricao_estadual = db.Column(db.String(50))
     inscricao_municipal = db.Column(db.String(50))
     telefone = db.Column(db.String(50))

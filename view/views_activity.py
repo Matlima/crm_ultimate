@@ -23,7 +23,7 @@ def activity():
     adm = is_admin()
     activities = db.session.query(Activity).join(User).all()
     form = FormActivity()
-    return render_template('activities.html', titulo='Atividades', atividades=activities, is_admin=adm, form=form)
+    return render_template('activities/activities.html', titulo='Atividades', atividades=activities, is_admin=adm, form=form)
 
 
 @app.route('/activity/new')
@@ -32,7 +32,7 @@ def new_activity():
         return redirect(url_for('login', proxima=url_for('novo')))
     form = FormActivity()
     usuario_id = session["usuario_id"]
-    return render_template('add_activity.html', titulo='Nova Atividade', form=form, clientes=Customer.query.all(), usuarios=User.query.all())
+    return render_template('activities/add_activity.html', titulo='Nova Atividade', form=form, clientes=Customer.query.all(), usuarios=User.query.all())
 
 @app.route('/add_activity', methods=['POST'])
 def created_activity():
@@ -120,6 +120,6 @@ def info_activity(id):
     form.tipo.data = activity.tipo
     form.status.data = activity.status
 
-    return render_template('info_activity.html', titulo="Informações da atividade", id=id, form=form)
+    return render_template('activities/info_activity.html', titulo="Informações da atividade", id=id, form=form)
 
 

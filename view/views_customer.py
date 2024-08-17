@@ -2,6 +2,7 @@ from flask import render_template, request, redirect, session, flash, url_for
 from application import app, db
 from models.models import Customer
 from helpers.helpers_forms import FormCustomer, is_admin
+from templates.customers import *
 from uploads import *
 
 @app.route('/customer')
@@ -10,14 +11,14 @@ def customer():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('dashboard')))
     adm = is_admin()
-    return render_template('customers.html', titulo='Clientes', clientes=lista, is_admin=adm)
+    return render_template('customers/customers.html', titulo='Clientes', clientes=lista, is_admin=adm)
 
 @app.route('/customer/new')
 def new_customer():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
     form = FormCustomer()
-    return render_template('add_customer.html', titulo='Novo Cliente', form=form)
+    return render_template('customers/add_customer.html', titulo='Novo Cliente', form=form)
 
 @app.route('/add_customer', methods=['POST'])
 def created_customer():
@@ -84,7 +85,7 @@ def edit_customer(id):
     form.numero.data = customer.numero
     form.cep.data = customer.cep
     form.complemento.data = customer.complemento
-    return render_template('edit_customer.html', titulo='Editando Cliente', id=id, form=form)
+    return render_template('customers/edit_customer.html', titulo='Editando Cliente', id=id, form=form)
 
 
 
@@ -98,8 +99,7 @@ def info_customer(id):
     form = FormCustomer()
     form.razao_social.data = customer.razao_social
     form.nome_fantasia.data = customer.nome_fantasia
-    form.cnpj.data = customer.cnpj
-    form.cpf.data = customer.cpf
+    form.cpfecnpj.data = customer.cpfecnpj
     form.inscricao_estadual.data = customer.inscricao_estadual
     form.inscricao_municipal.data = customer.inscricao_municipal
     form.telefone.data = customer.telefone
@@ -113,7 +113,7 @@ def info_customer(id):
     form.numero.data = customer.numero
     form.cep.data = customer.cep
     form.complemento.data = customer.complemento
-    return render_template('info_customer.html', titulo='Informações do cliente', id=id, form=form)
+    return render_template('customers/info_customer.html', titulo='Informações do cliente', id=id, form=form)
 
 
 @app.route('/customer/update', methods=['POST'])

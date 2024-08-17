@@ -1,4 +1,4 @@
-{% extends "template.html" %}
+{% extends "shared/template.html" %}
 {% block conteudo %}
 <form class="row g-3" action="{{ url_for('created_customer') }}" method="post" enctype="multipart/form-data">
     <fieldset class="p-3">
@@ -15,12 +15,8 @@
         </div>
         <div class="form-row mb-3">
             <div class="form-group col-md-3 px-2">
-                {{ form.cnpj.label(class="form-label") }}
-                {{ form.cnpj(class="form-control") }}
-            </div>
-            <div class="form-group col-md-3 px-2">
-                {{ form.cpf.label(class="form-label") }}
-                {{ form.cpf(class="form-control") }}
+                {{ form.cpfecnpj.label(class="form-label") }}
+                {{ form.cpfecnpj(class="form-control") }}
             </div>
             <div class="form-group col-md-3 px-2">
                 {{ form.tipo_conta.label(class="form-label") }}

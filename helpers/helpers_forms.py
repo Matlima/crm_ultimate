@@ -36,8 +36,7 @@ class FormUser(FlaskForm):
 class FormCustomer(FlaskForm):
     razao_social = StringField('Razão Social', [validators.DataRequired(), validators.Length(min=1, max=200)])
     nome_fantasia = StringField('Nome Fantasia', [validators.DataRequired(), validators.Length(min=1, max=100)])
-    cnpj = StringField('CNPJ', [validators.Length(min=1, max=30)])
-    cpf = StringField('CPF', [validators.Length(min=1, max=30)])
+    cpfecnpj = StringField('CPF/CNPJ', [validators.Length(min=1, max=30)])
     inscricao_estadual = StringField('Inscrição Estadual', [validators.Length(min=1, max=50)])
     inscricao_municipal = StringField('Inscrição Municipal', [validators.Length(min=1, max=50)])
     telefone = StringField('Telefone', [validators.Length(min=1, max=50)])
