@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container-fluid mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- Profile Section -->
+                            <div class="col-md-4 text-center">
+                                <div class="profile-img mb-4">
+                                    <img src="https://via.placeholder.com/100" class="rounded-circle" alt="Profile Image">
+                                </div>
+                                <h5>Danielle Rogers</h5>
+                                <p class="text-muted">Designer</p>
+                                <div class="stats">
+                                    <div class="d-inline-block me-4">
+                                        <strong>86</strong> Posts
+                                    </div>
+                                    <div class="d-inline-block me-4">
+                                        <strong>1.1k</strong> Followers
+                                    </div>
+                                    <div class="d-inline-block">
+                                        <strong>4.5k</strong> Following
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary mt-4"><i class="fas fa-upload me-2"></i>Upload New Avatar</button>
+                                <button class="btn btn-secondary mt-2"><i class="fas fa-trash-alt me-2"></i>Delete</button>
+                            </div>
+                            <!-- Personal Settings Section -->
+                            <div class="col-md-4">
+                                <h5 class="mb-3">Edit Your Personal Settings</h5>
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="fullName" class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" id="fullName" placeholder="Danielle Rogers">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="title" class="form-label">Title</label>
+                                        <input type="text" class="form-control" id="title" placeholder="Enter your title">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="birthday" class="form-label">Birthday</label>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <input type="text" class="form-control" placeholder="Day">
+                                            </div>
+                                            <div class="col-4">
+                                                <input type="text" class="form-control" placeholder="Month">
+                                            </div>
+                                            <div class="col-4">
+                                                <input type="text" class="form-control" placeholder="Year">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="country" class="form-label">Country</label>
+                                        <input type="text" class="form-control" id="country" placeholder="Enter your country">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="postalCode" class="form-label">Postal Code</label>
+                                        <input type="text" class="form-control" id="postalCode" placeholder="Enter your postal code">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="phoneNumber" class="form-label">Phone Number</label>
+                                        <input type="text" class="form-control" id="phoneNumber" placeholder="Enter your phone number">
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="receiveNotifications">
+                                        <label class="form-check-label" for="receiveNotifications">
+                                            I agree to receive notifications
+                                        </label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mt-3 w-100">Update Information</button>
+                                </form>
+                            </div>
+                            <!-- External Links Section -->
+                            <div class="col-md-4">
+                                <h5 class="mb-3">Your External Links</h5>
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="facebookUrl" class="form-label">Facebook URL</label>
+                                        <input type="text" class="form-control" id="facebookUrl" placeholder="Facebook URL">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="twitterUrl" class="form-label">Twitter URL</label>
+                                        <input type="text" class="form-control" id="twitterUrl" placeholder="Twitter URL">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="bloggerUrl" class="form-label">Blogger URL</label>
+                                        <input type="text" class="form-control" id="bloggerUrl" placeholder="Blogger URL">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="googlePlusUrl" class="form-label">Google Plus URL</label>
+                                        <input type="text" class="form-control" id="googlePlusUrl" placeholder="Google Plus URL">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="linkedinUrl" class="form-label">LinkedIn URL</label>
+                                        <input type="text" class="form-control" id="linkedinUrl" placeholder="LinkedIn URL">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="websiteUrl" class="form-label">Website URL</label>
+                                        <input type="text" class="form-control" id="websiteUrl" placeholder="Website URL">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mt-3 w-100">Save & Update</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

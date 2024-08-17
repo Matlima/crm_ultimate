@@ -11,12 +11,18 @@
 </head>
 
 <body>
+    <!-- Button for mobile to toggle sidebar -->
+    <div class="d-md-none d-flex justify-content-between align-items-center p-3 bg-light">
+        <h3 class="text-primary mb-0">CRMApp</h3>
+        <button class="btn btn-primary" id="sidebarToggle"><i class="fas fa-ellipsis-h"></i></button>
+    </div>
+
     <div class="d-flex">
-        <!-- Sidebar -->
-        <nav class="sidebar bg-light p-3">
+        <!-- Sidebar as a div -->
+        <div class="sidebar bg-light p-3" id="sidebar">
             <div class="d-flex align-items-center mb-4">
                 <img src="https://via.placeholder.com/40" alt="FinBank Logo" class="me-2">
-                <h3 class="text-primary">CRMApp</h3>
+                <h3 class="text-primary d-none d-md-block">CRMApp</h3>
             </div>
             <ul class="nav flex-column">
                 <li class="nav-item mb-3">
@@ -38,7 +44,7 @@
                     <a href="{{ url_for('logout') }}" class="nav-link"><i class="fas fa-sign-out-alt me-2"></i> Log Out</a>
                 </li>
             </ul>
-        </nav>
+        </div>
 
         <!-- Main Content -->
         <div class="content p-4 w-100">
@@ -52,31 +58,14 @@
                 {% endif %}
             {% endwith %}
             {% block conteudo %}{% endblock %}
-
-
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Expense Chart
-        var ctx = document.getElementById('expenseChart').getContext('2d');
-        var expenseChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Spent', 'Remaining'],
-                datasets: [{
-                    data: [85.5, 14.5],
-                    backgroundColor: ['#4CAF50', '#d4edda'],
-                    borderWidth: 0
-                }]
-            },
-            options: {
-                cutoutPercentage: 70,
-                responsive: true,
-                maintainAspectRatio: false
-            }
+        document.getElementById('sidebarToggle').addEventListener('click', function () {
+            var sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('d-none');
         });
     </script>
 </body>
