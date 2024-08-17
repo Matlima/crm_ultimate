@@ -127,3 +127,13 @@ def desative_user(id):
     else:
         flash('Não foi possível desativa o usuário')
     return redirect(url_for('users'))
+
+
+@app.route('/profile')
+def profile():
+    lista = User.query.order_by(User.id)
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login', proxima=url_for('dashboard')))
+    form = FormUser()
+    return render_template('users/profile.html',  usuarios=lista, form=form)
+
