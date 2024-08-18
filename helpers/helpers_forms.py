@@ -101,6 +101,13 @@ class FormActivity(FlaskForm):
     concluir = SubmitField('Concluir')
 
 
+class FormProspect(FlaskForm):
+    data_hora_cadastro = DateTimeField('Cadastro', format='%d-%m-%YT%H:%M')
+    email = StringField('E-mail', validators=[DataRequired(), Email(), Length(min=1, max=100)])
+    nome_completo = StringField('Nome', validators=[DataRequired(), Length(min=1, max=100)])
+    telefone = StringField('Telefone', validators=[DataRequired(), Length(min=1, max=100)])
+    observacao = TextAreaField('Observação')
+    cadastrar = SubmitField('Salvar')
 
 # Funções para upload de imagem na pasta /Upload
 def recupera_imagem(id):
