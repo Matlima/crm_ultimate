@@ -36,3 +36,22 @@ def created_prospect():
     db.session.commit()
     flash('Prospect adicionado com sucesso!')
     return redirect(url_for('prospect'))
+
+
+@app.route('/prospect/delete/<int:id>')
+def delete_prospect(id):
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login', proxima=url_for('novo')))
+
+    try:
+        Prospect.query.filter_by(id=id).delete()
+        db.session.commit()
+        flash('Prospect excluido com sucesso!')
+    except InterruptedError:
+        db.session.rollback()
+        flash('Erro: Prospect está vinculado a outras atividades. Exclua as atividades relacionadas primeiro.', 'error')
+    except Exception as e:
+        db.session.rollback()
+        flash(f"Erro ao excluir prospect: {str(e)}", "error")
+
+    return redirect(url_for('prospect'))
