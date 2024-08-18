@@ -34,19 +34,22 @@
                 <li class="nav-item dropdown mb-3">
                   <a href="{{ url_for('profile') }}" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-book me-2"></i> Administração</a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{ url_for('new_prospect') }}">Novo Prospect</a></li>
-                    <li><a class="dropdown-item" href="{{ url_for('new_customer') }}">Novo Cliente</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      <li><a class="dropdown-item" href="{{ url_for('new_prospect') }}">Prospects</a></li>
+                      <li><a class="dropdown-item" href="{{ url_for('customer') }}">Clientes</a></li>
+                      <li><a class="dropdown-item" href="{{ url_for('activity') }}">Atividades</a></li>
+                      <li><a class="dropdown-item" href="#">Planos</a></li>
+                      <li><a class="dropdown-item" href="#">Serviços</a></li>
+
                   </ul>
                 </li>
                 <li class="nav-item mb-3">
-                    <a href="#" class="nav-link"><i class="fas fa-credit-card me-2"></i> Prospect</a>
+                    <a href="#" class="nav-link"><i class="fas fa-credit-card me-2"></i> Meus Prospect</a>
                 </li>
                 <li class="nav-item mb-3">
-                    <a href="{{ url_for('customer') }}" class="nav-link"><i class="fas fa-wallet me-2"></i> Clientes</a>
+                    <a href="{{ url_for('customer') }}" class="nav-link"><i class="fas fa-wallet me-2"></i> Meus Clientes</a>
                 </li>
                 <li class="nav-item mb-3">
-                    <a href="{{ url_for('activity') }}" class="nav-link"><i class="fas fa-university me-2"></i> Atividades</a>
+                    <a href="{{ url_for('activity') }}" class="nav-link"><i class="fas fa-university me-2"></i> Minhas Atividades</a>
                 </li>
                 <li class="nav-item mb-3">
                     <a href="#" class="nav-link"><i class="fas fa-cog me-2"></i> Configurações</a>

@@ -1,49 +1,54 @@
 {% extends "shared/template.html" %}
 {% block conteudo %}
-<form class="row g-3" action="{{ url_for('created_activity') }}" method="post">
-    <fieldset class="p-3">
-        {{ form.csrf_token() }}
-        <div class="form-row mb-3">
-            <div class="form-group col-md-2 px-2">
-                {{ form.data_inicio.label(class="form-label") }}
-                {{ form.data_inicio(class="form-control", readonly=True) }}
-            </div>
-            <div class="form-group col-md-2 px-2">
-                {{ form.tipo.label(class="form-label") }}
-                {{ form.tipo(class="form-select") }}
-            </div>
-            <div class="form-group col-md-2 px-2">
-                {{ form.status.label(class="form-label") }}
-                {{ form.status(class="form-select") }}
-            </div>
-            <div class="form-group col-md-6 px-2">
-                {{ form.cliente_id.label(class="form-label") }}
-                <select class="form-select" name="cliente_id">
-                    {% for cliente in clientes %}
-                        <option value="{{ cliente.id }}">{{ cliente.razao_social }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-        </div>
-        <div class="form-row mb-3">
-            <div class="form-group col-md-12 px-2">
-                {{ form.titulo.label(class="form-label") }}
-                {{ form.titulo(class="form-control") }}
-            </div>
-        </div>
-        <div class="form-row mb-3">
-            <div class="form-group col-md-12 px-2">
-                {{ form.descricao.label(class="form-label") }}
-                {{ form.descricao(class="form-control") }}
-            </div>
-        </div>
+    <div class="card mx-auto shadow-lg" style="max-width: 100%; border-radius: 20px;">
+            <div class="card-body p-5">
+                <h2 class="text-center mb-4">Nova Atividade</h2>
+                <!-- Form Start -->
+                <form action="{{ url_for('created_activity') }}" method="post" enctype="multipart/form-data">
+                    <fieldset class="p-3">
+                        {{ form.csrf_token() }}
+                    <!-- Basic Details -->
+                    <div class="mb-4">
+                        <div class="row">
+                            <div class="col-md-2 mb-3">
+                                <label  class="form-label">Tipo</label>
+                                {{ form.tipo(class="form-select") }}
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <label class="form-label">Status</label>
+                                {{ form.status(class="form-select") }}
+                            </div>
+                            <div class="col-md-8 mb-3">
+                                <label class="form-label">Cliente</label>
+                                <select class="form-select" name="cliente_id">
+                                    {% for cliente in clientes %}
+                                        <option value="{{ cliente.id }}">{{ cliente.razao_social }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label  class="form-label">Titulo</label>
+                                {{ form.titulo(class="form-control") }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">Descrição</label>
+                                {{ form.descricao(class="form-control") }}
+                            </div>
+                        </div>
+                    </div>
 
-        <div class="form-row">
-            <div class="col-12 text-center">
-                <button type="submit" class="btn btn-primary">Salvar</button>
-                <a href="{{ url_for('activity') }}" class="btn btn-secondary">Cancelar</a>
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        <a href="{{ url_for('activity') }}" class="btn btn-secondary">Cancelar</a>
+                    </div>
+                    </fieldset>
+                </form>
+                <!-- Form End -->
             </div>
-        </div>
-    </fieldset>
-</form>
+    </div>
 {% endblock %}
