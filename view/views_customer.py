@@ -29,8 +29,7 @@ def created_customer():
 
     razao_social = form.razao_social.data
     nome_fantasia = form.nome_fantasia.data
-    cnpj = form.cnpj.data
-    cpf = form.cpf.data
+    cpfecnpj = form.cpfecnpj.data
     inscricao_estadual = form.inscricao_estadual.data
     inscricao_municipal = form.inscricao_municipal.data
     telefone = form.telefone.data
@@ -45,18 +44,17 @@ def created_customer():
     cep = form.cep.data
     complemento = form.complemento.data
 
-    customer_cnpj = Customer.query.filter_by(cnpj=cnpj).first()
-    customer_cpf = Customer.query.filter_by(cpf=cpf).first()
+    customer_cpfecnpj = Customer.query.filter_by(cpfecnpj=cpfecnpj).first()
 
-    if customer_cpf and customer_cnpj:
+    if customer_cpfecnpj:
         flash('Cliente já existente!')
 
-    novo_customer = Customer(razao_social=razao_social, nome_fantasia=nome_fantasia, cnpj=cnpj, cpf=cpf, inscricao_estadual=inscricao_estadual,
+    novo_customer = Customer(razao_social=razao_social, nome_fantasia=nome_fantasia, cpfecnpj=cpfecnpj, inscricao_estadual=inscricao_estadual,
                              inscricao_municipal=inscricao_municipal, telefone=telefone, celular=celular, email=email, tipo_conta=tipo_conta,
                              endereco=endereco, bairro=bairro, cidade=cidade, estado=estado, numero=numero, cep=cep,complemento=complemento)
     db.session.add(novo_customer)
     db.session.commit()
-
+    flash('Cliente adicionado com sucesso!')
     return redirect(url_for('customer'))
 
 
@@ -70,8 +68,7 @@ def edit_customer(id):
     form = FormCustomer()
     form.razao_social.data = customer.razao_social
     form.nome_fantasia.data = customer.nome_fantasia
-    form.cnpj.data = customer.cnpj
-    form.cpf.data = customer.cpf
+    form.cpfecnpj.data = customer.cpfecnpj
     form.inscricao_estadual.data = customer.inscricao_estadual
     form.inscricao_municipal.data = customer.inscricao_municipal
     form.telefone.data = customer.telefone

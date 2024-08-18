@@ -3,7 +3,7 @@ from application import app
 from flask import session
 from models.models import User,Customer, Activity
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField, SelectField, DateTimeField, TextAreaField, validators
+from wtforms import StringField, SubmitField, PasswordField, SelectField, DateTimeField, TextAreaField, validators, BooleanField
 from wtforms.validators import DataRequired, Email, EqualTo, Optional, Length
 
 
@@ -33,23 +33,58 @@ class FormUser(FlaskForm):
     registrar = SubmitField('Salvar')
     entrar = SubmitField('Login')
 
+
 class FormCustomer(FlaskForm):
     razao_social = StringField('Razão Social', [validators.DataRequired(), validators.Length(min=1, max=200)])
     nome_fantasia = StringField('Nome Fantasia', [validators.DataRequired(), validators.Length(min=1, max=100)])
-    cpfecnpj = StringField('CPF/CNPJ', [validators.Length(min=1, max=30)])
-    inscricao_estadual = StringField('Inscrição Estadual', [validators.Length(min=1, max=50)])
-    inscricao_municipal = StringField('Inscrição Municipal', [validators.Length(min=1, max=50)])
-    telefone = StringField('Telefone', [validators.Length(min=1, max=50)])
-    celular = StringField('Celular', [validators.Length(min=1, max=50)])
+    cpfecnpj = StringField('CPF/CNPJ')
+    cpf = StringField('CPF')
+    inscricao_estadual = StringField('Inscrição Estadual')
+    inscricao_municipal = StringField('Inscrição Municipal')
+    telefone = StringField('Telefone', [validators.Length(min=1, max=50)], render_kw={"placeholder": "Apenas os números"})
+    celular = StringField('Celular', [validators.Length(min=1, max=50)], render_kw={"placeholder": "Apenas os números"})
     email = StringField('E-mail', [validators.Length(min=1, max=100)])
-    tipo_conta = SelectField('Tipo de Conta', choices=[('Pré-Pago', 'Pré-Pago'), ('Pós-Pago', 'Pós-Pago'),])
+    tipo_conta = SelectField('Tipo de Conta', choices=[
+        ('Pós-Pago', 'Pós-Pago'),
+        ('Pré-Pago', 'Pré-Pago'),])
     endereco = StringField('Endereço', [ validators.Length(min=1, max=100)])
     bairro = StringField('Bairro', [validators.Length(min=1, max=100)])
     cidade = StringField('Cidade', [validators.Length(min=1, max=100)])
-    estado = StringField('Estado', [validators.Length(min=1, max=5)])
-    cep = StringField('CEP', [validators.Length(min=1, max=10)])
+    estado = SelectField('Estado', choices=[
+        ('AC', 'Acre'),
+        ('AL', 'Alagoas'),
+        ('AP', 'Amapá'),
+        ('AM', 'Amazonas'),
+        ('BA', 'Bahia'),
+        ('CE', 'Ceará'),
+        ('DF', 'Distrito Federal'),
+        ('ES', 'Espírito Santo'),
+        ('GO', 'Goiás'),
+        ('MA', 'Maranhão'),
+        ('MT', 'Mato Grosso'),
+        ('MS', 'Mato Grosso do Sul'),
+        ('MG', 'Minas Gerais'),
+        ('PA', 'Pará'),
+        ('PB', 'Paraíba'),
+        ('PR', 'Paraná'),
+        ('PE', 'Pernambuco'),
+        ('PI', 'Piauí'),
+        ('RJ', 'Rio de Janeiro'),
+        ('RN', 'Rio Grande do Norte'),
+        ('RS', 'Rio Grande do Sul'),
+        ('RO', 'Rondônia'),
+        ('RR', 'Roraima'),
+        ('SC', 'Santa Catarina'),
+        ('SP', 'São Paulo'),
+        ('SE', 'Sergipe'),
+        ('TO', 'Tocantins')
+    ], validators=[DataRequired()])
+    cep = StringField('CEP', [validators.Length(min=1, max=10)], render_kw={"placeholder": "Apenas os números"})
     numero = StringField('Número', [validators.Length(min=1, max=10)])
-    complemento = StringField('Complemento', [validators.Length(min=1, max=100)])
+    complemento = StringField('Complemento')
+    login_gov = StringField('Login', render_kw={"placeholder": "Caso seja o mesmo que o cadastro, pode deixar em branco"})
+    senha_gov = PasswordField('Senha', validators=[Optional(), Length(min=0, max=250)])
+    check_acessorias = BooleanField('Acessórias')
     cadastrar = SubmitField('Salvar')
 
 
