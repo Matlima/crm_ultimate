@@ -3,7 +3,7 @@ from application import app
 from flask import session
 from models.models import User,Customer, Activity
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField, SelectField, DateTimeField, TextAreaField, validators, BooleanField
+from wtforms import StringField, SubmitField, PasswordField, SelectField, DateTimeField, TextAreaField, validators, BooleanField, DecimalField
 from wtforms.validators import DataRequired, Email, EqualTo, Optional, Length
 
 
@@ -108,6 +108,15 @@ class FormProspect(FlaskForm):
     telefone = StringField('Telefone', validators=[DataRequired(), Length(min=1, max=100)])
     observacao = TextAreaField('Observação')
     cadastrar = SubmitField('Salvar')
+
+class FormPlano(FlaskForm):
+    nome = StringField('Nome', validators=[DataRequired(), Length(min=1, max=100)])
+    descricao = TextAreaField('Descricao')
+    periodicidade = StringField('Periodicidade', validators=[DataRequired(), Length(min=1, max=100)])
+    preco = DecimalField('Preço', validators=[DataRequired()])
+    status = SelectField('Status', choices=[('Ativo', 'Ativo'), ('Inativo', 'Inativo'),])
+    cadastrar = SubmitField('Salvar')
+
 
 # Funções para upload de imagem na pasta /Upload
 def recupera_imagem(id):
