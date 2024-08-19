@@ -21,3 +21,19 @@ def new_plan():
         return redirect(url_for('login', proxima=url_for('novo')))
     form = FormPlano()
     return render_template('plans/add_plan.html', form=form)
+
+@app.route('/add_prospect', methods=['POST'])
+def created_prospect():
+    form = FormProspect(request.form)
+    nome_completo = form.nome_completo.data
+    email = form.email.data
+    telefone = form.telefone.data
+    observacao = form.observacao.data
+    data_hora_cadastro = datetime.now()
+
+    novo_prospect = Prospect(nome_completo=nome_completo, email=email, telefone=telefone,
+                             observacao=observacao,data_hora_cadastro=data_hora_cadastro)
+    db.session.add(novo_prospect)
+    db.session.commit()
+    flash('Prospect adicionado com sucesso!')
+    return redirect(url_for('prospect'))
