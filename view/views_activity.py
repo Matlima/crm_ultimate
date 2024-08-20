@@ -74,7 +74,7 @@ def created_activity():
     db.session.add(new_activity)
     db.session.commit()
     flash('Atividade adicionada com sucesso!')
-    return redirect(url_for('activity'))
+    return redirect(url_for('new_activity'))
 
 
 @app.route('/activity/delete/<int:id>')
