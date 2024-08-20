@@ -1,7 +1,7 @@
 {% extends "shared/template.html" %}
 {% block conteudo %}
-    <div class="card" >
-            <div class="card">
+    <div class="card m-2" >
+            <div class="">
                 <h5 class="card-header">Adicionar atividade</h5>
                 <!-- Form Start -->
                 <div class="card-body">
@@ -52,15 +52,16 @@
                 <!-- Form End -->
             </div>
     </div>
-    <div>
+    <div class="mt-2 m-2">
     <h3> Minhas atividades</h3>
     {% for activity in activities %}
         <div class="card w-100 mb-2"  >
           <div class="card-body">
             <h5 class="card-title">{{ activity.titulo }}</h5>
-            <h6 class="card-subtitle mb-2 text-body-secondary">Data: {{ activity.data_inicio }}, Cliente: {{ activity.cliente_id }}</h6>
+            <h6 class="card-subtitle mb-2 text-body-secondary">Data: {{ activity.data_inicio }} | Tipo: {{ activity.tipo }}</h6>
+              <h6 class="card-subtitle mb-2 text-body-secondary">Cliente: {{ activity.customer.razao_social }}</h6>
             <p class="card-text">{{ activity.descricao }}</p>
-            <a href="#" class="card-link">Ver actividade</a>
+            <a href="#" class="card-link">Informações</a>
           </div>
         </div>
     {% endfor %}
