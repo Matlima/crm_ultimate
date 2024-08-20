@@ -26,13 +26,25 @@ def activity():
     return render_template('activities/activities.html', titulo='Atividades', atividades=activities, is_admin=adm, form=form)
 
 
+@app.route('/activity/my-activities')
+def my_activity():
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login', proxima=url_for('novo')))
+    usuario_id = session["usuario_id"]
+    activities = db.session.query(Activity).join(Customer).filter(Activity.usuario_id == usuario_id).all()
+    return render_template('activities/add_activity.html', activities=activities)
+
+
+
 @app.route('/activity/new')
 def new_activity():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
     form = FormActivity()
     usuario_id = session["usuario_id"]
-    return render_template('activities/add_activity.html', titulo='Nova Atividade', form=form, clientes=Customer.query.all(), usuarios=User.query.all())
+    activities = db.session.query(Activity).join(Customer).filter(Activity.usuario_id == usuario_id).all()
+    return render_template('activities/add_activity.html', form=form, clientes=Customer.query.all(), usuarios=User.query.all(), activities=activities)
+
 
 @app.route('/add_activity', methods=['POST'])
 def created_activity():

@@ -1,0 +1,10 @@
+{% for activity in activities %}
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{ activity.titulo }}</h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary">Data: {{ activity.data_inicio }}, Cliente: {{ activity.cliente_id }}</h6>
+    <p class="card-text">{{ activity.descricao }}</p>
+    <a href="#" class="card-link">Ver actividade</a>
+  </div>
+</div>
+{% endfor %}
