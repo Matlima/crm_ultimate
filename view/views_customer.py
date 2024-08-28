@@ -116,15 +116,13 @@ def info_customer(id):
 @app.route('/customer/update', methods=['POST'])
 def update_customer():
     form = FormCustomer(request.form)
-
+    customer = Customer.query.filter_by(id=request.form['id']).first()
     if form.validate_on_submit():
-        customer = Customer.query.filter_by(id=request.form['id']).first()
         if customer:
             try:
                 customer.razao_social = form.razao_social.data
                 customer.nome_fantasia = form.nome_fantasia.data
-                customer.cnpj = form.cnpj.data
-                customer.cpf = form.cpf.data
+                customer.cpfecnpj = form.cpfecnpj.data
                 customer.inscricao_estadual = form.inscricao_estadual.data
                 customer.inscricao_municipal = form.inscricao_municipal.data
                 customer.telefone = form.telefone.data
