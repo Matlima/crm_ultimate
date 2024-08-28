@@ -10,7 +10,7 @@ def login():
     form = FormUser()
     # form = FormularioUsuario()
     # return render_template('home.html', proxima=proxima, form=form)
-    return render_template('home.html', proxima=proxima, form=form)
+    return render_template('auth/home.html', proxima=proxima, form=form)
 
 @app.route('/autenticar', methods=['POST',])
 def autenticar():
