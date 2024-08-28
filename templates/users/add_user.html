@@ -1,5 +1,117 @@
 {% extends "shared/template.html" %}
 {% block conteudo %}
+    <div class="card mx-auto shadow-lg" style="max-width: 100%; border-radius: 20px;">
+            <div class="card-body p-4">
+                <h5 class="text-left mb-4">Novo Cliente</h5>
+                <!-- Form Start -->
+                <form action="{{ url_for('created_user') }}" method="post" enctype="multipart/form-data">
+                    <fieldset class="p-3">
+                        {{ form.csrf_token() }}
+                    <!-- Basic Details -->
+                    <div class="mb-4">
+                        <h6>Informações básicas</h6>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label  class="form-label">Razão Social</label>
+                                {{ form.razao_social(class="form-control") }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Nome Fantasia</label>
+                                {{ form.nome_fantasia(class="form-control") }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label  class="form-label">CPF/CNPJ</label>
+                                {{ form.cpfecnpj(class="form-control") }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Inscrição Estadual</label>
+                                {{ form.inscricao_estadual(class="form-control") }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Inscrição Municipal</label>
+                                {{ form.inscricao_municipal(class="form-control") }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Tipo de Conta</label>
+                                {{ form.tipo_conta(class="form-select") }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">E-mail</label>
+                                {{ form.email(class="form-control") }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label  class="form-label">Telefone</label>
+                                {{ form.telefone(class="form-control") }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Celular</label>
+                                {{ form.celular(class="form-control") }}
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Endereço -->
+                    <div class="mb-4">
+                        <h5>Endereço</h5>
+                        <div class="row">
+                            <div class="col-md-10 mb-3">
+                                <label class="form-label">Logradouro</label>
+                                {{ form.endereco(class="form-control") }}
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <label class="form-label">Número</label>
+                                {{ form.numero(class="form-control") }}
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 mb-3">
+                                <label class="form-label">Complemento</label>
+                                {{ form.complemento(class="form-control") }}
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Bairro</label>
+                                {{ form.bairro(class="form-control") }}
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Cidade</label>
+                                {{ form.cidade(class="form-control") }}
+                            </div>
+                            <div class="col-md-1 mb-3">
+                                <label class="form-label">Estado</label>
+                                {{ form.estado(class="form-select") }}
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">CEP</label>
+                                {{ form.cep(class="form-control") }}
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        {{ form.cadastrar(class="btn btn-primary px-5") }}
+                        <a class="btn btn-danger mx-2" href="{{ url_for('customer') }}">Voltar</a>
+                    </div>
+                    </fieldset>
+                </form>
+                <!-- Form End -->
+            </div>
+    </div>
+{% endblock %}
+
+
+{% extends "shared/template.html" %}
+{% block conteudo %}
 <form class="row g-3" action="{{ url_for('created_user') }}" method="post" enctype="multipart/form-data">
    <fieldset class="p-3">
       {{ form.csrf_token() }}
