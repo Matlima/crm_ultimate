@@ -1,61 +1,76 @@
 {% extends "shared/template.html" %}
 {% block conteudo %}
-<form class="row g-3" action="{{ url_for('update_user') }}" method="post" enctype="multipart/form-data">
-   <fieldset class="p-3">
-      <input type="hidden" name="id" value="{{ id }}">
-      {{ form.csrf_token() }}
-      <div class="form-row mb-3">
-         <div class="form-group col-md-4 px-2">
-            {{ form.login.label(class="form-label") }}
-            {{ form.login(class="form-control") }}
-         </div>
-         <div class="form-group col-md-4 px-2">
-            {{ form.senha.label(class="form-label") }}
-            {{ form.senha(class="form-control") }}
-         </div>
-         <div class="form-group col-md-2 px-2">
-            {{ form.ativo.label(class="form-label") }}
-            {{ form.ativo(class="form-select") }}
-         </div>
-      </div>
-      <div class="form-row mb-3">
-         <div class="form-group col-md-12 px-2">
-            {{ form.nome.label(class="form-label") }}
-            {{ form.nome(class="form-control") }}
-         </div>
-         <div class="form-group col-md-8 px-2">
-            {{ form.email.label(class="form-label") }}
-            {{ form.email(class="form-control") }}
-         </div>
-         <div class="form-group col-md-4 px-2">
-            {{ form.telefone.label(class="form-label") }}
-            {{ form.telefone(class="form-control", id="telefone") }}
-         </div>
-      </div>
-      <div class="form-row mb-3">
-        <div class="form-group col-md-2 px-2">
-            {{ form.grupo.label(class="form-label") }}
-            {{ form.grupo(class="form-select") }}
-         </div>
-         <div class="form-group col-md-4 px-2">
-            {{ form.cargo.label(class="form-label") }}
-            {{ form.cargo(class="form-control") }}
-         </div>
-         <div class="form-group col-md-4 px-2">
-            {{ form.setor.label(class="form-label") }}
-            {{ form.setor(class="form-control") }}
-         </div>
-      </div>
+    <div class="card mx-auto shadow-lg" style="max-width: 100%; border-radius: 20px;">
+            <div class="card-body p-4">
+                <h5 class="text-left mb-4">Editando Usuário</h5>
+                <!-- Form Start -->
+                <form action="{{ url_for('update_user') }}" method="post" enctype="multipart/form-data">
+                    <fieldset class="p-3">
+                        {{ form.csrf_token() }}
+                    <!-- Basic Details -->
+                    <div class="mb-4">
+                        <h6>Acesso ao sistema</h6>
+                        <div class="row">
+                            <div class="col-md-5 mb-3">
+                                <input type="hidden" name="id" value="{{ id }}">
+                                <label  class="form-label">Login</label>
+                                 {{ form.login(class="form-control") }}
+                            </div>
+                            <div class="col-md-5 mb-3">
+                                <label class="form-label">Senha</label>
+                                {{ form.senha(class="form-control") }}
+                            </div>
+                           <div class="col-md-2 mb-3">
+                                <label class="form-label">Status</label>
+                                {{ form.ativo(class="form-select") }}
+                            </div>
+                        </div>
+                    </div>
 
-      <div class="form-row mt-3">
-         <div class="col-12 text-center">
-            <div class="d-flex justify-content-center" style="margin-top: 1rem">
-               {{ form.registrar(class="btn btn-primary mx-2") }}
-               <a class="btn btn-danger mx-2" href="{{ url_for('users') }}">Voltar</a>
+                    <!-- Endereço -->
+                    <div class="mb-4">
+                        <h5>Informações básicas</h5>
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">Nome completo</label>
+                                {{ form.nome(class="form-control") }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 mb-3">
+                                <label class="form-label">E-mail</label>
+                                {{ form.email(class="form-control") }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Telefone</label>
+                                {{ form.telefone(class="form-control", id="telefone") }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Grupo</label>
+                                {{ form.grupo(class="form-select") }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Cargo</label>
+                                {{ form.cargo(class="form-control") }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Setor</label>
+                                {{ form.setor(class="form-control") }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        {{ form.registrar(class="btn btn-primary px-5") }}
+                        <a class="btn btn-danger mx-2" href="{{ url_for('users') }}">Voltar</a>
+                    </div>
+                    </fieldset>
+                </form>
+                <!-- Form End -->
             </div>
-         </div>
-      </div>
-      </div>
-   </fieldset>
-</form>
+    </div>
 {% endblock %}
+

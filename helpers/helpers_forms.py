@@ -24,8 +24,8 @@ class FormUser(FlaskForm):
     email = StringField('E-mail', validators=[DataRequired(), Email(), Length(min=1, max=100)])
     senha = PasswordField('Senha', validators=[Optional(), Length(min=1, max=100)])
     login = StringField('Login', validators=[DataRequired(), Length(min=1, max=100)])
-    grupo = SelectField('Grupo de Usuário', choices=[('funcionario', 'Funcionário'), ('diretoria', 'Diretoria'),
-                                                     ('administrador', 'Administrador')])
+    grupo = SelectField('Grupo de Usuário', choices=[('Funcionario', 'Funcionário'), ('Diretoria', 'Diretoria'),
+                                                     ('Administrador', 'Administrador')])
     telefone = StringField('Telefone', validators=[DataRequired(), Length(min=1, max=30)])
     ativo = SelectField('Ativo', choices=[('Ativo', 'Ativo'), ('Desativado', 'Desativado')])
     cargo = StringField('Cargo', validators=[DataRequired(), Length(min=1, max=50)])
