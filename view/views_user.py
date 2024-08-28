@@ -13,7 +13,7 @@ def users():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('dashboard')))
     form = FormUser()
-    return render_template('users.html', titulo='Usuários', usuarios=lista, form=form)
+    return render_template('users/users.html', titulo='Usuários', usuarios=lista, form=form)
 
 
 @app.route('/add_user')
@@ -22,7 +22,7 @@ def add_user():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
     form = FormUser()
-    return render_template('add_user.html', titulo='Novo usuário', form=form)
+    return render_template('users/add_user.html', titulo='Novo usuário', form=form)
 
 
 @app.route('/users/add', methods=['POST',])
@@ -73,7 +73,7 @@ def edit_user(id):
     form.setor.data = user.setor
     form.ativo.data = user.ativo
 
-    return render_template('edit_user.html', titulo='Editando Usuário', id=id, form=form)
+    return render_template('users/edit_user.html', titulo='Editando Usuário', id=id, form=form)
 
 @app.route('/user/delete/<int:id>')
 def delete_user(id):
