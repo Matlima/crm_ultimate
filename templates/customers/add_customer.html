@@ -1,15 +1,15 @@
 {% extends "shared/template.html" %}
 {% block conteudo %}
     <div class="card mx-auto shadow-lg" style="max-width: 100%; border-radius: 20px;">
-            <div class="card-body p-5">
-                <h2 class="text-center mb-4">Novo Cliente</h2>
+            <div class="card-body p-4">
+                <h5 class="text-left mb-4">Novo Cliente</h5>
                 <!-- Form Start -->
                 <form action="{{ url_for('created_customer') }}" method="post" enctype="multipart/form-data">
                     <fieldset class="p-3">
                         {{ form.csrf_token() }}
                     <!-- Basic Details -->
                     <div class="mb-4">
-                        <h4>Informações básicas</h4>
+                        <h6>Informações básicas</h6>
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label  class="form-label">Razão Social</label>
@@ -60,7 +60,7 @@
 
                     <!-- Endereço -->
                     <div class="mb-4">
-                        <h4>Endereço</h4>
+                        <h5>Endereço</h5>
                         <div class="row">
                             <div class="col-md-10 mb-3">
                                 <label class="form-label">Logradouro</label>
