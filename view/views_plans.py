@@ -51,6 +51,21 @@ def edit_plan(id):
     return render_template('plans/edit_plan.html', id=id, form=form)
 
 
-@app.route('/plan/update')
+@app.route('/plan/update', methods=['POST'])
 def update_plan():
-    pass
+    form = FormPlano(request.form)
+    plan = Plano.query.filter_by(id=request.form['id']).first()
+    if form.validate_on_submit():
+        if plan:
+            plan.nome = form.nome.data
+            plan.status = form.status.data
+            plan.descricao = form.descricao.data
+            plan.preco = form.preco.data
+            plan.periodicidade = form.periodicidade.data
+            db.session.commit()
+            flash('Plano atualizado com sucesso', 'sucess')
+            return redirect(url_for('plans'))
+        else:
+            flash('Plano não encontrado', 'error')
+            return redirect(url_for('edit_plan', id=request.form['id']))
+
