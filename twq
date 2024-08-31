@@ -1,0 +1,191 @@
+[33mcommit 0f6598f25e029f49bb8399939105eeeb806c87af[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Wed Aug 28 00:20:36 2024 -0300
+
+    Aplicando modelo de formulário no edit_user.html
+
+[33mcommit d7698aa7866a29072d80fb72a88401c8b2688607[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Wed Aug 28 00:10:10 2024 -0300
+
+    Formatando view de add_user.html
+
+[33mcommit f7b1b41e1829d39a45d10a79c763d5a2b7d5c59a[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Aug 27 23:58:09 2024 -0300
+
+    Ajustando tela de criação de usuário para colocar card
+
+[33mcommit 9eec2c48ab3470d0b01a25d3dbbf7279bd9ad42c[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Aug 27 23:56:38 2024 -0300
+
+    Ajustando função de voltar dos formulários de customers
+
+[33mcommit ecf9206f81082fbc4475caca28ed3bb21996a34c[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Aug 27 23:55:12 2024 -0300
+
+    Jusntando erro do metodo upload_customer()
+
+[33mcommit ef2e781fb068b590eecbc9016d9a6da20c437c90[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Aug 27 23:53:41 2024 -0300
+
+    Ajustando pagina e script para edição de clientes
+
+[33mcommit cf0a8cc1211f2c8585a8defbe616e7a421a74985[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Aug 27 23:45:51 2024 -0300
+
+    Ajustando layout da pagina add_customer.html para ficar mais armonico
+
+[33mcommit 46090b07773dd03972e5edfc75581469d1a14b8b[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Aug 27 23:41:25 2024 -0300
+
+    Adicionando no menu o Usuários e ajustando links para a nova pasta
+
+[33mcommit 2951e39639a008b98dc51a045d6b8b851c129703[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Aug 27 23:38:38 2024 -0300
+
+    Refatorando home para a pasta auth
+
+[33mcommit dd64f7cd9fac007c1f9d705fd4511727013aff39[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Aug 27 23:06:49 2024 -0300
+
+    Ajustando formulário de adição de atividade
+
+[33mcommit 281846f0d72da85aa3537847fe4a54ba4995bf2a[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Aug 20 00:21:04 2024 -0300
+
+    Finalizando adicao de atividades
+
+[33mcommit d6ee67d491c5aa7a884bfcfddd9500e212f238fc[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Aug 20 00:16:04 2024 -0300
+
+    Ajustando erro de relacionamento de banco de dados
+
+[33mcommit 09c22ac45359c93f9e4f0ea8a72e7b76c7f8eb7b[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Mon Aug 19 23:50:19 2024 -0300
+
+    Criando renderização das atividades do usuario em forma de card
+
+[33mcommit 60c7d95e7996d0a77e589adc9fb60a09bdeef926[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Aug 18 22:14:28 2024 -0300
+
+    Adição de plano
+
+[33mcommit d82aaf2ccd673662d4da14d8c118f7121d3b17d3[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Aug 18 22:00:00 2024 -0300
+
+    Criando pagina de adição de plano
+
+[33mcommit 3ef96783268bef538827a98dcf0d1631a0d9d2fe[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Aug 18 21:49:30 2024 -0300
+
+    Criando estrutura de plano e planos geral
+
+[33mcommit 01479b00ca7df6f328696916fbc2aa985b9d8145[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Aug 18 21:00:13 2024 -0300
+
+    Criando model e helpersform de Planos
+
+[33mcommit 8b04ef74ffb86d1a13f777494075d68b6d501d6e[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Aug 18 20:11:26 2024 -0300
+
+    Criando method delete do prospect
+
+[33mcommit 629d065d4f16fa5700aa119b26cad1ff7b1311c1[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Aug 18 20:07:36 2024 -0300
+
+    Criando method post de prospect
+
+[33mcommit bf05a2bb43dea0e28eb2c2e75a9aaab37add3b10[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Aug 18 19:34:21 2024 -0300
+
+    Aplicando form atualizado em atividades
+
+[33mcommit 6af5551ef2f8489329c7ea466e31f8940f9a312e[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Aug 17 21:27:08 2024 -0300
+
+    Ajustando customers completo
+
+[33mcommit 9af8e447ed6dba3951c86a5ff866942040c06b04[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Aug 17 01:18:53 2024 -0300
+
+    Aplicando modelo de form novo em customer, falta testar e ajeitar
+
+[33mcommit 83660226c0fb813e7a2ae9783758e50bf1915686[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Aug 17 01:01:54 2024 -0300
+
+    Criando prospects
+
+[33mcommit 66f5bcdda8f9affd10119c893bafe641a3641746[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Aug 17 00:52:19 2024 -0300
+
+    Aplicando downlist no menu
+
+[33mcommit 3f35c88360a69a4cef255bee48e51aabb75164d5[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Aug 17 00:16:19 2024 -0300
+
+    Aplicando navbar, responsividade no template e criando profile
+
+[33mcommit 5fc1b52eaf2afff9b6f333fd163daa27b66d7e7e[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Aug 17 00:05:59 2024 -0300
+
+    Refatorando aplicação
+
+[33mcommit 83445b1f8cc1e2e592507a6a248b3c4a7d6723d8[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Aug 16 18:54:08 2024 -0300
+
+    Upload github
+
+[33mcommit 401d472492e05565d3b64a673bb305fb2e9228f5[m
+Author: Matheus <limarios18@outlook.com>
+Date:   Tue Aug 13 19:46:41 2024 -0300
+
+    Refatorando codigo
+
+[33mcommit b8d39a1f188bfa18658397d29d2e719d6bfe6356[m
+Author: Matheus <limarios18@outlook.com>
+Date:   Tue Aug 13 19:40:14 2024 -0300
+
+    Ajustando tela principal com os menus da aplicação e refatorando o codigo
+
+[33mcommit fc537c649fc0f8522ee48b3af05337d5da52eafc[m
+Author: Matheus <limarios18@outlook.com>
+Date:   Tue Aug 13 19:31:48 2024 -0300
+
+    Ajustando tela principal da aplicação
+
+[33mcommit b214097724bbbc38ea63f9a3e3214e418767a97f[m
+Author: Matheus <limarios18@outlook.com>
+Date:   Tue Aug 13 19:21:04 2024 -0300
+
+    Atualizando html de atividades e usuarios para ficar responsivo e criando main-menu.html
+
+[33mcommit bb76682adc6a3983bf927d18d7959b06b502a53b[m
+Author: Matheus <limarios18@outlook.com>
+Date:   Tue Aug 13 19:10:00 2024 -0300
+
+    Upload github
