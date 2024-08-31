@@ -64,7 +64,7 @@ def update_plan():
             plan.periodicidade = form.periodicidade.data
             db.session.commit()
             flash('Plano atualizado com sucesso', 'sucess')
-            return redirect(url_for('plans'))
+            return redirect(url_for('plan'))
         else:
             flash('Plano não encontrado', 'error')
             return redirect(url_for('edit_plan', id=request.form['id']))
