@@ -30,9 +30,10 @@ def activity():
 def my_activity():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
+    form = FormActivity()
     usuario_id = session["usuario_id"]
     activities = db.session.query(Activity).join(Customer).filter(Activity.usuario_id == usuario_id).all()
-    return render_template('activities/add_activity.html', activities=activities)
+    return render_template('activities/my_activities.html', activities=activities, form=form, clientes=Customer.query.all(),)
 
 
 

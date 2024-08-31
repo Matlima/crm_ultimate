@@ -1,0 +1,67 @@
+{% extends "shared/template.html" %}
+{% block conteudo %}
+<div class="card mx-auto shadow-lg" >
+   <!-- Form Start -->
+   <div class="card-body">
+      <form action="{{ url_for('created_activity') }}" method="post" enctype="multipart/form-data">
+         <fieldset class="p-1">
+            {{ form.csrf_token() }}
+            <!-- Basic Details -->
+            <div class="mb-2">
+               <div class="row">
+                  <div class="col-md-2 mb-2">
+                     <label  class="form-label">Tipo</label>
+                     {{ form.tipo(class="form-select") }}
+                  </div>
+                  <div class="col-md-2 mb-2">
+                     <label class="form-label">Status</label>
+                     {{ form.status(class="form-select") }}
+                  </div>
+                  <div class="col-md-8 mb-2">
+                     <label class="form-label">Cliente</label>
+                     <select class="form-select" name="cliente_id">
+                        {% for cliente in clientes %}
+                        <option value="{{ cliente.id }}">{{ cliente.razao_social }}</option>
+                        {% endfor %}
+                     </select>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-12 mb-2">
+                     <label  class="form-label">Titulo</label>
+                     {{ form.titulo(class="form-control") }}
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-12 mb-2">
+                     <label class="form-label">Descrição</label>
+                     {{ form.descricao(class="form-control") }}
+                  </div>
+               </div>
+            </div>
+            <!-- Submit Button -->
+            <div class="text-   left">
+               <button type="submit" class="btn btn-primary">Adicionar</button>
+            </div>
+         </fieldset>
+      </form>
+   </div>
+   <!-- Form End -->
+</div>
+<div class="mt-4 m-2">
+   <h5> Minhas atividades</h5>
+   <div class="col">
+       {% for activity in activities %}
+       <div class=" card w-100 mb-2"  >
+          <div class="card-body">
+             <h5 class="card-title">{{ activity.titulo }}</h5>
+             <h6 class="card-subtitle mb-2 text-body-secondary">Data: {{ activity.data_inicio }} | Tipo: {{ activity.tipo }}</h6>
+             <h6 class="card-subtitle mb-2 text-body-secondary">Cliente: {{ activity.customer.razao_social }}</h6>
+             <p class="card-text">{{ activity.descricao }}</p>
+             <a href="#" class="card-link">Informações</a>
+          </div>
+       </div>
+       {% endfor %}
+   </div>
+</div>
+{% endblock %}
