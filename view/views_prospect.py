@@ -55,3 +55,16 @@ def delete_prospect(id):
         flash(f"Erro ao excluir prospect: {str(e)}", "error")
 
     return redirect(url_for('prospect'))
+
+
+@app.route('/prospect/edit/<int:id>')
+def edit_prospect(id):
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login', proxima=url_for('novo')))
+    prospect = Prospect.query.filter_by(id=id).first()
+    form = FormProspect()
+    form.nome_completo.data = prospect.nome_completo
+    form.telefone.data = prospect.telefone
+    form.email.data = prospect.email
+    form.observacao.data = prospect.observacao
+    return render_template('prospects/edit_prospect.html', id=id, form=form)
