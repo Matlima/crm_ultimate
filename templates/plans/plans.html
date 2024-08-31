@@ -24,7 +24,7 @@
                Ações
                </button>
                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Editar</a></li>
+                  <li><a class="dropdown-item" href="{{ url_for('edit_plan', id=plan.id) }}">Editar</a></li>
                   <li><a class="dropdown-item" href="#">Excluir</a></li>
                   {% if is_admin %}
                   {% endif %}

@@ -49,3 +49,8 @@ def edit_plan(id):
     form.preco.data = plan.preco
     form.periodicidade.data = plan.periodicidade
     return render_template('plans/edit_plan.html', id=id, form=form)
+
+
+@app.route('/plan/update')
+def update_plan():
+    pass
