@@ -9,7 +9,7 @@ class Plano(db.Model):
     nome = db.Column(db.String(300), nullable=False)
     descricao = db.Column(db.Text)
     periodicidade = db.Column(db.String(300))
-    preco = db.Column(DECIMAL(10, 2), nullable=False)
+    preco = db.Column(DECIMAL(10, 2), nullable=False, )
     status = db.Column(db.String(30), nullable=False)
 
     def __repr__(self):

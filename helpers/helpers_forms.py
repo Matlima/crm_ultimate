@@ -113,7 +113,7 @@ class FormPlano(FlaskForm):
     nome = StringField('Nome', validators=[DataRequired(), Length(min=1, max=100)])
     descricao = TextAreaField('Descricao')
     periodicidade = SelectField('Status', choices=[('Diário', 'Diário'), ('Mensal', 'Mensal'),('Anual', 'Anual'),])
-    preco = DecimalField('Preço', validators=[DataRequired()])
+    preco = DecimalField('Preço', validators=[DataRequired()], render_kw={"placeholder": "R$"})
     status = SelectField('Status', choices=[('Ativo', 'Ativo'), ('Inativo', 'Inativo'),])
     cadastrar = SubmitField('Salvar')
 
