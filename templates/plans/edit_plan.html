@@ -1,0 +1,52 @@
+{% extends "shared/template.html" %}
+{% block conteudo %}
+    <div class="card mx-auto shadow-lg" style="max-width: 100%; border-radius: 20px;">
+            <div class="card-body p-4">
+                <h5 class="text-left mb-4">Novo Plano</h5>
+                <!-- Form Start -->
+                <form action="{{ url_for('edit_plan') }}" method="post" enctype="multipart/form-data">
+                    <fieldset class="p-3">
+                        {{ form.csrf_token() }}
+                    <!-- Basic Details -->
+                    <div class="mb-4">
+                        <h6>Informações básicas</h6>
+                        <div class="row">
+                            <div class="col-md-9 mb-3">
+                                <label  class="form-label">Nome</label>
+                                {{ form.nome(class="form-control") }}
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label  class="form-label">Preço</label>
+                                {{ form.preco(class="form-control") }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label  class="form-label">Descrição</label>
+                                {{ form.descricao(class="form-control") }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 mb-3">
+                                <label  class="form-label">Status</label>
+                                {{ form.status(class="form-select") }}
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <label  class="form-label">Periodicidade</label>
+                                {{ form.periodicidade(class="form-select") }}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        {{ form.cadastrar(class="btn btn-primary px-5") }}
+                        <a class="btn btn-danger mx-2" href="{{ url_for('plan') }}">Voltar</a>
+                    </div>
+                    </fieldset>
+                </form>
+                <!-- Form End -->
+            </div>
+    </div>
+{% endblock %}

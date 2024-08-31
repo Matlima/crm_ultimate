@@ -35,3 +35,17 @@ def created_plan():
     db.session.commit()
     flash('Plano adicionado com sucesso!')
     return redirect(url_for('plan'))
+
+
+@app.route('/plans/edit/<int:id>')
+def edit_plan(id):
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login', proxima=url_for('novo')))
+    plan = Plano.query.filter_by(id=id).first()
+    form = FormPlano()
+    form.nome.data = plan.nome
+    form.status.data = plan.status
+    form.descricao.data = plan.descricao
+    form.preco.data = plan.preco
+    form.periodicidade.data = plan.periodicidade
+    return render_template('plans/edit_plan.html', id=id, form=form)
