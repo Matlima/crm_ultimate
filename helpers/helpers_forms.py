@@ -105,7 +105,7 @@ class FormProspect(FlaskForm):
     data_hora_cadastro = DateTimeField('Cadastro', format='%d-%m-%YT%H:%M')
     email = StringField('E-mail', validators=[DataRequired(), Email(), Length(min=1, max=100)])
     nome_completo = StringField('Nome', validators=[DataRequired(), Length(min=1, max=100)])
-    telefone = StringField('Telefone', validators=[DataRequired(), Length(min=1, max=100)])
+    telefone = StringField('Telefone', validators=[DataRequired(), Length(min=1, max=100)], render_kw={"placeholder": "+55(71)99999-9999"})
     observacao = TextAreaField('Observação')
     cadastrar = SubmitField('Salvar')
 
@@ -135,7 +135,7 @@ def deleta_arquivo(id):
 def is_admin():
     id = session["usuario_id"]
     usuario = User.query.filter_by(id=id).first()
-    if usuario.grupo == 'administrador':
+    if usuario.grupo == 'Administrador':
         return True
     else:
         return False

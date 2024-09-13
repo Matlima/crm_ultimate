@@ -68,3 +68,37 @@ def edit_prospect(id):
     form.email.data = prospect.email
     form.observacao.data = prospect.observacao
     return render_template('prospects/edit_prospect.html', id=id, form=form)
+
+
+@app.route('/prospect/update', methods=['POST'])
+def update_prospect():
+    form = FormProspect(request.form)
+    prospect = Prospect.query.filter_by(id=request.form['id']).first()
+    if form.validate_on_submit():
+        if prospect:
+            try:
+                prospect.nome_completo = form.nome_completo.data
+                prospect.email = form.email.data
+                prospect.telefone = form.telefone.data
+                prospect.observacao = form.observacao.data
+                db.session.commit()
+                flash("Prospect atualizado com sucesso!")
+            except Exception as e:
+                db.session.rollback()
+                flash(f"Erro ao atualizar o cliente: {str(e)}", "error")
+                return redirect(url_for('prospect'))
+        else:
+            flash("Cliente não encontrado", "error")
+        return redirect(url_for('prospect'))
+    else:
+        for fieldName, errorMessages in form.errors.items():
+            for err in errorMessages:
+                flash(f"Error in {fieldName}: {err}", "error")
+        flash("Form validation failed", "error")
+    return redirect(url_for('edit_prospect', id=request.form['id']))
+
+
+
+
+
+

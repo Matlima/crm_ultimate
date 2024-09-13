@@ -4,7 +4,7 @@
             <div class="card-body p-4">
                 <h5 class="text-left mb-4">Editando Prospect</h5>
                 <!-- Form Start -->
-                <form action="{{ url_for('created_prospect') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ url_for('update_prospect') }}" method="post" enctype="multipart/form-data">
                     <fieldset class="p-3">
                         {{ form.csrf_token() }}
                     <!-- Basic Details -->
@@ -12,6 +12,7 @@
                         <h6>Informações básicas</h6>
                         <div class="row">
                             <div class="col-md-12 mb-3">
+                                <input type="hidden" name="id" value="{{ id }}">
                                 <label  class="form-label">Nome completo</label>
                                 {{ form.nome_completo(class="form-control") }}
                             </div>
