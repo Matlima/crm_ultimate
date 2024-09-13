@@ -16,8 +16,8 @@ def users():
     return render_template('users/users.html', titulo='Usuários', usuarios=lista, form=form)
 
 
-@app.route('/add_user')
-def add_user():
+@app.route('/users/new')
+def new_user():
     # Se ainda não salvou a sessão vai sempre voltar para o login
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
@@ -57,7 +57,7 @@ def created_user():
 
 
 # Edição de Usuário
-@app.route('/user/edit/<int:id>')
+@app.route('/users/edit/<int:id>')
 def edit_user(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('editar', id=id)))
@@ -75,7 +75,7 @@ def edit_user(id):
 
     return render_template('users/edit_user.html', titulo='Editando Usuário', id=id, form=form)
 
-@app.route('/user/delete/<int:id>')
+@app.route('/users/delete/<int:id>')
 def delete_user(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proximo=url_for('novo')))
@@ -94,7 +94,7 @@ def delete_user(id):
 
     return redirect(url_for('users'))
 
-@app.route('/user/update', methods=['POST'])
+@app.route('/users/update', methods=['POST'])
 def update_user():
     form = FormUser(request.form)
     if form.validate_on_submit():
@@ -116,7 +116,7 @@ def update_user():
     return redirect(url_for('users'))
 
 
-@app.route('/user/desative/<int:id>', methods=['POST'])
+@app.route('/users/desative/<int:id>', methods=['POST'])
 def desative_user(id):
     user = User.query.filter_by(id=id).first()
     form = FormUser(request.form)
@@ -129,7 +129,7 @@ def desative_user(id):
     return redirect(url_for('users'))
 
 
-@app.route('/profile')
+@app.route('/users/profile')
 def profile():
     lista = User.query.order_by(User.id)
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
