@@ -3,6 +3,16 @@ body {
     font-family: 'Arial', sans-serif;
 }
 
+
+.bg-techcoffee {
+        background-color: #FFC66D !important;
+        border-color: #FFC66D !important;
+}
+
+.color-techcoffee {
+        color: #FFC66D;
+}
+
 .w-48 {
     width: 48%;
 }

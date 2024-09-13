@@ -67,9 +67,13 @@ td {
     margin-bottom: 1em;
 }
 
-.color-alcance {
-        background-color: #198754;
-        border-color: #198754;
+.bg-techcoffee {
+        background-color: #FFC66D !important;
+        border-color: #FFC66D !important;
+}
+
+.color-techcoffee {
+        color: #FFC66D;
 }
 
 .textcolor-alcance{
