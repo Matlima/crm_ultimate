@@ -14,16 +14,16 @@
 <body>
     <!-- Button for mobile to toggle sidebar -->
     <div class="d-md-none d-flex justify-content-between align-items-center p-3 bg-light">
-        <h3 class="text-primary mb-0">CRMApp</h3>
-        <button class="btn btn-primary" id="sidebarToggle"><i class="fas fa-ellipsis-h"></i></button>
+        <h3 class="text-warning mb-0">CRMApp</h3>
+        <button class="btn btn-warning" id="sidebarToggle"><i class="fas fa-ellipsis-h"></i></button>
     </div>
 
     <div class="d-flex">
         <!-- Sidebar as a div -->
         <div class="sidebar bg-dark p-3 w-25" id="sidebar" style="border-top-right-radius: 1rem !important; border-bottom-right-radius: 1rem !important;">
             <div class="d-flex align-items-center mb-4">
-                <img src="https://via.placeholder.com/40" alt="FinBank Logo" class="me-2">
-                <h3 class="text-primary d-none d-md-block">CRMApp</h3>
+                <img src="{{ url_for('static', filename='img/favicon.png') }}" alt="FinBank Logo" class="me-2" style="width: 10%">
+                <h3 class="text-warning d-none d-md-block">CRMApp</h3>
             </div>
             <ul class="nav flex-column">
                 <li class="nav-item mb-3">
