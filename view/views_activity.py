@@ -15,7 +15,7 @@ def index():
     return render_template('menu/main-menu.html', titulo='Menu Principal', atividades=activities, is_admin=adm, form=form)
 
 
-@app.route('/activity')
+@app.route('/activities')
 def activity():
     lista = Activity.query.order_by(Activity.id)
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
@@ -26,7 +26,7 @@ def activity():
     return render_template('activities/activities.html', titulo='Atividades', atividades=activities, is_admin=adm, form=form)
 
 
-@app.route('/activity/my-activities')
+@app.route('/activities/my-activities')
 def my_activity():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
@@ -37,7 +37,7 @@ def my_activity():
 
 
 
-@app.route('/activity/new')
+@app.route('/activities/new')
 def new_activity():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
@@ -47,7 +47,7 @@ def new_activity():
     return render_template('activities/add_activity.html', form=form, clientes=Customer.query.all(), usuarios=User.query.all(), activities=activities)
 
 
-@app.route('/add_activity', methods=['POST'])
+@app.route('/activities/add', methods=['POST'])
 def created_activity():
     form = FormActivity(request.form)
     form.cliente_id.choices = [(cliente.id, cliente.razao_social) for cliente in Customer.query.all()]
@@ -77,8 +77,7 @@ def created_activity():
     flash('Atividade adicionada com sucesso!')
     return redirect(url_for('new_activity'))
 
-
-@app.route('/activity/delete/<int:id>')
+@app.route('/activities/delete/<int:id>')
 def delete_activity(id):
     usuario_id = session['usuario_id']
     usuario = User.query.filter_by(id=usuario_id).first()
@@ -97,10 +96,7 @@ def delete_activity(id):
             flash('O usuário logado não é responsavel pela atividade')
     return redirect(url_for('activity'))
 
-
-
-
-@app.route('/activity/sucess/<int:id>', methods=['POST'])
+@app.route('/activities/sucess/<int:id>', methods=['POST'])
 def complete_activity(id):
     activity = Activity.query.filter_by(id=id).first()
     form = FormActivity(request.form)
@@ -113,7 +109,7 @@ def complete_activity(id):
         flash('Atividade não encontrada')
     return redirect(url_for('activity'))
 
-@app.route('/activity/info/<int:id>')
+@app.route('/activities/info/<int:id>')
 def info_activity(id):
     activity = Activity.query.filter_by(id=id).first()
 

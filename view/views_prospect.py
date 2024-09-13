@@ -6,7 +6,7 @@ from templates.customers import *
 from uploads import *
 from datetime import datetime
 
-@app.route('/prospect')
+@app.route('/prospects')
 def prospect():
     lista = Prospect.query.order_by(Prospect.id)
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
@@ -14,14 +14,14 @@ def prospect():
     adm = is_admin()
     return render_template('prospects/prospects.html',  prospects=lista, is_admin=adm)
 
-@app.route('/prospect/new')
+@app.route('/prospects/new')
 def new_prospect():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
     form = FormProspect()
     return render_template('prospects/add_prospect.html', form=form)
 
-@app.route('/add_prospect', methods=['POST'])
+@app.route('/prospects/add', methods=['POST'])
 def created_prospect():
     form = FormProspect(request.form)
     nome_completo = form.nome_completo.data
@@ -38,7 +38,7 @@ def created_prospect():
     return redirect(url_for('prospect'))
 
 
-@app.route('/prospect/delete/<int:id>')
+@app.route('/prospects/delete/<int:id>')
 def delete_prospect(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
@@ -57,7 +57,7 @@ def delete_prospect(id):
     return redirect(url_for('prospect'))
 
 
-@app.route('/prospect/edit/<int:id>')
+@app.route('/prospects/edit/<int:id>')
 def edit_prospect(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
@@ -70,7 +70,7 @@ def edit_prospect(id):
     return render_template('prospects/edit_prospect.html', id=id, form=form)
 
 
-@app.route('/prospect/update', methods=['POST'])
+@app.route('/prospects/update', methods=['POST'])
 def update_prospect():
     form = FormProspect(request.form)
     prospect = Prospect.query.filter_by(id=request.form['id']).first()

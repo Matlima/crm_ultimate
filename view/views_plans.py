@@ -7,7 +7,7 @@ from uploads import *
 from datetime import datetime
 
 
-@app.route('/plan')
+@app.route('/plans')
 def plan():
     lista = Plano.query.order_by(Plano.id)
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
@@ -15,14 +15,14 @@ def plan():
     adm = is_admin()
     return render_template('plans/plans.html',  plans=lista, is_admin=adm)
 
-@app.route('/plan/new')
+@app.route('/plans/new')
 def new_plan():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
     form = FormPlano()
     return render_template('plans/add_plan.html', form=form)
 
-@app.route('/add_plan', methods=['POST'])
+@app.route('/plans/add', methods=['POST'])
 def created_plan():
     form = FormPlano(request.form)
     nome = form.nome.data
@@ -51,7 +51,7 @@ def edit_plan(id):
     return render_template('plans/edit_plan.html', id=id, form=form)
 
 
-@app.route('/plan/update', methods=['POST'])
+@app.route('/plans/update', methods=['POST'])
 def update_plan():
     form = FormPlano(request.form)
     plan = Plano.query.filter_by(id=request.form['id']).first()
