@@ -5,7 +5,7 @@ from helpers.helpers_forms import FormCustomer, is_admin
 from templates.customers import *
 from uploads import *
 
-@app.route('/customer')
+@app.route('/customers')
 def customer():
     lista = Customer.query.order_by(Customer.id)
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
@@ -13,14 +13,14 @@ def customer():
     adm = is_admin()
     return render_template('customers/customers.html', titulo='Clientes', clientes=lista, is_admin=adm)
 
-@app.route('/customer/new')
+@app.route('/customers/new')
 def new_customer():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
     form = FormCustomer()
     return render_template('customers/add_customer.html', titulo='Novo Cliente', form=form)
 
-@app.route('/add_customer', methods=['POST'])
+@app.route('/customers/add', methods=['POST'])
 def created_customer():
     form = FormCustomer(request.form)
 
@@ -58,7 +58,7 @@ def created_customer():
     return redirect(url_for('customer'))
 
 
-@app.route('/customer/edit/<int:id>')
+@app.route('/customers/edit/<int:id>')
 def edit_customer(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
@@ -86,7 +86,7 @@ def edit_customer(id):
 
 
 
-@app.route('/customer/info/<int:id>')
+@app.route('/customers/info/<int:id>')
 def info_customer(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
@@ -113,7 +113,7 @@ def info_customer(id):
     return render_template('customers/info_customer.html', titulo='Informações do cliente', id=id, form=form)
 
 
-@app.route('/customer/update', methods=['POST'])
+@app.route('/customers/update', methods=['POST'])
 def update_customer():
     form = FormCustomer(request.form)
     customer = Customer.query.filter_by(id=request.form['id']).first()
@@ -154,7 +154,7 @@ def update_customer():
     return redirect(url_for('edit_customer', id=request.form['id']))
 
 
-@app.route('/customer/delete/<int:id>')
+@app.route('/customers/delete/<int:id>')
 def delete_customer(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
