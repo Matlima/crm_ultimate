@@ -16,6 +16,9 @@ def login():
 def autenticar():
     form = FormUser(request.form)
     usuario = User.query.filter_by(login=form.login.data).first()
+    if not usuario:
+        flash('Usuário não registrado.')
+        return redirect(url_for('login'))
     senha = check_password_hash(usuario.senha, form.senha.data)
     if usuario and senha:
         session['usuario_logado'] = usuario.nome
@@ -28,7 +31,7 @@ def autenticar():
             flash('Usuário desativado.')
             return redirect(url_for('login'))
     else:
-        flash('Usuário não logado.')
+        flash('Usuário e/ou senha incorreto(a).')
         return redirect(url_for('login'))
 
 @app.route('/logout')
