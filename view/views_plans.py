@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, session, flash, url_for
 from application import app, db
-from models.plano import Plano
+from models.models import Plan
 from helpers.helpers_forms import is_admin, FormPlano
 from templates.customers import *
 from uploads import *
@@ -9,7 +9,7 @@ from datetime import datetime
 
 @app.route('/plans')
 def plan():
-    lista = Plano.query.order_by(Plano.id)
+    lista = Plan.query.order_by(Plan.id)
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('dashboard')))
     adm = is_admin()
@@ -30,10 +30,10 @@ def created_plan():
     periodicidade = form.periodicidade.data
     preco = form.preco.data
     status = form.status.data
-    novo_plano = Plano(nome=nome, descricao=descricao, preco=preco, status=status, periodicidade=periodicidade)
+    novo_plano = Plan(nome=nome, descricao=descricao, preco=preco, status=status, periodicidade=periodicidade)
     db.session.add(novo_plano)
     db.session.commit()
-    flash('Plano adicionado com sucesso!')
+    flash('Plan adicionado com sucesso!')
     return redirect(url_for('plan'))
 
 
@@ -41,7 +41,7 @@ def created_plan():
 def edit_plan(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
-    plan = Plano.query.filter_by(id=id).first()
+    plan = Plan.query.filter_by(id=id).first()
     form = FormPlano()
     form.nome.data = plan.nome
     form.status.data = plan.status
@@ -54,7 +54,7 @@ def edit_plan(id):
 @app.route('/plans/update', methods=['POST'])
 def update_plan():
     form = FormPlano(request.form)
-    plan = Plano.query.filter_by(id=request.form['id']).first()
+    plan = Plan.query.filter_by(id=request.form['id']).first()
     if form.validate_on_submit():
         if plan:
             plan.nome = form.nome.data
@@ -63,7 +63,7 @@ def update_plan():
             plan.preco = form.preco.data
             plan.periodicidade = form.periodicidade.data
             db.session.commit()
-            flash('Plano atualizado com sucesso', 'sucess')
+            flash('Plan atualizado com sucesso', 'sucess')
             return redirect(url_for('plan'))
         else:
             flash('Plano não encontrado', 'error')

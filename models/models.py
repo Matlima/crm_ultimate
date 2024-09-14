@@ -1,16 +1,7 @@
 from application import db
 from datetime import datetime
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
-from sqlalchemy.orm import relationship
-
-class Usuarios(db.Model):
-    nickname = db.Column(db.String(8), primary_key=True)
-    nome = db.Column(db.String(20), nullable=False)
-    senha = db.Column(db.String(100), nullable=False)
-
-    def __repr__(self):
-        return '<Name %r>' % self.name
-
+from sqlalchemy import DECIMAL
 
 
 class User(db.Model):
@@ -73,5 +64,22 @@ class Activity(db.Model):
 
 
 
+class Plan(db.Model):
+    __tablename__ = 'plan'
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(300), nullable=False)
+    descricao = db.Column(db.Text)
+    periodicidade = db.Column(db.String(300))
+    preco = db.Column(DECIMAL(10, 2), nullable=False, )
+    status = db.Column(db.String(30), nullable=False)
+
+    def __repr__(self):
+        return '<name %r' % self.__name__
 
 
+class CategoryPlan(db.Model):
+    __tablename__ = 'category_plan'
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(300), nullable=False)
+    id_user = db.Column(Integer, ForeignKey('user.id'), nullable=False)
+    id_plan = db.Column(Integer, ForeignKey('plano.id'), nullable=False)
