@@ -1,6 +1,6 @@
 from application import db
 from datetime import datetime
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Boolean
 from sqlalchemy import DECIMAL
 
 
@@ -94,4 +94,4 @@ class CategoryPlan(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(300), nullable=False)
     id_user = db.Column(Integer, ForeignKey('user.id'), nullable=False)
-    id_plan = db.Column(Integer, ForeignKey('plano.id'), nullable=False)
+    ativo = db.Column(db.Boolen, nullable=False)

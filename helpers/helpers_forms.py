@@ -117,6 +117,11 @@ class FormPlano(FlaskForm):
     status = SelectField('Status', choices=[('Ativo', 'Ativo'), ('Inativo', 'Inativo'),])
     cadastrar = SubmitField('Salvar')
 
+class FormPlano(FlaskForm):
+    nome = StringField('Nome', validators=[DataRequired(), Length(min=1, max=100)])
+    ativo = BooleanField('Ativo')
+    id_user = SelectField('Usuário', coerce=int, validators=[DataRequired()])
+    cadastrar = SubmitField('Salvar')
 
 # Funções para upload de imagem na pasta /Upload
 def recupera_imagem(id):

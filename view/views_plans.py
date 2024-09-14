@@ -22,6 +22,10 @@ def new_plan():
     form = FormPlano()
     return render_template('plans/add_plan.html', form=form)
 
+@app.route('/plans/category/new')
+def new_category_plan():
+    pass
+
 @app.route('/plans/add', methods=['POST'])
 def created_plan():
     form = FormPlano(request.form)
