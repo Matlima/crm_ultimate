@@ -1,49 +1,97 @@
-
 {% extends "/shared/template.html" %}
 {% block conteudo %}
 
-<!-- Menu -->
-<div class="container">
-    <div class="row g-3">
-        
-            <div class="col-12 col-sm-6 col-md-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h4 class="card-title">Administração</h4>
-                        <a class="btn btn-primary color-alcance mt-1" href="#">Acessar</a>
-                    </div>
+<!-- Dashboard Overview Section -->
+<div class="container mt-4">
+    <div class="row">
+        <!-- Cards for Counts -->
+        <div class="col-12 col-sm-6 col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Atividades</h5>
+                    <p class="card-text fs-4">{{ total_atividades }} Atividades</p>
+                    <a href="{{ url_for('my_activity') }}" class="btn btn-outline-primary">Ver Atividades</a>
                 </div>
             </div>
-            
-            <div class="col-12 col-sm-6 col-md-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h4 class="card-title">Minhas atividades</h4>
-                        <a class="btn btn-primary color-alcance mt-1" href="#">Acessar</a>
-                    </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Clientes</h5>
+                    <p class="card-text fs-4">{{ total_clientes }} Clientes</p>
+                    <a href="{{ url_for('customer') }}" class="btn btn-outline-primary">Ver Clientes</a>
                 </div>
             </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Prospects</h5>
+                    <p class="card-text fs-4">{{ total_prospects }} Prospects</p>
+                    <a href="{{ url_for('prospect') }}" class="btn btn-outline-primary">Ver Prospects</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Recent Activities Section -->
+    <div class="row">
+        <div class="col-12">
+            <h4 class="mb-3">Últimas Atividades</h4>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        {% if recent_activities %}
+                            {% for activity in recent_activities %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h5 class="mb-1">{{ activity.titulo }}</h5>
+                                    <p class="mb-0 text-muted">Cliente: {{ activity.customer.razao_social }}</p>
+                                    <small class="text-muted">Data: {{ activity.data_inicio.strftime('%d/%m/%Y %H:%M') }} - Status: {{ activity.status }}</small>
+                                </div>
+                                <div>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">Detalhes</a>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        {% else %}
+                            <li class="list-group-item">Sem atividades recentes.</li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Shortcuts Section -->
+    <div class="row mt-4">
+        <div class="col-12 col-sm-6 col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Administração</h5>
+                    <a href="#" class="btn btn-outline-primary">Acessar</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Minhas Atividades</h5>
+                    <a href="{{ url_for('my_activity') }}" class="btn btn-outline-primary">Acessar</a>
+                </div>
+            </div>
+        </div>
         {% if grupo == 'Cliente' %}
-        <div class="col-12 col-sm-6 col-md-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h4 class="card-title">E-Social</h4>
-                    <a class="btn btn-primary color-alcance mt-1" href="#">Acessar</a>
-                </div>
-            </div>
-        </div>
+
         {% endif %}
-
-        <div class="col-12 col-sm-6 col-md-4">
-            <div class="card h-100">
+        <div class="col-12 col-sm-6 col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
                 <div class="card-body">
-                    <h4 class="card-title">Sair</h4>
-                    <a class="btn btn-danger mt-1" href="{{ url_for('logout') }}">Logout</a>
+                    <h5 class="card-title">Sair</h5>
+                    <a href="{{ url_for('logout') }}" class="btn btn-outline-danger">Logout</a>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 

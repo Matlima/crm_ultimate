@@ -41,8 +41,8 @@ body {
 }
 
 .sidebar .nav-link.active {
-    background-color: #198754;
-    color: #fff;
+    background-color: #ffc66d;
+    color: #000;
     border-radius: 8px;
 }
 
