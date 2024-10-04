@@ -12,11 +12,28 @@ body {
     z-index: 1000;
     background-color: #343a40;
     transition: transform 0.3s ease-in-out;
-    transform: translateX(-100%);
 }
 
-.sidebar.show {
-    transform: translateX(0);
+/* No desktop, o sidebar será visível por padrão */
+@media (min-width: 768px) {
+    .sidebar {
+        transform: translateX(0);
+    }
+}
+
+/* Mobile view adjustments */
+@media (max-width: 767.98px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    .content {
+        margin-left: 0;
+    }
 }
 
 .sidebar h3 {
@@ -31,8 +48,8 @@ body {
 
 .content {
     flex-grow: 1;
-    padding: 20px;
-    margin-left: 250px; /* Ajuste para evitar que o conteúdo sobreponha a sidebar */
+    /* padding: 20px;
+    margin-left: 250px;  Ajuste para evitar que o conteúdo sobreponha a sidebar no desktop */
 }
 
 .overlay {
@@ -53,23 +70,26 @@ body {
     visibility: visible;
 }
 
-/* Mobile view adjustments */
-@media (max-width: 767.98px) {
-    .content {
-        margin-left: 0;
+<style>
+    /* Responsividade da tabela para evitar overflow lateral */
+    .table-responsive {
+        overflow-x: auto; /* Permite o scroll horizontal dentro do contêiner da tabela, se necessário */
+        -webkit-overflow-scrolling: touch; /* Suaviza o scroll em dispositivos móveis */
     }
 
-    .sidebar {
-        width: 250px;
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        transform: translateX(-100%);
-        z-index: 1000;
+    table {
+        table-layout: auto; /* Deixa a tabela adaptar-se ao tamanho do conteúdo */
+        width: 100%; /* Faz a tabela ocupar 100% da largura disponível */
     }
 
-    .sidebar.show {
-        transform: translateX(0);
+    td, th {
+        white-space: nowrap; /* Evita que o conteúdo das células quebre em várias linhas */
+        text-overflow: ellipsis; /* Adiciona "..." quando o conteúdo for muito longo */
+        overflow: hidden; /* Esconde o conteúdo excedente */
     }
-}
+
+    /* Remove o overflow horizontal indesejado */
+    body {
+        overflow-x: hidden;
+    }
+</style>

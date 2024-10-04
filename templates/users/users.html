@@ -6,17 +6,18 @@
             <a class="btn btn-primary color-alcance" href="{{ url_for('new_user') }}">Adicionar Usuário</a>
         </div>
     </div>
+
+    <!-- Table with responsive design -->
     <div class="table-responsive">
-        <table class="table table-striped table-bordered">
-            <thead class="thead-default">
+        <table class="table table-hover table-bordered align-middle text-center">
+            <thead class="thead-light">
                 <tr>
                     <th>Tipo</th>
                     <th>Login</th>
-                    <th>Nome Completo</th>
                     <th>Setor</th>
                     <th>Cargo</th>
                     <th>Status</th>
-                    <th></th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,17 +25,22 @@
                 <tr>
                     <td>{{ usuario.grupo }}</td>
                     <td>{{ usuario.login }}</td>
-                    <td>{{ usuario.nome }}</td>
                     <td>{{ usuario.setor }}</td>
                     <td>{{ usuario.cargo }}</td>
-                    <td>{{ usuario.ativo }}</td>
                     <td>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-primary dropdown-toggle color-alcance" data-bs-toggle="dropdown" aria-expanded="false">
+                        {% if usuario.ativo %}
+                            <span class="badge bg-success">Ativo</span>
+                        {% else %}
+                            <span class="badge bg-danger">Inativo</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle color-alcance" type="button" id="dropdownMenuButton{{ usuario.id }}" data-bs-toggle="dropdown" aria-expanded="false">
                                 Ações
                             </button>
-                            <ul class="dropdown-menu">
-                                <form action="{{ url_for('desative_user', id=usuario.id) }}" method="post">
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton{{ usuario.id }}">
+                                <form action="{{ url_for('desative_user', id=usuario.id) }}" method="post" class="d-inline-block">
                                     {{ form.csrf_token() }}
                                     <input type="hidden" name="id" value="{{ usuario.id }}">
                                     <button type="submit" class="dropdown-item">Desativar</button>

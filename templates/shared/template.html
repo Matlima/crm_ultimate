@@ -9,6 +9,81 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        /* Sidebar styles */
+        .sidebar {
+            width: 250px;
+            min-height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #343a40;
+            padding: 1rem;
+            z-index: 1000;
+        }
+
+        .sidebar h3 {
+            color: #ffc107;
+        }
+
+        .sidebar .nav-link {
+            color: #fff;
+        }
+
+        /* Hide sidebar on mobile */
+        .sidebar.hide {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Overlay for mobile when sidebar is shown */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+
+        /* Desktop view: show sidebar by default */
+        @media (min-width: 768px) {
+            .sidebar {
+                transform: none;
+                position: relative;
+                width: 250px;
+                height: 100vh;
+            }
+
+            .overlay {
+                display: none !important;
+            }
+        }
+
+        .content {
+            /* margin-left: 250px;  Adjust content to account for sidebar width */
+        }
+
+        @media (max-width: 767px) {
+            .content {
+                margin-left: 0;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.show {
+                transform: translateX(0);
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -20,7 +95,7 @@
 
     <div class="d-flex">
         <!-- Sidebar as a div -->
-        <div class="sidebar bg-dark p-3" id="sidebar" style="border-top-right-radius: 1rem !important; border-bottom-right-radius: 1rem !important;">
+        <div class="sidebar bg-dark p-3" id="sidebar">
             <div class="d-flex align-items-center mb-4">
                 <img src="{{ url_for('static', filename='img/favicon.png') }}" alt="CRM Logo" class="me-2" style="width: 40px;">
                 <h3 class="text-warning d-none d-md-block">CRM App</h3>
@@ -33,15 +108,15 @@
                     <a href="{{ url_for('profile') }}" class="nav-link"><i class="fas fa-user me-2"></i> Perfil</a>
                 </li>
                 <li class="nav-item dropdown mb-3">
-                  <a href="{{ url_for('profile') }}" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-book me-2"></i> Administração</a>
-                  <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="{{ url_for('users') }}">Usuários</a></li>
-                      <li><a class="dropdown-item" href="{{ url_for('prospect') }}">Prospects</a></li>
-                      <li><a class="dropdown-item" href="{{ url_for('customer') }}">Clientes</a></li>
-                      <li><a class="dropdown-item" href="{{ url_for('activity') }}">Atividades</a></li>
-                      <li><a class="dropdown-item" href="{{ url_for('plan') }}">Planos</a></li>
-                      <li><a class="dropdown-item" href="#">Serviços</a></li>
-                  </ul>
+                    <a href="{{ url_for('profile') }}" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-book me-2"></i> Administração</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ url_for('users') }}">Usuários</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('prospect') }}">Prospects</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('customer') }}">Clientes</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('activity') }}">Atividades</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('plan') }}">Planos</a></li>
+                        <li><a class="dropdown-item" href="#">Serviços</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item mb-3">
                     <a href="#" class="nav-link"><i class="fas fa-credit-card me-2"></i> Meus Prospect</a>
@@ -64,13 +139,13 @@
         <!-- Main Content -->
         <div class="content p-4">
             {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    <ul id="messages" class="list-unstyled">
-                        {% for message in messages %}
-                            <li class="alert alert-success">{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+            {% if messages %}
+            <ul id="messages" class="list-unstyled">
+                {% for message in messages %}
+                <li class="alert alert-success">{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
             {% endwith %}
             {% block conteudo %}{% endblock %}
         </div>
