@@ -1,68 +1,98 @@
 {% extends "shared/template.html" %}
 {% block conteudo %}
-    <div class="card m-2" >
-            <div class="">
-                <h5 class="card-header">Adicionar atividade</h5>
-                <!-- Form Start -->
-                <div class="card-body">
-                    <form action="{{ url_for('created_activity') }}" method="post" enctype="multipart/form-data">
-                        <fieldset class="p-1">
-                            {{ form.csrf_token() }}
-                        <!-- Basic Details -->
-                        <div class="mb-2">
-                            <div class="row">
-                                <div class="col-md-2 mb-2">
-                                    <label  class="form-label">Tipo</label>
-                                    {{ form.tipo(class="form-select") }}
-                                </div>
-                                <div class="col-md-2 mb-2">
-                                    <label class="form-label">Status</label>
-                                    {{ form.status(class="form-select") }}
-                                </div>
-                                <div class="col-md-8 mb-2">
-                                    <label class="form-label">Cliente</label>
-                                    <select class="form-select" name="cliente_id">
-                                        {% for cliente in clientes %}
-                                            <option value="{{ cliente.id }}">{{ cliente.razao_social }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12 mb-2">
-                                    <label  class="form-label">Titulo</label>
-                                    {{ form.titulo(class="form-control") }}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12 mb-2">
-                                    <label class="form-label">Descrição</label>
-                                    {{ form.descricao(class="form-control") }}
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Submit Button -->
-                        <div class="text-   left">
-                            <button type="submit" class="btn btn-primary">Adicionar</button>
-                        </div>
-                        </fieldset>
-                    </form>
-                </div>
-                <!-- Form End -->
-            </div>
+
+<!-- Header -->
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <h4 class="text-secondary">Minhas Atividades</h4>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addActivityModal">Nova Atividade</button>
     </div>
-    <div class="mt-2 m-2">
-    <h3> Minhas atividades</h3>
-    {% for activity in activities %}
-        <div class="card w-100 mb-2"  >
-          <div class="card-body">
-            <h5 class="card-title">{{ activity.titulo }}</h5>
-            <h6 class="card-subtitle mb-2 text-body-secondary">Data: {{ activity.data_inicio }} | Tipo: {{ activity.tipo }}</h6>
-              <h6 class="card-subtitle mb-2 text-body-secondary">Cliente: {{ activity.customer.razao_social }}</h6>
-            <p class="card-text">{{ activity.descricao }}</p>
-            <a href="#" class="card-link">Informações</a>
-          </div>
+
+    <!-- Filter Section -->
+    <div class="row my-4">
+        <div class="col-md-4 mb-2">
+            <input type="text" class="form-control" placeholder="Buscar atividades..." id="search">
         </div>
-    {% endfor %}
+        <div class="col-md-2 mb-2">
+            <select class="form-select">
+                <option>Status</option>
+                <option value="pendente">Pendente</option>
+                <option value="em_andamento">Em Andamento</option>
+                <option value="concluida">Concluída</option>
+            </select>
+        </div>
+        <div class="col-md-2 mb-2">
+            <select class="form-select">
+                <option>Tipo</option>
+                <option value="reuniao">Reunião</option>
+                <option value="chamada">Chamada</option>
+                <option value="email">E-mail</option>
+            </select>
+        </div>
     </div>
+
+    <!-- Activities List -->
+    <div class="row">
+        {% for activity in activities %}
+        <div class="col-md-6 mb-3">
+            <div class="card shadow-sm" style="border-left: 5px solid {% if activity.status == 'concluida' %}#28a745{% elif activity.status == 'pendente' %}#ffc107{% else %}#17a2b8{% endif %};">
+                <div class="card-body">
+                    <h5 class="card-title">{{ activity.titulo }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Cliente: {{ activity.customer.razao_social }}</h6>
+                    <p class="card-text">{{ activity.descricao }}</p>
+                    <div class="d-flex justify-content-between">
+                        <span class="badge bg-secondary">{{ activity.tipo }}</span>
+                        <a href="#" class="btn btn-sm btn-outline-primary">Detalhes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Modal for Adding Activity -->
+<div class="modal fade" id="addActivityModal" tabindex="-1" aria-labelledby="addActivityModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addActivityModalLabel">Nova Atividade</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('created_activity') }}" method="post" enctype="multipart/form-data">
+                    {{ form.csrf_token() }}
+                    <div class="mb-3">
+                        <label class="form-label">Tipo</label>
+                        {{ form.tipo(class="form-select") }}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Status</label>
+                        {{ form.status(class="form-select") }}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Cliente</label>
+                        <select class="form-select" name="cliente_id">
+                            {% for cliente in clientes %}
+                            <option value="{{ cliente.id }}">{{ cliente.razao_social }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Título</label>
+                        {{ form.titulo(class="form-control") }}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Descrição</label>
+                        {{ form.descricao(class="form-control") }}
+                    </div>
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary">Adicionar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
