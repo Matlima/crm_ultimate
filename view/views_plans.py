@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, session, flash, url_for
 from application import app, db
-from models.models import Plan
+from models.models import Plan, CategoryPlan, User
 from helpers.helpers_forms import is_admin, FormPlano, FormCategoryPlano
 from templates.customers import *
 from uploads import *
@@ -80,7 +80,6 @@ def update_plan():
 
 # Category Plan:
 
-
 @app.route('/plans/category/new')
 def new_category_plan():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
@@ -89,3 +88,20 @@ def new_category_plan():
     return render_template('plans/add_category.html',
                            form=form
                            )
+
+
+@app.route('/plans/category/add', methods=['POST'])
+def created_category_plan():
+    form = FormCategoryPlano(request.form)
+    form.id_user.choices = [(usuario.id, usuario.nome) for usuario in User.query.all()]
+
+    nome = form.nome.data
+    ativo = form.ativo.data
+    user = session["usuario_id"]
+
+    nova_categoria = CategoryPlan(nome=nome, ativo=ativo, id_user=user)
+    db.session.add(nova_categoria)
+    db.session.commit()
+
+    flash('Categoria adicionada com sucesso!')
+    return redirect(url_for('plan'))
