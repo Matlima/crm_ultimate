@@ -35,15 +35,24 @@ def activity():
 def my_activity():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
+
     form = FormActivity()
     usuario_id = session["usuario_id"]
-    activities = db.session.query(Activity).join(Customer).filter(Activity.usuario_id == usuario_id).order_by(Activity.data_inicio.desc()).all()
+
+    # Adicionando paginação
+    page = request.args.get('page', 1, type=int)  # Obtém o número da página a partir da URL
+    activities = db.session.query(Activity) \
+        .join(Customer) \
+        .filter(Activity.usuario_id == usuario_id) \
+        .order_by(Activity.data_inicio.desc()) \
+        .paginate(page=page, per_page=10)  # Define 6 atividades por página
+
     return render_template('activities/my_activities.html',
                            activities=activities,
                            form=form,
                            clientes=Customer.query.all(),
+                           page=page
                            )
-
 
 
 @app.route('/activities/new')
@@ -89,7 +98,7 @@ def created_activity():
     db.session.add(new_activity)
     db.session.commit()
     flash('Atividade adicionada com sucesso!')
-    return redirect(url_for('new_activity'))
+    return redirect(url_for('my_activity'))
 
 @app.route('/activities/delete/<int:id>')
 def delete_activity(id):
