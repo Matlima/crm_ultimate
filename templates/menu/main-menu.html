@@ -10,8 +10,7 @@
                 <div class="card h-100">
                     <div class="card-body">
                         <h4 class="card-title">Administração</h4>
-                        <p class="card-text">Acesse os dados e informações relacionadas a administração geral do sistema.</p>
-                        <a class="btn btn-primary color-alcance" href="#">Acessar</a>
+                        <a class="btn btn-primary color-alcance mt-1" href="#">Acessar</a>
                     </div>
                 </div>
             </div>
@@ -20,97 +19,31 @@
                 <div class="card h-100">
                     <div class="card-body">
                         <h4 class="card-title">Minhas atividades</h4>
-                        <p class="card-text">Acesse as informações de todas as atividades realizadas no sistema.</p>
-                        <a class="btn btn-primary color-alcance" href="#">Acessar</a>
+                        <a class="btn btn-primary color-alcance mt-1" href="#">Acessar</a>
                     </div>
                 </div>
             </div>
-            
-            <div class="col-12 col-sm-6 col-md-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h4 class="card-title">Pessoal</h4>
-                        <p class="card-text">Acesse o menu e funcionalidades de automações para o setor pessoal.</p>
-                        <a class="btn btn-primary color-alcance" href="#">Acessar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h4 class="card-title">Fiscal</h4>
-                        <p class="card-text">Acesse o menu e funcionalidades de automações para o setor fiscal.</p>
-                        <a class="btn btn-primary color-alcance" href="#">Acessar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h4 class="card-title">Contábil</h4>
-                        <p class="card-text">Acesse o menu e funcionalidades de automações para o setor contábil.</p>
-                        <a class="btn btn-primary color-alcance" href="#">Acessar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h4 class="card-title">Comercial</h4>
-                        <p class="card-text">Acesse o menu e funcionalidades de automações para o setor comercial.</p>
-                        <a class="btn btn-primary color-alcance" href="#">Acessar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h4 class="card-title">Financeiro</h4>
-                        <p class="card-text">Acesse o menu e funcionalidades de automações para o setor financeiro.</p>
-                        <a class="btn btn-primary color-alcance" href="#" target="_blank">Acessar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h4 class="card-title">Sucesso do Cliente</h4>
-                        <p class="card-text">Acesse o menu e funcionalidades de automações para o setor sucesso do cliente.</p>
-                        <a class="btn btn-primary color-alcance" href="#" target="_blank">Acessar</a>
-                    </div>
-                </div>
-            </div>
-        
+
         {% if grupo == 'Cliente' %}
         <div class="col-12 col-sm-6 col-md-4">
             <div class="card h-100">
                 <div class="card-body">
                     <h4 class="card-title">E-Social</h4>
-                    <p class="card-text">Verificar documentos do e-social relacionados ao empregado contratado</p>
-                    <a class="btn btn-primary color-alcance" href="#">Acessar</a>
+                    <a class="btn btn-primary color-alcance mt-1" href="#">Acessar</a>
                 </div>
             </div>
         </div>
         {% endif %}
+
         <div class="col-12 col-sm-6 col-md-4">
             <div class="card h-100">
                 <div class="card-body">
-                    <h4 class="card-title">Ajuda</h4>
-                    <p class="card-text">Obter ajuda e suporte sobre a plataforma da Alcance Contabilidade.</p>
-                    <a class="btn btn-primary color-alcance" href="https://maps.app.goo.gl/97zkNg8BAKSZkpkU8" target="_blank">Ajuda</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <i class="fas fa-sign-in"></i>
                     <h4 class="card-title">Sair</h4>
-                    <p class="card-text">Sair da aplicação, realizar logout e voltar para o login.</p>
-                    <a class="btn btn-danger" href="{{ url_for('logout') }}">Logout</a>
+                    <a class="btn btn-danger mt-1" href="{{ url_for('logout') }}">Logout</a>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 

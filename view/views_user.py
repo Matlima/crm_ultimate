@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, session, flash, url_for, send_from_directory
 from application import app, db
-from models.models import User
+from models.models import User, Activity
 from helpers.helpers_forms import FormUser
 from flask_bcrypt import generate_password_hash
 from sqlalchemy.exc import IntegrityError
@@ -131,9 +131,49 @@ def desative_user(id):
 
 @app.route('/users/profile')
 def profile():
-    lista = User.query.order_by(User.id)
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        return redirect(url_for('login', proxima=url_for('dashboard')))
+        return redirect(url_for('login', proxima=url_for('editar', id=id)))
+    id = session["usuario_id"]
+    user = User.query.filter_by(id=id).first()
+    qtd_activities = Activity.query.filter_by(usuario_id=id).count()
     form = FormUser()
-    return render_template('users/profile.html',  usuarios=lista, form=form)
+    form.nome.data = user.nome
+    form.login.data = user.login
+    form.email.data = user.email
+    form.grupo.data = user.grupo
+    form.telefone.data = user.telefone
+    form.cargo.data = user.cargo
+    form.setor.data = user.setor
+    form.ativo.data = user.ativo
+    return render_template('users/profile.html',
+                           titulo='Perfil',
+                           id=id,
+                           form=form,
+                           user=user,
+                           qtd_activities=qtd_activities
+                           )
+
+
+@app.route('/users/profile/edit', methods=['POST'])
+def edit_perfil():
+    form = FormUser(request.form)
+    id = session["usuario_id"]
+    if form.validate_on_submit():
+        user = User.query.filter_by(id=id).first()
+        if user:
+            user.nome = form.nome.data
+            user.login = form.login.data
+            # Apenas atualizar a senha, se for fornecida:
+            if form.senha.data:
+                user.senha = generate_password_hash(form.senha.data)
+            user.email = form.email.data
+            user.grupo = form.grupo.data
+            user.telefone = form.telefone.data
+            user.ativo = form.ativo.data
+            user.grupo = form.grupo.data
+            user.setor = form.setor.data
+            user.cargo = form.cargo.data
+            db.session.commit()
+            flash("Usuário atualizado com sucesso!", 'sucess')
+    return redirect(url_for('index'))
 
