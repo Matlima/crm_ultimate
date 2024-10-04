@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, session, flash, url_for
 from application import app, db
 from models.models import Plan
-from helpers.helpers_forms import is_admin, FormPlano
+from helpers.helpers_forms import is_admin, FormPlano, FormCategoryPlano
 from templates.customers import *
 from uploads import *
 from datetime import datetime
@@ -12,19 +12,20 @@ def plan():
     lista = Plan.query.order_by(Plan.id)
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('dashboard')))
-    adm = is_admin()
-    return render_template('plans/plans.html',  plans=lista, is_admin=adm)
+    # adm = is_admin()
+    return render_template('plans/plans.html',
+                           plans=lista
+                           # is_admin=adm
+                           )
 
 @app.route('/plans/new')
 def new_plan():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
     form = FormPlano()
-    return render_template('plans/add_plan.html', form=form)
-
-@app.route('/plans/category/new')
-def new_category_plan():
-    pass
+    return render_template('plans/add_plan.html',
+                           form=form
+                           )
 
 @app.route('/plans/add', methods=['POST'])
 def created_plan():
@@ -52,7 +53,10 @@ def edit_plan(id):
     form.descricao.data = plan.descricao
     form.preco.data = plan.preco
     form.periodicidade.data = plan.periodicidade
-    return render_template('plans/edit_plan.html', id=id, form=form)
+    return render_template('plans/edit_plan.html',
+                           id=id,
+                           form=form
+                           )
 
 
 @app.route('/plans/update', methods=['POST'])
@@ -73,3 +77,15 @@ def update_plan():
             flash('Plano não encontrado', 'error')
             return redirect(url_for('edit_plan', id=request.form['id']))
 
+
+# Category Plan:
+
+
+@app.route('/plans/category/new')
+def new_category_plan():
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login', proxima=url_for('novo')))
+    form = FormCategoryPlano()
+    return render_template('plans/add_category.html',
+                           form=form
+                           )

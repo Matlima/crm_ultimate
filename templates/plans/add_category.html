@@ -2,38 +2,21 @@
 {% block conteudo %}
     <div class="card mx-auto shadow-lg" style="max-width: 100%; border-radius: 20px;">
             <div class="card-body p-4">
-                <h5 class="text-left mb-4">Novo Plan</h5>
+                <h5 class="text-left mb-4">Nova categoria de plano</h5>
                 <!-- Form Start -->
                 <form action="{{ url_for('created_plan') }}" method="post" enctype="multipart/form-data">
                     <fieldset class="p-3">
                         {{ form.csrf_token() }}
                     <!-- Basic Details -->
                     <div class="mb-4">
-                        <h6>Informações básicas</h6>
                         <div class="row">
                             <div class="col-md-9 mb-3">
-                                <label  class="form-label">Nome</label>
+                                {{ form.nome.label(class="form-label") }}
                                 {{ form.nome(class="form-control") }}
                             </div>
-                            <div class="col-md-3 mb-3">
-                                <label  class="form-label">Preço</label>
-                                {{ form.preco(class="form-control") }}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 mb-3">
-                                <label  class="form-label">Descrição</label>
-                                {{ form.descricao(class="form-control") }}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2 mb-3">
-                                <label  class="form-label">Status</label>
-                                {{ form.status(class="form-select") }}
-                            </div>
-                            <div class="col-md-2 mb-3">
-                                <label  class="form-label">Periodicidade</label>
-                                {{ form.periodicidade(class="form-select") }}
+                            <div class="col-md-2 mt-4">
+                                {{ form.ativo.label(class="form-check-label") }}
+                                {{ form.ativo(class="form-check-input") }}
                             </div>
                         </div>
                     </div>
