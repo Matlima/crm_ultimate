@@ -9,12 +9,14 @@ from datetime import datetime
 
 @app.route('/plans')
 def plan():
-    lista = Plan.query.order_by(Plan.id)
+    listPlans = Plan.query.order_by(Plan.id)
+    listCategories = CategoryPlan.query.order_by(CategoryPlan.id)
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('dashboard')))
     # adm = is_admin()
     return render_template('plans/plans.html',
-                           plans=lista
+                           plans=listPlans,
+                           categories=listCategories
                            # is_admin=adm
                            )
 
