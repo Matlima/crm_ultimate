@@ -9,10 +9,15 @@ def index():
     lista = Activity.query.order_by(Activity.id)
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('index')))
-    adm = is_admin()
+    # admin = is_admin()
     activities = db.session.query(Activity).join(User).all()
     form = FormActivity()
-    return render_template('menu/main-menu.html', titulo='Menu Principal', atividades=activities, is_admin=adm, form=form)
+    return render_template('menu/main-menu.html',
+                           titulo='Menu Principal',
+                           atividades=activities,
+                           # admin=admin,
+                           form=form
+                           )
 
 
 @app.route('/activities')

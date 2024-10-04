@@ -94,4 +94,4 @@ class CategoryPlan(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(300), nullable=False)
     id_user = db.Column(Integer, ForeignKey('user.id'), nullable=False)
-    ativo = db.Column(db.Boolen, nullable=False)
+    ativo = db.Column(db.Boolean)

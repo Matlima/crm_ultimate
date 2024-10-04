@@ -140,7 +140,10 @@ def deleta_arquivo(id):
 def is_admin():
     id = session["usuario_id"]
     usuario = User.query.filter_by(id=id).first()
-    if usuario.grupo == 'Administrador':
+    return usuario.grupo
+
+"""    if usuario.grupo == 'Administrador':
         return True
     else:
         return False
+"""
