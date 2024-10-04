@@ -1,50 +1,54 @@
 {% extends "shared/template.html" %}
 {% block conteudo %}
-    <div class="card mx-auto shadow-lg" style="max-width: 100%; border-radius: 20px;">
-            <div class="card-body p-4">
-                <h5 class="text-left mb-4">Editando Prospect</h5>
-                <!-- Form Start -->
-                <form action="{{ url_for('update_prospect') }}" method="post" enctype="multipart/form-data">
-                    <fieldset class="p-3">
-                        {{ form.csrf_token() }}
-                    <!-- Basic Details -->
+<div class="container mt-4">
+    <div class="card mx-auto shadow-lg" style="border-radius: 12px; max-width: 800px;">
+        <div class="card-body p-4">
+            <h4 class="mb-4 text-center">Editando Prospect</h4>
+
+            <!-- Form Start -->
+            <form action="{{ url_for('update_prospect') }}" method="post" enctype="multipart/form-data">
+                <fieldset>
+                    {{ form.csrf_token() }}
+                    <input type="hidden" name="id" value="{{ id }}">
+
+                    <!-- Informações básicas -->
                     <div class="mb-4">
-                        <h6>Informações básicas</h6>
+                        <h5 class="mb-3">Informações Básicas</h5>
                         <div class="row">
                             <div class="col-md-12 mb-3">
-                                <input type="hidden" name="id" value="{{ id }}">
-                                <label  class="form-label">Nome completo</label>
-                                {{ form.nome_completo(class="form-control") }}
+                                <label for="nome" class="form-label">Nome Completo</label>
+                                {{ form.nome_completo(class="form-control", placeholder="Nome completo do prospect") }}
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label  class="form-label">E-mail</label>
-                                {{ form.email(class="form-control") }}
+                                <label for="email" class="form-label">E-mail</label>
+                                {{ form.email(class="form-control", placeholder="email@exemplo.com") }}
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Telefone</label>
-                                {{ form.telefone(class="form-control") }}
+                                <label for="telefone" class="form-label">Telefone</label>
+                                {{ form.telefone(class="form-control", placeholder="(99) 99999-9999") }}
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-12 mb-3">
-                                <label class="form-label">Observação</label>
-                                {{ form.observacao(class="form-control") }}
+                                <label for="observacao" class="form-label">Observação</label>
+                                {{ form.observacao(class="form-control", rows=3, placeholder="Observações relevantes sobre o prospect") }}
                             </div>
                         </div>
                     </div>
 
-
-                    <!-- Submit Button -->
-                    <div class="text-center">
-                        {{ form.cadastrar(class="btn btn-primary px-5") }}
-                        <a class="btn btn-danger mx-2" href="{{ url_for('prospect') }}">Voltar</a>
+                    <!-- Botões de Ação -->
+                    <div class="d-flex justify-content-center gap-2">
+                        {{ form.cadastrar(class="btn btn-primary px-5", style="min-width: 150px;") }}
+                        <a class="btn btn-danger px-5" href="{{ url_for('prospect') }}" style="min-width: 150px;">Voltar</a>
                     </div>
-                    </fieldset>
-                </form>
-                <!-- Form End -->
-            </div>
+                </fieldset>
+            </form>
+            <!-- Form End -->
+        </div>
     </div>
+</div>
 {% endblock %}
