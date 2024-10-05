@@ -7,6 +7,8 @@ from uploads import *
 from datetime import datetime
 
 
+## Methods Routes:
+
 @app.route('/plans')
 def plan():
     listPlans = Plan.query.order_by(Plan.id)
@@ -20,6 +22,8 @@ def plan():
                            # is_admin=adm
                            )
 
+
+# Plan:
 @app.route('/plans/new')
 def new_plan():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
@@ -98,6 +102,25 @@ def update_plan():
     flash('Erro ao validar o formulário', 'error')
     return redirect(url_for('edit_plan', id=request.form['id']))
 
+
+
+@app.route('/plans/delete/<int:id>')
+def delete_plan(id):
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login', proximo=url_for('novo')))
+
+    try:
+        Plan.query.filter_by(id=id).delete()
+        db.session.commit()
+        flash("Produto excluida com sucesso!")
+    except InterruptedError:
+        db.session.rollback()
+        flash('Erro: Produto está vinculado a outras(os) proposta/contrato. Exclua as(os) proposta/contrato relacionados primeiro.', 'error')
+    except Exception as e:
+        db.session.rollback()
+        flash(f"Erro ao excluir produto: {str(e)}", "error")
+
+    return redirect(url_for('plan'))
 
 # Category Plan:
 
