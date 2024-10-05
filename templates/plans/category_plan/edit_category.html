@@ -23,9 +23,9 @@
                     <div class="mb-4">
                         <div class="row">
                             <!-- Campo de seleção de usuário -->
-                            <div class="col-md-2 mb-3">
+                            <div class="col-md-2 mb-3 d-none">
                                 <label class="form-label">Usuário</label>
-                                <select class="form-select disabled" name="id_user" disabled>
+                                <select class="form-select disabled" name="id_user">
                                     {% for usuario in usuarios %}
                                     <option value="{{ usuario.id }}" {% if usuario.id == form.id_user.data %}selected{% endif %}>
                                         {{ usuario.nome }}
