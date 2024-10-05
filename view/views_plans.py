@@ -43,12 +43,21 @@ def created_plan():
     periodicidade = form.periodicidade.data
     preco = form.preco.data
     status = form.status.data
-    novo_plano = Plan(nome=nome, descricao=descricao, preco=preco, status=status, periodicidade=periodicidade)
+    tipo = form.tipo.data
+    category = form.id_category.data
+
+    novo_plano = Plan(nome=nome,
+                      descricao=descricao,
+                      preco=preco,
+                      status=status,
+                      periodicidade=periodicidade,
+                      tipo=tipo,
+                      id_category=category
+                      )
     db.session.add(novo_plano)
     db.session.commit()
     flash('Plan adicionado com sucesso!')
     return redirect(url_for('plan'))
-
 
 @app.route('/plans/edit/<int:id>')
 def edit_plan(id):
@@ -56,20 +65,24 @@ def edit_plan(id):
         return redirect(url_for('login', proxima=url_for('novo')))
 
     form = FormPlano()
+    # Preenche o select de categorias
     form.id_category.choices = [(category.id, category.nome) for category in CategoryPlan.query.all()]
 
+    # Busca o plano específico
     plan = Plan.query.filter_by(id=id).first()
+
+    # Preenche os campos do formulário com os valores do plano
     form.nome.data = plan.nome
     form.status.data = plan.status
     form.descricao.data = plan.descricao
     form.preco.data = plan.preco
     form.periodicidade.data = plan.periodicidade
+    form.tipo.data = plan.tipo
+    form.id_category.data = plan.id_category  # Categoria selecionada
 
-    categories = CategoryPlan.query.all()
     return render_template('plans/edit_plan.html',
                            id=id,
-                           form=form,
-                           categories=categories
+                           form=form
                            )
 
 
