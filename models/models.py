@@ -76,6 +76,16 @@ class Prospect(db.Model):
         return '<name %r' % self.__name__
 
 
+class CategoryPlan(db.Model):
+    __tablename__ = 'category_plan'
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(300), nullable=False)
+    id_user = db.Column(Integer, ForeignKey('user.id'), nullable=False)
+    ativo = db.Column(db.Boolean)
+
+    # Relacionamento com o plano
+    plans = db.relationship('Plan', backref='category', lazy=True)
+
 class Plan(db.Model):
     __tablename__ = 'plan'
     id = db.Column(db.Integer, primary_key=True)
@@ -84,14 +94,10 @@ class Plan(db.Model):
     periodicidade = db.Column(db.String(300))
     preco = db.Column(DECIMAL(10, 2), nullable=False, )
     status = db.Column(db.String(30), nullable=False)
+    tipo = db.Column(db.String(100))
+    id_category = db.Column(Integer, db.ForeignKey('category_plan.id'), nullable=False)
+
 
     def __repr__(self):
         return '<name %r' % self.__name__
 
-
-class CategoryPlan(db.Model):
-    __tablename__ = 'category_plan'
-    id = db.Column(db.Integer, primary_key=True)
-    nome = db.Column(db.String(300), nullable=False)
-    id_user = db.Column(Integer, ForeignKey('user.id'), nullable=False)
-    ativo = db.Column(db.Boolean)
