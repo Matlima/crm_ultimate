@@ -1,0 +1,60 @@
+{% extends "shared/template.html" %}
+{% block conteudo %}
+    <div class="card mx-auto shadow-lg" style="max-width: 100%; border-radius: 20px;">
+        <div class="card-body p-4">
+            <h5 class="text-left mb-4">Editando categoria</h5>
+
+            <!-- Exibir mensagens de sucesso ou erro -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                <div class="alert alert-danger">
+                  {% for category, message in messages %}
+                    <p>{{ message }}</p>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            {% endwith %}
+
+            <!-- Form Start -->
+            <form action="{{ url_for('update_category_plan') }}" method="post" enctype="multipart/form-data">
+                <fieldset class="p-3">
+                    {{ form.csrf_token() }}
+
+                    <div class="mb-4">
+                        <div class="row">
+                            <!-- Campo de seleção de usuário -->
+                            <div class="col-md-2 mb-3">
+                                <label class="form-label">Usuário</label>
+                                <select class="form-select disabled" name="id_user" disabled>
+                                    {% for usuario in usuarios %}
+                                    <option value="{{ usuario.id }}" {% if usuario.id == form.id_user.data %}selected{% endif %}>
+                                        {{ usuario.nome }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <!-- Nome da categoria -->
+                            <div class="col-md-8 mb-3">
+                                <input type="hidden" name="id" value="{{ id }}">
+                                {{ form.nome.label(class="form-label") }}
+                                {{ form.nome(class="form-control") }}
+                            </div>
+                            <!-- Campo de ativo -->
+                            <div class="col-md-1 mt-4">
+                                {{ form.ativo.label(class="form-check-label") }}
+                                {{ form.ativo(class="form-check-input") }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botão de submissão -->
+                    <div class="text-center">
+                        {{ form.cadastrar(class="btn btn-primary px-5") }}
+                        <a class="btn btn-danger mx-2" href="{{ url_for('plan') }}">Voltar</a>
+                    </div>
+                </fieldset>
+            </form>
+            <!-- Form End -->
+        </div>
+    </div>
+{% endblock %}
