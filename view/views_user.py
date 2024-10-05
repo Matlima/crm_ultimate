@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, session, flash, url_for, send_from_directory
 from application import app, db
 from models.models import User, Activity
-from helpers.helpers_forms import FormUser
+from helpers.forms_helpers import FormUser
 from flask_bcrypt import generate_password_hash
 from sqlalchemy.exc import IntegrityError
 
@@ -73,7 +73,11 @@ def edit_user(id):
     form.setor.data = user.setor
     form.ativo.data = user.ativo
 
-    return render_template('users/edit_user.html', titulo='Editando Usuário', id=id, form=form)
+    return render_template('users/edit_user.html',
+                           titulo='Editando Usuário',
+                           id=id,
+                           form=form
+                           )
 
 @app.route('/users/delete/<int:id>')
 def delete_user(id):

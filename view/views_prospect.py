@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, session, flash, url_for
 from application import app, db
 from models.models import Prospect
-from helpers.helpers_forms import is_admin, FormProspect
+from helpers.forms_helpers import is_admin, FormProspect
 from templates.customers import *
 from uploads import *
 from datetime import datetime

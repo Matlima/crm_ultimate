@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, session, flash, url_for
 from application import app, db
 from models.models import Activity, User, Customer
-from helpers.helpers_forms import FormActivity, is_admin
+from helpers.forms_helpers import FormActivity, is_admin
 from datetime import datetime
 
 @app.route('/')
@@ -28,7 +28,12 @@ def activity():
     adm = is_admin()
     activities = db.session.query(Activity).join(User).all()
     form = FormActivity()
-    return render_template('activities/activities.html', titulo='Atividades', atividades=activities, is_admin=adm, form=form)
+    return render_template('activities/activities.html',
+                           titulo='Atividades',
+                           atividades=activities,
+                           is_admin=adm,
+                           form=form
+                           )
 
 
 @app.route('/activities/my-activities')
@@ -152,6 +157,10 @@ def info_activity(id):
     form.tipo.data = activity.tipo
     form.status.data = activity.status
 
-    return render_template('activities/info_activity.html', titulo="Informações da atividade", id=id, form=form)
+    return render_template('activities/info_activity.html',
+                           titulo="Informações da atividade",
+                           id=id,
+                           form=form
+                           )
 
 
