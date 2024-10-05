@@ -112,9 +112,11 @@ class FormProspect(FlaskForm):
 class FormPlano(FlaskForm):
     nome = StringField('Nome', validators=[DataRequired(), Length(min=1, max=100)])
     descricao = TextAreaField('Descricao')
-    periodicidade = SelectField('Status', choices=[('Diário', 'Diário'), ('Mensal', 'Mensal'),('Anual', 'Anual'),])
+    periodicidade = SelectField('Status', choices=[('Único', 'Único'),('Diário', 'Diário'), ('Mensal', 'Mensal'),('Anual', 'Anual'),])
     preco = DecimalField('Preço', validators=[DataRequired()], render_kw={"placeholder": "R$"})
     status = SelectField('Status', choices=[('Ativo', 'Ativo'), ('Inativo', 'Inativo'),])
+    tipo = SelectField('Tipo', choices=[('Plano', 'Plano'), ('Serviço', 'Serviço'),])
+    id_category = SelectField('Categoria', coerce=int, validators=[DataRequired()])
     cadastrar = SubmitField('Salvar')
 
 class FormCategoryPlano(FlaskForm):
