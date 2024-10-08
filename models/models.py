@@ -51,6 +51,7 @@ class Activity(db.Model):
     __tablename__ = 'activity'
     id = db.Column(Integer, primary_key=True)
     cliente_id = db.Column(Integer, ForeignKey('customer.id'), nullable=False)
+    prospect_id = db.Column(Integer, ForeignKey('prospect.id'), nullable=False)
     usuario_id = db.Column(Integer, ForeignKey('user.id'), nullable=False)
     data_inicio = db.Column(DateTime, default=datetime.now)
     data_fim = db.Column(DateTime)
@@ -71,6 +72,9 @@ class Prospect(db.Model):
     nome_completo = db.Column(db.String(200), nullable=False)
     telefone = db.Column(db.String(30), nullable=False)
     observacao = db.Column(db.String(500))
+
+    # Relacionamento correto com Activity
+    activities = db.relationship('Activity', backref='prospect')
 
     def __repr__(self):
         return '<name %r' % self.__name__
