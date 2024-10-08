@@ -3,7 +3,7 @@
 <div class="container my-4">
     <div class="card mx-auto shadow-lg" style="max-width: 100%; border-radius: 15px;">
         <div class="card-body p-4">
-            <h4 class="text-center mb-4">Editando Usuário</h4>
+            <h5 class="mb-4">Editar usuário</h5>
 
             <!-- Form Start -->
             <form action="{{ url_for('update_user') }}" method="post" enctype="multipart/form-data">
@@ -12,7 +12,7 @@
 
                     <!-- Seção de Acesso ao Sistema -->
                     <div class="mb-4">
-                        <h5 class="text-primary">Acesso ao Sistema</h5>
+                        <h6 class="text-primary">Acesso ao Sistema</h6>
                         <div class="row g-3">
                             <input type="hidden" name="id" value="{{ id }}">
                             <div class="col-sm-12 col-md-5 mb-3">
@@ -32,7 +32,7 @@
 
                     <!-- Informações Básicas -->
                     <div class="mb-4">
-                        <h5 class="text-primary">Informações Básicas</h5>
+                        <h6 class="text-primary">Informações Básicas</h6>
                         <div class="row g-3">
                             <div class="col-sm-12 mb-3">
                                 <label class="form-label">Nome Completo</label>
@@ -51,7 +51,7 @@
 
                     <!-- Informações Adicionais -->
                     <div class="mb-4">
-                        <h5 class="text-primary">Informações Adicionais</h5>
+                        <h6 class="text-primary">Informações Adicionais</h6>
                         <div class="row g-3">
                             <div class="col-sm-12 col-md-4 mb-3">
                                 <label class="form-label">Grupo</label>
