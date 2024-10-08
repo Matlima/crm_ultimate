@@ -34,5 +34,44 @@
          {% endfor %}
       </tbody>
    </table>
+
+
+    <!-- Paginação -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <!-- Link para a página anterior -->
+            {% if prospects.has_prev %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('prospect', page=prospects.prev_num) }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">&laquo;</span>
+            </li>
+            {% endif %}
+
+            <!-- Links de páginas numeradas -->
+            {% for page_num in range(1, prospects.pages + 1) %}
+            <li class="page-item {% if prospects.page == page_num %}active{% endif %}">
+                <a class="page-link" href="{{ url_for('prospect', page=page_num) }}">{{ page_num }}</a>
+            </li>
+            {% endfor %}
+
+            <!-- Link para a próxima página -->
+            {% if prospects.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('prospect', page=prospects.next_num) }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">&raquo;</span>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
 </div>
 {% endblock %}

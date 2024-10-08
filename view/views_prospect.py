@@ -8,18 +8,28 @@ from datetime import datetime
 
 @app.route('/prospects')
 def prospect():
-    lista = Prospect.query.order_by(Prospect.id)
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('dashboard')))
     adm = is_admin()
-    return render_template('prospects/prospects.html',  prospects=lista, is_admin=adm)
+    page = request.args.get('page', 1, type=int)
+    lista = (
+        db.session.query(Prospect)
+        .order_by(Prospect.id)  # Ordena pelo campo 'data' em ordem decrescente
+        .paginate(page=page, per_page=10)
+    )
+    return render_template('prospects/prospects.html',
+                           prospects=lista,
+                           is_admin=adm
+                           )
 
 @app.route('/prospects/new')
 def new_prospect():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
     form = FormProspect()
-    return render_template('prospects/add_prospect.html', form=form)
+    return render_template('prospects/add_prospect.html',
+                           form=form
+                           )
 
 @app.route('/prospects/add', methods=['POST'])
 def created_prospect():
@@ -67,7 +77,10 @@ def edit_prospect(id):
     form.telefone.data = prospect.telefone
     form.email.data = prospect.email
     form.observacao.data = prospect.observacao
-    return render_template('prospects/edit_prospect.html', id=id, form=form)
+    return render_template('prospects/edit_prospect.html',
+                           id=id,
+                           form=form
+                           )
 
 
 @app.route('/prospects/update', methods=['POST'])
