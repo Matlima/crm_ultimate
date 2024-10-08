@@ -91,7 +91,8 @@ class FormCustomer(FlaskForm):
 class FormActivity(FlaskForm):
     data_inicio = DateTimeField('Data Início', [DataRequired()], format='%Y-%m-%dT%H:%M')
     data_fim = DateTimeField('Data Fim', format='%Y-%m-%dT%H:%M')
-    cliente_id = SelectField('Cliente', coerce=int, validators=[DataRequired()])
+    cliente_id = SelectField('Cliente', coerce=int)
+    prospect_id = SelectField('Prospect', coerce=int)
     usuario_id = SelectField('Usuário', coerce=int, validators=[DataRequired()])
     titulo = StringField('Título', validators=[DataRequired(), Length(min=1, max=100)])
     descricao = TextAreaField('Descrição')
