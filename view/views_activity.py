@@ -26,8 +26,16 @@ def activity():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('activity')))
     adm = is_admin()
-    activities = db.session.query(Activity).join(User).all()
+    # activities = db.session.query(Activity).join(User).all()
     form = FormActivity()
+    page = request.args.get('page', 1, type=int)
+    activities = (
+        db.session.query(Activity)
+        .join(User)
+        .order_by(Activity.data_inicio.desc())  # Ordena pelo campo 'data' em ordem decrescente
+        .paginate(page=page, per_page=20)
+    )
+
     return render_template('activities/activities.html',
                            titulo='Atividades',
                            atividades=activities,
