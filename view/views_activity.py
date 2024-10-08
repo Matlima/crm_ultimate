@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, session, flash, url_for
 from application import app, db
-from models.models import Activity, User, Customer
+from models.models import Activity, User, Customer, Prospect
 from helpers.forms_helpers import FormActivity, is_admin
 from datetime import datetime
 
@@ -80,6 +80,7 @@ def new_activity():
                            titulo='Nova atividade',
                            form=form,
                            clientes=Customer.query.all(),
+                           prospects=Prospect.query.all(),
                            usuarios=User.query.all(),
                            is_admin=adm
                            )
