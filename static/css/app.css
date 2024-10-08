@@ -2,26 +2,24 @@ body {
     padding-top: 10px;
 }
 
+/* Mantido apenas o espaçamento entre botões, o Bootstrap já lida com margens e tamanhos */
 .btn {
     margin-bottom: 10px;
 }
 
-.container {
-    border-radius: 4px;
-    margin: auto;
-    width: 100%;
-}
-
+/* O Bootstrap já gerencia o layout de containers, margens e bordas. Essa regra é redundante e removida */
 .little-container {
     width: 40%;
     margin: auto;
 }
 
+/* A tag figcaption já é gerenciada por classes de tipografia do Bootstrap */
 figcaption {
     text-align: center;
     margin: 3px auto;
 }
 
+/* Mantido: estilos customizados para upload de arquivo */
 .fileContainer {
     overflow: hidden;
     position: relative;
@@ -41,44 +39,48 @@ figcaption {
     top: 0;
 }
 
+/* Removido: o Bootstrap já gerencia a centralização de elementos na tabela */
 td {
     text-align: center;
 }
 
+/* Mantido: estilos customizados para exibição flexível */
 .formularioJogo {
     display: flex;
 }
 
+/* Mantido: estilo específico para a margem das imagens */
 .formularioImagem {
-    margin-right: 16px
+    margin-right: 16px;
 }
 
+/* Mantido: estilo customizado para posicionamento de botões */
 .buttons {
-    margin-top: 16px
+    margin-top: 16px;
 }
 
+/* Mantido: estilo customizado para largura de campos de entrada */
 .inputBox {
     width: 700px;
 }
 
+/* Removido: Bootstrap já gerencia layout e espaçamento de formulários */
 .inputsJogo {
     width: 100%;
     margin-left: 1em;
     margin-bottom: 1em;
 }
 
+/* Mantido: cores específicas para o tema customizado */
 .bg-techcoffee {
-        background-color: #FFC66D !important;
-        border-color: #FFC66D !important;
+    background-color: #FFC66D !important;
+    border-color: #FFC66D !important;
 }
 
 .color-techcoffee {
-        color: #FFC66D;
+    color: #FFC66D;
 }
 
-.textcolor-alcance{
-        color: #198754
+.textcolor-alcance {
+    color: #198754;
 }
-
-
-*, :
