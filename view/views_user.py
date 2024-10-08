@@ -9,11 +9,23 @@ from sqlalchemy.exc import IntegrityError
 
 @app.route('/users')
 def users():
-    lista = User.query.order_by(User.id)
+
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('dashboard')))
     form = FormUser()
-    return render_template('users/users.html', titulo='Usuários', usuarios=lista, form=form)
+
+    page = request.args.get('page', 1, type=int)
+    lista = (
+        db.session.query(User)
+        .order_by(User.id)  # Ordena pelo campo 'data' em ordem decrescente
+        .paginate(page=page, per_page=10)
+    )
+
+    return render_template('users/users.html',
+                           titulo='Usuários',
+                           usuarios=lista,
+                           form=form
+                           )
 
 
 @app.route('/users/new')
