@@ -1,43 +1,47 @@
 {% extends "shared/template.html" %}
 {% block conteudo %}
 <div class="container">
+   <!-- Linha para o botão adicionar cliente -->
    <div class="row my-3">
       <div class="col text-end">
          <a class="btn btn-primary color-alcance" href="{{ url_for('new_customer') }}">Adicionar Cliente</a>
       </div>
    </div>
-   <table class="table table-striped table-responsive table-bordered">
-      <thead class="thead-default">
-         <tr>
-            <th>Razão social</th>
-            <th>Nome fantasia</th>
-            <th>CNPJ</th>
-            <th></th>
-         </tr>
-      </thead>
-      <tbody>
-         {% for cliente in clientes %}
-         <tr>
-            <td>{{ cliente.razao_social }}</td>
-            <td>{{ cliente.nome_fantasia }}</td>
-            <td>{{ cliente.cpfecnpj }}</td>
-            <td>
-               <div class="btn-group" role="group">
-                  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                  Ações
-                  </button>
-                  <ul class="dropdown-menu">
-                     <li><a class="dropdown-item" href="{{ url_for('info_customer', id=cliente.id) }}">Informações</a></li>
-                     <li><a class="dropdown-item" href="{{ url_for('edit_customer', id=cliente.id) }}">Editar</a></li>
-                     {% if is_admin %}
-                     <li><a class="dropdown-item" href="{{ url_for('delete_customer', id=cliente.id) }}">Excluir</a></li>
-                     {% endif %}
-                  </ul>
-               </div>
-            </td>
-         </tr>
-         {% endfor %}
-      </tbody>
-   </table>
+
+   <!-- Tabela responsiva com bordas e listras -->
+   <div class="table-responsive">
+      <table class="table table-striped table-bordered align-middle text-center">
+         <thead class="thead-light">
+            <tr>
+               <th>Razão Social</th>
+               <th>CNPJ</th>
+               <th colspan="3">Ações</th>
+            </tr>
+         </thead>
+         <tbody>
+            {% for cliente in clientes %}
+            <tr>
+               <td>{{ cliente.razao_social }}</td>
+               <td>{{ cliente.cpfecnpj }}</td>
+               <td>
+                  <a class="btn btn-sm btn-info w-100 mb-1" href="{{ url_for('info_customer', id=cliente.id) }}">
+                     <i class="fas fa-info-circle"></i> Informações
+                  </a>
+               </td>
+               <td>
+                  <a class="btn btn-sm btn-warning w-100 mb-1 text-white" href="{{ url_for('edit_customer', id=cliente.id) }}">
+                     <i class="fas fa-edit"></i> Editar
+                  </a>
+               </td>
+               <td>
+                  <a class="btn btn-sm btn-danger w-100 mb-1" href="{{ url_for('delete_customer', id=cliente.id) }}">
+                     <i class="fas fa-trash-alt"></i> Excluir
+                  </a>
+               </td>
+            </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+   </div>
 </div>
 {% endblock %}
