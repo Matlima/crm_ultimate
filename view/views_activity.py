@@ -74,14 +74,15 @@ def new_activity():
         return redirect(url_for('login', proxima=url_for('novo')))
     form = FormActivity()
     usuario_id = session["usuario_id"]
-    activities = db.session.query(Activity).join(Customer).filter(Activity.usuario_id == usuario_id).order_by(Activity.data_inicio.desc()).all()
-    return render_template('activities/my_activities.html',
+    adm = is_admin()
+    # grupo = type_user()
+    return render_template('activities/add_activity.html',
+                           titulo='Nova atividade',
                            form=form,
                            clientes=Customer.query.all(),
                            usuarios=User.query.all(),
-                           activities=activities
+                           is_admin=adm
                            )
-
 
 @app.route('/activities/add', methods=['POST'])
 def created_activity():
