@@ -15,6 +15,7 @@
                     <th>Tipo</th>
                     <th>Título</th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -25,16 +26,16 @@
                     <td>{{ atividade.tipo }}</td>
                     <td>{{ atividade.titulo }}</td>
                     <td>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-primary dropdown-toggle color-alcance" data-bs-toggle="dropdown" aria-expanded="false">
-                                Ações
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ url_for('info_activity', id=atividade.id) }}">Informações</a></li>
-                                <li><a class="dropdown-item" href="{{ url_for('delete_activity', id=atividade.id) }}">Excluir</a></li>
-                            </ul>
-                        </div>
-                    </td>
+                      <a class="btn btn-sm btn-info w-100 mb-1" href="{{ url_for('info_activity', id=atividade.id) }}">
+                         <i class="fas fa-info-circle"></i> Informações
+                      </a>
+                   </td>
+
+                   <td>
+                      <a class="btn btn-sm btn-danger w-100 mb-1" href="{{ url_for('delete_activity', id=atividade.id) }}">
+                         <i class="fas fa-trash-alt"></i> Excluir
+                      </a>
+                   </td>
                 </tr>
                 {% endfor %}
             </tbody>
