@@ -7,11 +7,22 @@ from uploads import *
 
 @app.route('/customers')
 def customer():
-    lista = Customer.query.order_by(Customer.id)
+
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('dashboard')))
     adm = is_admin()
-    return render_template('customers/customers.html', titulo='Clientes', clientes=lista, is_admin=adm)
+    page = request.args.get('page', 1, type=int)
+    lista = (
+        db.session.query(Customer)
+        .order_by(Customer.id)  # Ordena pelo campo 'data' em ordem decrescente
+        .paginate(page=page, per_page=10)
+    )
+
+    return render_template('customers/customers.html',
+                           titulo='Clientes',
+                           clientes=lista,
+                           is_admin=adm
+                           )
 
 @app.route('/customers/new')
 def new_customer():
