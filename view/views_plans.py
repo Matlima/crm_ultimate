@@ -9,14 +9,14 @@ from datetime import datetime
 
 ## Methods Routes:
 
-@app.route('/plans')
+@app.route('/products')
 def plan():
     listPlans = Plan.query.order_by(Plan.id)
     listCategories = CategoryPlan.query.order_by(CategoryPlan.id)
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('dashboard')))
     # adm = is_admin()
-    return render_template('plans/plans.html',
+    return render_template('products/products.html',
                            plans=listPlans,
                            categories=listCategories
                            # is_admin=adm
@@ -24,18 +24,18 @@ def plan():
 
 
 # Plan:
-@app.route('/plans/new')
+@app.route('/products/new')
 def new_plan():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
     form = FormPlano()
     categories = CategoryPlan.query.all()
-    return render_template('plans/add_plan.html',
+    return render_template('products/add_plan.html',
                            form=form,
                            categories=categories
                            )
 
-@app.route('/plans/add', methods=['POST'])
+@app.route('/products/add', methods=['POST'])
 def created_plan():
     form = FormPlano(request.form)
     nome = form.nome.data
@@ -59,7 +59,7 @@ def created_plan():
     flash('Plan adicionado com sucesso!')
     return redirect(url_for('plan'))
 
-@app.route('/plans/edit/<int:id>')
+@app.route('/products/edit/<int:id>')
 def edit_plan(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
@@ -80,13 +80,13 @@ def edit_plan(id):
     form.tipo.data = plan.tipo
     form.id_category.data = plan.id_category  # Categoria selecionada
 
-    return render_template('plans/edit_plan.html',
+    return render_template('products/edit_plan.html',
                            id=id,
                            form=form
                            )
 
 
-@app.route('/plans/update', methods=['POST'])
+@app.route('/products/update', methods=['POST'])
 def update_plan():
     form = FormPlano(request.form)
 
@@ -117,7 +117,7 @@ def update_plan():
 
 
 
-@app.route('/plans/delete/<int:id>')
+@app.route('/products/delete/<int:id>')
 def delete_plan(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proximo=url_for('novo')))
@@ -137,17 +137,17 @@ def delete_plan(id):
 
 # Category Plan:
 
-@app.route('/plans/category/new')
+@app.route('/products/category/new')
 def new_category_plan():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
     form = FormCategoryPlano()
-    return render_template('plans/category_plan/add_category.html',
+    return render_template('products/category_plan/add_category.html',
                            form=form
                            )
 
 
-@app.route('/plans/category/add', methods=['POST'])
+@app.route('/products/category/add', methods=['POST'])
 def created_category_plan():
     form = FormCategoryPlano(request.form)
     form.id_user.choices = [(usuario.id, usuario.nome) for usuario in User.query.all()]
@@ -164,7 +164,7 @@ def created_category_plan():
     return redirect(url_for('plan'))
 
 
-@app.route('/plans/category/edit/<int:id>')
+@app.route('/products/category/edit/<int:id>')
 def edit_category_plan(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('editar', id=id)))
@@ -179,7 +179,7 @@ def edit_category_plan(id):
     form.nome.data = category.nome
     form.ativo.data = category.ativo
 
-    return render_template('plans/category_plan/edit_category.html',
+    return render_template('products/category_plan/edit_category.html',
                            titulo="Editando categoria",
                            id=id,
                            form=form,
@@ -187,7 +187,7 @@ def edit_category_plan(id):
                            )
 
 
-@app.route('/plans/category/update', methods=['POST'])
+@app.route('/products/category/update', methods=['POST'])
 def update_category_plan():
     form = FormCategoryPlano(request.form)
 
@@ -211,7 +211,7 @@ def update_category_plan():
     return redirect(url_for('plan'))
 
 
-@app.route('/plans/category/delete/<int:id>')
+@app.route('/products/category/delete/<int:id>')
 def delete_category_plan(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proximo=url_for('novo')))
