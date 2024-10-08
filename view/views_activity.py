@@ -33,7 +33,7 @@ def activity():
         db.session.query(Activity)
         .join(User)
         .order_by(Activity.data_inicio.desc())  # Ordena pelo campo 'data' em ordem decrescente
-        .paginate(page=page, per_page=20)
+        .paginate(page=page, per_page=10)
     )
 
     return render_template('activities/activities.html',
