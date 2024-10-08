@@ -16,6 +16,18 @@ def plan():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('dashboard')))
     # adm = is_admin()
+
+    page = request.args.get('page', 1, type=int)
+    listPlans = (
+        db.session.query(Plan)
+        .order_by(Plan.id)  # Ordena pelo campo 'data' em ordem decrescente
+        .paginate(page=page, per_page=10)
+    )
+    listCategories = (
+        db.session.query(CategoryPlan)
+        .order_by(CategoryPlan.id)  # Ordena pelo campo 'data' em ordem decrescente
+        .paginate(page=page, per_page=5)
+    )
     return render_template('products/products.html',
                            plans=listPlans,
                            categories=listCategories
