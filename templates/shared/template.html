@@ -113,13 +113,21 @@
                         <li><a class="dropdown-item" href="{{ url_for('users') }}">Usuários</a></li>
                         <li><a class="dropdown-item" href="{{ url_for('prospect') }}">Prospects</a></li>
                         <li><a class="dropdown-item" href="{{ url_for('customer') }}">Clientes</a></li>
-                        <li><a class="dropdown-item" href="{{ url_for('activity') }}">Atividades</a></li>
                         <li><a class="dropdown-item" href="{{ url_for('plan') }}">Produtos</a></li>
                         <li><a class="dropdown-item" href="#">Carteira de Clientes</a></li>
+
+                        <!-- Separador -->
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ url_for('activity') }}">Atividades</a></li>
                         <li><a class="dropdown-item" href="#">Propostas</a></li>
                         <li><a class="dropdown-item" href="#">Contratos</a></li>
+                        <li><a class="dropdown-item" href="#">Ordem de Serviço</a></li>
+
+                        <!-- Outro separador opcional -->
+                        <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#">Relatórios</a></li>
                     </ul>
+
                 </li>
                 <li class="nav-item mb-3">
                     <a href="#" class="nav-link"><i class="fas fa-credit-card me-2"></i> Prospects</a>
