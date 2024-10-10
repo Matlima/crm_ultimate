@@ -66,6 +66,7 @@ def my_activity():
                            activities=activities,
                            form=form,
                            clientes=Customer.query.all(),
+                           prospects=Prospect.query.all(),
                            page=page
                            )
 
