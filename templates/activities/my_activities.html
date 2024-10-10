@@ -60,7 +60,6 @@
         {% endfor %}
     </div>
 
-
     <!-- Paginação -->
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
@@ -119,8 +118,18 @@
                     <div class="mb-3">
                         <label class="form-label">Cliente</label>
                         <select class="form-select" name="cliente_id">
+                            <option value="" selected>Selecione um cliente</option>
                             {% for cliente in clientes %}
                             <option value="{{ cliente.id }}">{{ cliente.razao_social }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Prospect</label>
+                        <select class="form-select" name="prospect_id">
+                            <option value="" selected>Selecione um prospect</option>
+                            {% for prospect in prospects %}
+                            <option value="{{ prospect.id }}">{{ prospect.nome_completo }}</option>
                             {% endfor %}
                         </select>
                     </div>
