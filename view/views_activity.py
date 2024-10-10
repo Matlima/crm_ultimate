@@ -98,6 +98,7 @@ def created_activity():
     tipo = form.tipo.data
     status = form.status.data
     cliente_id = form.cliente_id.data
+    prospect_id = form.prospect_id.data
     usuario_id = session["usuario_id"]
 
     new_activity = Activity(
@@ -108,7 +109,8 @@ def created_activity():
         tipo = tipo,
         status = status,
         cliente_id = cliente_id,
-        usuario_id = usuario_id
+        usuario_id = usuario_id,
+        prospect_id=prospect_id
     )
     db.session.add(new_activity)
     db.session.commit()
