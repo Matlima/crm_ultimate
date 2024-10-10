@@ -156,8 +156,8 @@ def complete_activity(id):
         flash('Atividade não encontrada')
     return redirect(url_for('activity'))
 
-@app.route('/activities/info/<int:id>')
-def info_activity(id):
+@app.route('/activities/info/<int:id>/<string:action>')
+def info_activity(id, action):
     activity = Activity.query.filter_by(id=id).first()
 
     form = FormActivity()
@@ -179,7 +179,8 @@ def info_activity(id):
     return render_template('activities/info_activity.html',
                            titulo="Informações da atividade",
                            id=id,
-                           form=form
+                           form=form,
+                           action=action
                            )
 
 

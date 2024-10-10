@@ -54,7 +54,7 @@
                     <td>{{ atividade.tipo }}</td>
                     <td>{{ atividade.titulo }}</td>
                     <td>
-                      <a class="btn btn-sm btn-info w-100 mb-1" href="{{ url_for('info_activity', id=atividade.id) }}">
+                      <a class="btn btn-sm btn-info w-100 mb-1" href="{{ url_for('info_activity', id=atividade.id, action='activity') }}">
                          <i class="fas fa-info-circle"></i> Informações
                       </a>
                    </td>

@@ -58,7 +58,7 @@
                         <span class="badge bg-secondary">{{ activity.tipo }}</span>
                     </div>
                     <div class="d-flex justify-content-end gap-1">
-                        <a href="{{ url_for('info_activity', id=activity.id) }}" class="btn btn-sm btn-outline-primary">Detalhes</a>
+                        <a href="{{ url_for('info_activity', id=activity.id, action='my_activity') }}" class="btn btn-sm btn-outline-primary">Detalhes</a>
                         <a href="{{ url_for('complete_activity', id=activity.id) }}" class="btn btn-sm btn-success">Concluir</a>
                     </div>
                 </div>
