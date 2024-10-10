@@ -8,7 +8,7 @@
                <!-- Profile Section -->
                <div class="col-md-3 text-center border-end">
                   <div class="profile-img mb-4 w-100">
-                     <img src="https://via.placeholder.com/100" class="rounded-circle" alt="Profile Image">
+                     <img src="{{ url_for('static', filename='img/avatar.jpg') }}?v=2" class="rounded-circle w-50" alt="Profile Image">
                   </div>
                   <h5>{{ user.nome }}</h5>
                   <p class="text-muted">{{ user.cargo }}</p>
