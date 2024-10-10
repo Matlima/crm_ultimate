@@ -14,20 +14,23 @@
             <input type="text" class="form-control" placeholder="Buscar atividades..." id="search">
         </div>
         <div class="col-md-2 mb-2">
-            <select class="form-select">
-                <option>Status</option>
-                <option value="pendente">Pendente</option>
-                <option value="em_andamento">Em Andamento</option>
-                <option value="concluida">Concluída</option>
+            <select class="form-select" name="cliente_id">
+                <option value="" selected>Cliente</option>
+                {% for cliente in clientes %}
+                <option value="{{ cliente.id }}">{{ cliente.razao_social }}</option>
+                {% endfor %}
             </select>
         </div>
         <div class="col-md-2 mb-2">
-            <select class="form-select">
-                <option>Tipo</option>
-                <option value="reuniao">Reunião</option>
-                <option value="chamada">Chamada</option>
-                <option value="email">E-mail</option>
+            <select class="form-select" name="prospect_id">
+                <option value="" selected>Prospect</option>
+                {% for prospect in prospects %}
+                <option value="{{ prospect.id }}">{{ prospect.nome_completo }}</option>
+                {% endfor %}
             </select>
+        </div>
+        <div class="col-md-2 mb-2">
+            <button class="btn" style="background-color: #ffc66d">Buscar</button>
         </div>
     </div>
 
@@ -50,9 +53,13 @@
                     {% endif %}
 
                     <p class="card-text">{{ activity.descricao }}</p>
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-start gap-1">
+                        <span class="badge bg-warning">{{ activity.status }}</span>
                         <span class="badge bg-secondary">{{ activity.tipo }}</span>
+                    </div>
+                    <div class="d-flex justify-content-end gap-1">
                         <a href="{{ url_for('info_activity', id=activity.id) }}" class="btn btn-sm btn-outline-primary">Detalhes</a>
+                        <a href="{{ url_for('complete_activity', id=activity.id) }}" class="btn btn-sm btn-success">Concluir</a>
                     </div>
                 </div>
             </div>
