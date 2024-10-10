@@ -39,9 +39,12 @@ def activity():
     return render_template('activities/activities.html',
                            titulo='Atividades',
                            atividades=activities,
+                           clientes=Customer.query.all(),
+                           prospects=Prospect.query.all(),
                            is_admin=adm,
                            form=form
                            )
+
 
 @app.route('/activities/my-activities')
 def my_activity():
