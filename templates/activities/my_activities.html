@@ -33,13 +33,22 @@
 
     <!-- Activities List -->
     <div class="row">
-        {% for activity in activities.items %}
+        {% for activity, customer, prospect in activities.items %}
         <div class="col-md-6 mb-3">
             <div class="card shadow-sm" style="border-left: 5px solid {% if activity.status == 'concluida' %}#28a745{% elif activity.status == 'pendente' %}#ffc107{% else %}#17a2b8{% endif %};">
                 <div class="card-body">
                     <h5 class="card-title">{{ activity.titulo }}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Data: {{ activity.data_inicio }}</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Cliente: {{ activity.customer.razao_social }}</h6>
+
+                    <!-- Exibir Cliente ou Prospect -->
+                    {% if customer %}
+                        <h6 class="card-subtitle mb-2 text-muted">Cliente: {{ customer.razao_social }}</h6>
+                    {% elif prospect %}
+                        <h6 class="card-subtitle mb-2 text-muted">Prospect: {{ prospect.nome_completo }}</h6>
+                    {% else %}
+                        <h6 class="card-subtitle mb-2 text-muted">Sem cliente ou prospect</h6>
+                    {% endif %}
+
                     <p class="card-text">{{ activity.descricao }}</p>
                     <div class="d-flex justify-content-between">
                         <span class="badge bg-secondary">{{ activity.tipo }}</span>
@@ -50,6 +59,7 @@
         </div>
         {% endfor %}
     </div>
+
 
     <!-- Paginação -->
     <nav aria-label="Page navigation">
