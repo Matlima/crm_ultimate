@@ -100,38 +100,42 @@
 <div class="modal fade" id="addActivityModal" tabindex="-1" aria-labelledby="addActivityModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addActivityModalLabel">Nova Atividade</h5>
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title" style="color: #fff" id="addActivityModalLabel">Nova Atividade</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form action="{{ url_for('created_activity') }}" method="post" enctype="multipart/form-data">
                     {{ form.csrf_token() }}
-                    <div class="mb-3">
-                        <label class="form-label">Tipo</label>
-                        {{ form.tipo(class="form-select") }}
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Tipo</label>
+                            {{ form.tipo(class="form-select") }}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Status</label>
+                            {{ form.status(class="form-select") }}
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Status</label>
-                        {{ form.status(class="form-select") }}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Cliente</label>
-                        <select class="form-select" name="cliente_id">
-                            <option value="" selected>Selecione um cliente</option>
-                            {% for cliente in clientes %}
-                            <option value="{{ cliente.id }}">{{ cliente.razao_social }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Prospect</label>
-                        <select class="form-select" name="prospect_id">
-                            <option value="" selected>Selecione um prospect</option>
-                            {% for prospect in prospects %}
-                            <option value="{{ prospect.id }}">{{ prospect.nome_completo }}</option>
-                            {% endfor %}
-                        </select>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Cliente</label>
+                            <select class="form-select" name="cliente_id">
+                                <option value="" selected>Selecione um cliente</option>
+                                {% for cliente in clientes %}
+                                <option value="{{ cliente.id }}">{{ cliente.razao_social }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Prospect</label>
+                            <select class="form-select" name="prospect_id">
+                                <option value="" selected>Selecione um prospect</option>
+                                {% for prospect in prospects %}
+                                <option value="{{ prospect.id }}">{{ prospect.nome_completo }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Título</label>
@@ -141,7 +145,7 @@
                         <label class="form-label">Descrição</label>
                         {{ form.descricao(class="form-control") }}
                     </div>
-                    <div class="text-end">
+                    <div class="text-center">
                         <button type="submit" class="btn btn-primary">Adicionar</button>
                     </div>
                 </form>
