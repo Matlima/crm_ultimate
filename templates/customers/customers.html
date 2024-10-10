@@ -1,9 +1,10 @@
 {% extends "shared/template.html" %}
 {% block conteudo %}
-<div class="container">
+<div class="container mt-4">
    <!-- Linha para o botão adicionar cliente -->
    <div class="row my-3">
-      <div class="col text-end">
+      <div class="d-flex justify-content-between align-items-center">
+          <h4 class="text-secondary">Clientes</h4>
          <a class="btn btn-primary color-alcance" href="{{ url_for('new_customer') }}">Adicionar Cliente</a>
       </div>
    </div>

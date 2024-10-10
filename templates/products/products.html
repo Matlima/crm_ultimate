@@ -1,11 +1,11 @@
 {% extends "shared/template.html" %}
 {% block conteudo %}
-<div class="d-flex justify-content-left align-items-center mb-4">
+<div class="d-flex justify-content-end align-items-center m-2">
    <a class="btn btn-primary m-2" href="{{ url_for('new_category_plan') }}">Adicionar categoria</a>
    <a class="btn btn-primary m-2" href="{{ url_for('new_plan') }}">Adicionar produto</a>
 </div>
 <div class="col-md-12">
-   <h4>Categorias:</h4>
+   <h4 class="text-secondary">Categorias:</h4>
    <table class="table table-striped table-responsive table-bordered">
       <thead class="thead-default">
          <tr>
@@ -79,7 +79,7 @@
     </nav>
 </div>
 <div class="col-md-12" style="margin-top: 2rem">
-   <h4>Produtos:</h4>
+   <h4 class="text-secondary">Produtos:</h4>
    <table class="table table-striped table-responsive table-bordered">
       <thead class="thead-default">
          <tr>
