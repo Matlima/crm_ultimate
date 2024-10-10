@@ -43,7 +43,6 @@ def activity():
                            form=form
                            )
 
-
 @app.route('/activities/my-activities')
 def my_activity():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
@@ -53,12 +52,15 @@ def my_activity():
     usuario_id = session["usuario_id"]
 
     # Adicionando paginação
-    page = request.args.get('page', 1, type=int)  # Obtém o número da página a partir da URL
-    activities = db.session.query(Activity) \
-        .join(Customer) \
+    page = request.args.get('page', 1, type=int)
+
+    # Consulta que faz join tanto com Customer quanto com Prospect
+    activities = db.session.query(Activity, Customer, Prospect) \
+        .outerjoin(Customer, Activity.cliente_id == Customer.id) \
+        .outerjoin(Prospect, Activity.prospect_id == Prospect.id) \
         .filter(Activity.usuario_id == usuario_id) \
         .order_by(Activity.data_inicio.desc()) \
-        .paginate(page=page, per_page=10)  # Define 6 atividades por página
+        .paginate(page=page, per_page=10)  # Define 10 atividades por página
 
     return render_template('activities/my_activities.html',
                            activities=activities,
@@ -66,6 +68,7 @@ def my_activity():
                            clientes=Customer.query.all(),
                            page=page
                            )
+
 
 
 @app.route('/activities/new')
