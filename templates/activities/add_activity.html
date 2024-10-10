@@ -16,17 +16,23 @@
                 {{ form.status.label(class="form-label") }}
                 {{ form.status(class="form-select") }}
             </div>
+
+            <!-- Select de Prospect -->
             <div class="col-md-4 mb-3">
                 {{ form.prospect_id.label(class="form-label") }}
-                <select class="form-select" name="cliente_id">
+                <select class="form-select" name="prospect_id" id="prospect_select" onchange="toggleSelect('prospect')">
+                    <option value="">-- Selecione um prospect --</option>
                     {% for prospect in prospects %}
                         <option value="{{ prospect.id }}">{{ prospect.nome_completo }}</option>
                     {% endfor %}
                 </select>
             </div>
+
+            <!-- Select de Cliente -->
             <div class="col-md-4 mb-3">
                 {{ form.cliente_id.label(class="form-label") }}
-                <select class="form-select" name="cliente_id">
+                <select class="form-select" name="cliente_id" id="cliente_select" onchange="toggleSelect('cliente')">
+                    <option value="">-- Selecione um cliente --</option>
                     {% for cliente in clientes %}
                         <option value="{{ cliente.id }}">{{ cliente.razao_social }}</option>
                     {% endfor %}
@@ -56,5 +62,25 @@
         </div>
     </fieldset>
 </form>
+
+<!-- JavaScript para habilitar/desabilitar selects -->
+<script>
+    function toggleSelect(selected) {
+        var prospectSelect = document.getElementById('prospect_select');
+        var clienteSelect = document.getElementById('cliente_select');
+
+        if (selected === 'prospect') {
+            clienteSelect.disabled = prospectSelect.value !== '';
+        } else if (selected === 'cliente') {
+            prospectSelect.disabled = clienteSelect.value !== '';
+        }
+
+        // Se ambos forem desmarcados, reabilite ambos os selects
+        if (prospectSelect.value === '' && clienteSelect.value === '') {
+            prospectSelect.disabled = false;
+            clienteSelect.disabled = false;
+        }
+    }
+</script>
 
 {% endblock %}
