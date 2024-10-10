@@ -47,6 +47,21 @@ class Customer(db.Model):
     def __repr__(self):
         return '<Customer %r>' % self.nome_fantasia
 
+class CustomerPortfolio(db.Model):
+    __tablename__ = 'customer_portfolio'
+    id = db.Column(Integer, primary_key=True)
+    usuario_id = db.Column(Integer, ForeignKey('user.id'), nullable=False)
+    responsavel_id = db.Column(Integer, ForeignKey('user.id'), nullable=False)
+    data_criacao = db.Column(DateTime, default=datetime.now)
+    data_fim = db.Column(DateTime)
+    nome = db.Column(String(200))
+    ativo = db.Column(db.Boolean)
+
+    def __repr__(self):
+        return '<name %r' % self.__name__
+
+
+
 class Activity(db.Model):
     __tablename__ = 'activity'
     id = db.Column(Integer, primary_key=True)
