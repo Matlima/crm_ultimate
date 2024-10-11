@@ -14,17 +14,16 @@
       <table class="table table-striped table-bordered align-middle text-center">
          <thead class="thead-light">
             <tr>
-               <th>Nome</th>
-               <th>Responsável</th>
+                <th>Nome</th>
                 <th>Ativo</th>
-               <th colspan="3">Ações</th>
+                <th colspan="3">Ações</th>
             </tr>
          </thead>
          <tbody>
             {% for carteira in carteiras %}
             <tr>
                <td>{{ carteira.nome }}</td>
-               <td>{{ carteira.usuario.nome }}</td>
+               <td>{{ carteira.ativo }}</td>
                <td>
                   <a class="btn btn-sm btn-info w-100 mb-1" href="#">
                      <i class="fas fa-info-circle"></i> Informações

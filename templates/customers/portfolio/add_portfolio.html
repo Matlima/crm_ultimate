@@ -20,7 +20,7 @@
       <!-- Aba Dados do Usuário -->
       <div class="tab-pane fade show active p-3 border rounded" id="dados-usuario" role="tabpanel" aria-labelledby="dados-usuario-tab">
          <h5 class="mb-3">Informações principais:</h5>
-         <form class="row g-3" action="{{ url_for('edit_perfil') }}" method="post" enctype="multipart/form-data">
+         <form class="row g-3" action="{{ url_for('created_portfolio') }}" method="post" enctype="multipart/form-data">
             <fieldset>
                <input type="hidden" name="id" value="{{ id }}">
                {{ form.csrf_token() }}
@@ -61,7 +61,7 @@
          <h5 class="mb-3">Clientes</h5>
          <div class="alert alert-warning d-flex align-items-center" role="alert">
             <div>
-               Cada usuário precisa configurar essa aba apenas uma vez. Caso haja qualquer alteração na conta, é essencial que os dados sejam atualizados.
+               Crie primeiro a carteira, em seguida configure os clientes
             </div>
          </div>
          <!-- Novo Formulário na aba de clientes -->
@@ -78,6 +78,11 @@
       <!-- Aba Prospects -->
       <div class="tab-pane fade p-3 border rounded" id="outra-info" role="tabpanel" aria-labelledby="outra-info-tab">
          <h5 class="mb-3">Prospects</h5>
+         <div class="alert alert-warning d-flex align-items-center" role="alert">
+            <div>
+               Crie primeiro a carteira, em seguida configure os prospects
+            </div>
+         </div>
          <!-- Novo Formulário na aba de prospects -->
          <form action="#" method="post">
             <div class="mb-3">
