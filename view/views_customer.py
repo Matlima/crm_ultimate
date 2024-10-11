@@ -5,6 +5,9 @@ from helpers.forms_helpers import FormCustomer, is_admin
 from templates.customers import *
 from uploads import *
 
+
+# Methods Routes:
+
 @app.route('/customers')
 def customer():
 

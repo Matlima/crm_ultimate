@@ -1,0 +1,92 @@
+{% extends "template.html" %}
+{% block conteudo %}
+<div class="container mt-4">
+   <!-- Abas de Navegação -->
+   <ul class="nav nav-tabs bg-light color-light" id="userTab" role="tablist">
+      <li class="nav-item" role="presentation">
+         <button class="nav-link active" id="dados-usuario-tab" data-bs-toggle="tab" data-bs-target="#dados-usuario" type="button" role="tab" aria-controls="dados-usuario" aria-selected="true">Principal</button>
+      </li>
+      <li class="nav-item" role="presentation">
+         <button class="nav-link" id="config-tab" data-bs-toggle="tab" data-bs-target="#config" type="button" role="tab" aria-controls="config" aria-selected="false">Clientes</button>
+      </li>
+      <li class="nav-item" role="presentation">
+         <button class="nav-link" id="outra-info-tab" data-bs-toggle="tab" data-bs-target="#outra-info" type="button" role="tab" aria-controls="outra-info" aria-selected="false">Prospects</button>
+      </li>
+   </ul>
+
+   <!-- Conteúdo das Abas -->
+   <div class="tab-content" id="userTabContent">
+
+      <!-- Aba Dados do Usuário -->
+      <div class="tab-pane fade show active p-3 border rounded" id="dados-usuario" role="tabpanel" aria-labelledby="dados-usuario-tab">
+         <div class="row justify-content-center">
+            <div class="col-lg-12">
+               <div class="card shadow-sm">
+                  <div class="card-body">
+                     <div class="row">
+                        <!-- Personal Settings Section -->
+                        <div class="col-md-8">
+                           <form class="row g-3" action="{{ url_for('edit_perfil') }}" method="post" enctype="multipart/form-data">
+                              <fieldset class="p-3">
+                                 <input type="hidden" name="id" value="{{ id }}">
+                                 {{ form.csrf_token() }}
+                                 <h5 class="mb-1">Informações principal:</h5>
+                                 <div class="form-row mb-3">
+                                    <div class="form-group col-md-9 px-2">
+                                       {{ form.data_criacao.label(class="form-label") }}
+                                       {{ form.data_criacao(class="form-control") }}
+                                    </div>
+                                    <div class="form-group col-md-3 px-2">
+                                       {{ form.responsavel_id.label(class="form-label") }}
+                                       {{ form.responsavel_id(class="form-control") }}
+                                    </div>
+                                    <div class="form-group col-md-2 px-2">
+                                       {{ form.ativo.label(class="form-label") }}
+                                       {{ form.ativo(class="form-select") }}
+                                    </div>
+                                 </div>
+                                 <div class="form-row mb-3">
+                                    <div class="form-group col-md-12 px-2 mb-1">
+                                       {{ form.nome.label(class="form-label") }}
+                                       {{ form.nome(class="form-control") }}
+                                    </div>
+                                 </div>
+                                 <div class="form-row mt-3 ml-6">
+                                    <div class="col-12">
+                                       <div class="" style="margin-left: 5rem; margin-top: 1rem">
+                                          {{ form.salvar(class="btn btn-primary mx-2") }}
+                                          <a class="btn btn-danger mx-2" href="{{ url_for('index') }}">Voltar</a>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </fieldset>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Aba Configurações (novo formulário) -->
+      <div class="tab-pane fade p-3 border rounded" id="config" role="tabpanel" aria-labelledby="config-tab">
+         <h5 class="mb-3">Clientes:</h5>
+         <div class="alert alert-warning d-flex align-items-center" role="alert">
+                     <div>
+                        Cada usuário precisa configurar essa aba apenas uma vez. Caso haja qualquer alteração na conta, é essencial que os dados sejam atualizados.
+                     </div>
+                  </div>
+         <!-- Novo Formulário na aba de clientes -->
+
+      </div>
+
+      <!-- Aba Outras Informações (outro formulário) -->
+      <div class="tab-pane fade p-3 border rounded" id="outra-info" role="tabpanel" aria-labelledby="outra-info-tab">
+         <h5 class="mb-3">Prospects</h5>
+
+      </div>
+
+   </div>
+</div>
+{% endblock %}

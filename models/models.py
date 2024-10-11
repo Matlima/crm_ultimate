@@ -16,6 +16,8 @@ class User(db.Model):
     cargo = db.Column(db.String(50))
     setor = db.Column(db.String(50))
     ativo = db.Column(db.String(20))
+
+    # Relacionamento correto com Atividades:
     activities = db.relationship('Activity', backref='usuario', lazy=True)
 
     def __repr__(self):
