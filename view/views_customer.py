@@ -32,14 +32,14 @@ def new_customer():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
     form = FormCustomer()
-    return render_template('customers/add_customer.html', titulo='Novo Cliente', form=form)
+    return render_template('customers/add_customer.html',
+                           titulo='Novo Cliente',
+                           form=form
+                           )
 
 @app.route('/customers/add', methods=['POST'])
 def created_customer():
     form = FormCustomer(request.form)
-
-    # if not form.validate_on_submit():
-    #    return redirect(url_for('customer'))
 
     razao_social = form.razao_social.data
     nome_fantasia = form.nome_fantasia.data
@@ -96,7 +96,11 @@ def edit_customer(id):
     form.numero.data = customer.numero
     form.cep.data = customer.cep
     form.complemento.data = customer.complemento
-    return render_template('customers/edit_customer.html', titulo='Editando Cliente', id=id, form=form)
+    return render_template('customers/edit_customer.html',
+                           titulo='Editando Cliente',
+                           id=id,
+                           form=form
+                           )
 
 
 
@@ -124,7 +128,11 @@ def info_customer(id):
     form.numero.data = customer.numero
     form.cep.data = customer.cep
     form.complemento.data = customer.complemento
-    return render_template('customers/info_customer.html', titulo='Informações do cliente', id=id, form=form)
+    return render_template('customers/info_customer.html',
+                           titulo='Informações do cliente',
+                           id=id,
+                           form=form
+                           )
 
 
 @app.route('/customers/update', methods=['POST'])
