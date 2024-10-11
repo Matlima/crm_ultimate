@@ -1,4 +1,4 @@
-{% extends "template.html" %}
+{% extends "shared/template.html" %}
 {% block conteudo %}
 <div class="container mt-4">
    <!-- Abas de Navegação -->
@@ -19,72 +19,73 @@
 
       <!-- Aba Dados do Usuário -->
       <div class="tab-pane fade show active p-3 border rounded" id="dados-usuario" role="tabpanel" aria-labelledby="dados-usuario-tab">
-         <div class="row justify-content-center">
-            <div class="col-lg-12">
-               <div class="card shadow-sm">
-                  <div class="card-body">
-                     <div class="row">
-                        <!-- Personal Settings Section -->
-                        <div class="col-md-8">
-                           <form class="row g-3" action="{{ url_for('edit_perfil') }}" method="post" enctype="multipart/form-data">
-                              <fieldset class="p-3">
-                                 <input type="hidden" name="id" value="{{ id }}">
-                                 {{ form.csrf_token() }}
-                                 <h5 class="mb-1">Informações principal:</h5>
-                                 <div class="form-row mb-3">
-                                    <div class="form-group col-md-9 px-2">
-                                       {{ form.data_criacao.label(class="form-label") }}
-                                       {{ form.data_criacao(class="form-control") }}
-                                    </div>
-                                    <div class="form-group col-md-3 px-2">
-                                       {{ form.responsavel_id.label(class="form-label") }}
-                                       {{ form.responsavel_id(class="form-control") }}
-                                    </div>
-                                    <div class="form-group col-md-2 px-2">
-                                       {{ form.ativo.label(class="form-label") }}
-                                       {{ form.ativo(class="form-select") }}
-                                    </div>
-                                 </div>
-                                 <div class="form-row mb-3">
-                                    <div class="form-group col-md-12 px-2 mb-1">
-                                       {{ form.nome.label(class="form-label") }}
-                                       {{ form.nome(class="form-control") }}
-                                    </div>
-                                 </div>
-                                 <div class="form-row mt-3 ml-6">
-                                    <div class="col-12">
-                                       <div class="" style="margin-left: 5rem; margin-top: 1rem">
-                                          {{ form.salvar(class="btn btn-primary mx-2") }}
-                                          <a class="btn btn-danger mx-2" href="{{ url_for('index') }}">Voltar</a>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </fieldset>
-                           </form>
-                        </div>
-                     </div>
+         <h5 class="mb-3">Informações principais:</h5>
+         <form class="row g-3" action="{{ url_for('edit_perfil') }}" method="post" enctype="multipart/form-data">
+            <fieldset>
+               <input type="hidden" name="id" value="{{ id }}">
+               {{ form.csrf_token() }}
+
+               <div class="row mb-3">
+                  <div class="col-md-7">
+                     {{ form.nome.label(class="form-label") }}
+                     {{ form.nome(class="form-control") }}
+                  </div>
+                  <div class="col-md-3">
+                     {{ form.responsavel_id.label(class="form-label") }}
+                     <select class="form-select" name="responsavel_id">
+                         <option value="" selected>Selecione o usuário</option>
+                         {% for usuario in usuarios %}
+                             <option value="{{ usuario.id }}" {% if form.responsavel_id.data == usuario.id %}selected{% endif %}>{{ usuario.nome or 'Usuário sem nome' }}</option>
+                         {% endfor %}
+                     </select>
+
+
+                  </div>
+                  <div class="col-md-2 mt-4">
+                     {{ form.ativo.label(class="form-label") }}
+                     {{ form.ativo(class="form-check-input mt-2") }}
                   </div>
                </div>
+
+               <!-- Botões de Ação -->
+               <div class="text-center mt-4">
+                  {{ form.salvar(class="btn btn-primary mx-2") }}
+                  <a class="btn btn-danger mx-2" href="{{ url_for('portfolio') }}">Voltar</a>
+               </div>
+            </fieldset>
+         </form>
+      </div>
+
+      <!-- Aba Clientes -->
+      <div class="tab-pane fade p-3 border rounded" id="config" role="tabpanel" aria-labelledby="config-tab">
+         <h5 class="mb-3">Clientes</h5>
+         <div class="alert alert-warning d-flex align-items-center" role="alert">
+            <div>
+               Cada usuário precisa configurar essa aba apenas uma vez. Caso haja qualquer alteração na conta, é essencial que os dados sejam atualizados.
             </div>
          </div>
-      </div>
-
-      <!-- Aba Configurações (novo formulário) -->
-      <div class="tab-pane fade p-3 border rounded" id="config" role="tabpanel" aria-labelledby="config-tab">
-         <h5 class="mb-3">Clientes:</h5>
-         <div class="alert alert-warning d-flex align-items-center" role="alert">
-                     <div>
-                        Cada usuário precisa configurar essa aba apenas uma vez. Caso haja qualquer alteração na conta, é essencial que os dados sejam atualizados.
-                     </div>
-                  </div>
          <!-- Novo Formulário na aba de clientes -->
-
+         <form action="#" method="post">
+            <!-- Campos do formulário de clientes -->
+            <div class="mb-3">
+               <label class="form-label">Campo Exemplo</label>
+               <input type="text" class="form-control" placeholder="Insira um valor">
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar Configurações</button>
+         </form>
       </div>
 
-      <!-- Aba Outras Informações (outro formulário) -->
+      <!-- Aba Prospects -->
       <div class="tab-pane fade p-3 border rounded" id="outra-info" role="tabpanel" aria-labelledby="outra-info-tab">
          <h5 class="mb-3">Prospects</h5>
-
+         <!-- Novo Formulário na aba de prospects -->
+         <form action="#" method="post">
+            <div class="mb-3">
+               <label class="form-label">Campo Exemplo Prospect</label>
+               <input type="text" class="form-control" placeholder="Insira um valor">
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar Informações</button>
+         </form>
       </div>
 
    </div>
