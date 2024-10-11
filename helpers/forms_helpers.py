@@ -22,6 +22,16 @@ class FormUser(FlaskForm):
     entrar = SubmitField('Login')
 
 
+
+class FormCustomerPortfolio(FlaskForm):
+    usuario_id = SelectField('Usuário', coerce=int, validators=[DataRequired()])
+    responsavel_id = SelectField('Responsável', coerce=int, validators=[DataRequired()])
+    data_criacao = DateTimeField('Data', [DataRequired()], format='%Y-%m-%dT%H:%M')
+    nome = StringField('Nome', validators=[DataRequired(), Length(min=1, max=200)])
+    ativo = BooleanField('Ativo')
+    salvar = SubmitField('Salvar')
+
+
 class FormCustomer(FlaskForm):
     razao_social = StringField('Razão Social', [validators.DataRequired(), validators.Length(min=1, max=200)])
     nome_fantasia = StringField('Nome Fantasia', [validators.DataRequired(), validators.Length(min=1, max=100)])
