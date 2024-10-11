@@ -15,6 +15,7 @@
          <thead class="thead-light">
             <tr>
                 <th>Nome</th>
+                <th>Responsável</th>
                 <th>Ativo</th>
                 <th colspan="3">Ações</th>
             </tr>
@@ -22,8 +23,10 @@
          <tbody>
             {% for carteira in carteiras %}
             <tr>
-               <td>{{ carteira.nome }}</td>
-               <td>{{ carteira.ativo }}</td>
+                <td>{{ carteira.nome }}</td>
+                <td>{{ carteira.responsavel.nome }}</td>
+                <td>{{ carteira.ativo }}</td>
+                
                <td>
                   <a class="btn btn-sm btn-info w-100 mb-1" href="#">
                      <i class="fas fa-info-circle"></i> Informações

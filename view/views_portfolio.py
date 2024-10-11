@@ -6,7 +6,6 @@ from datetime import datetime
 
 
 # Methods Routes:
-
 @app.route('/portfolio')
 def portfolio():
 
@@ -16,9 +15,12 @@ def portfolio():
 
     page = request.args.get('page', 1, type=int)
 
+    # Especificando a junção correta para as duas FK: usuario_id e responsavel_id
     lista = (
         db.session.query(CustomerPortfolio)
-        .order_by(CustomerPortfolio.id)  # Ordena pelo campo 'data' em ordem decrescente
+        # .join(User, CustomerPortfolio.usuario_id == User.id)  # Junção com o criador da carteira
+        .join(User, CustomerPortfolio.responsavel_id == User.id)  # Junção com o responsável pela carteira
+        .order_by(CustomerPortfolio.id)
         .paginate(page=page, per_page=10)
     )
 
@@ -27,7 +29,6 @@ def portfolio():
                            carteiras=lista,
                            is_admin=adm
                            )
-
 
 
 @app.route('/portfolio/new')

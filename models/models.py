@@ -3,7 +3,6 @@ from datetime import datetime
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Boolean
 from sqlalchemy import DECIMAL
 
-
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
@@ -17,11 +16,18 @@ class User(db.Model):
     setor = db.Column(db.String(50))
     ativo = db.Column(db.String(20))
 
-    # Relacionamento correto com Atividades:
+    # Relacionamento correto com Atividades
     activities = db.relationship('Activity', backref='usuario', lazy=True)
 
+    # Relacionamento para as carteiras que o usuário criou
+    carteiras = db.relationship('CustomerPortfolio', foreign_keys='CustomerPortfolio.usuario_id', backref='usuario_criador')
+
+    # Relacionamento para as carteiras onde o usuário é responsável
+    carteiras_responsavel = db.relationship('CustomerPortfolio', foreign_keys='CustomerPortfolio.responsavel_id', backref='usuario_responsavel')
+
     def __repr__(self):
-        return '<name %r' % self.__name__
+        return f'<User {self.nome}>'
+
 
 class Customer(db.Model):
     __tablename__ = 'customer'
@@ -49,17 +55,26 @@ class Customer(db.Model):
     def __repr__(self):
         return '<Customer %r>' % self.nome_fantasia
 
+
+
 class CustomerPortfolio(db.Model):
     __tablename__ = 'customer_portfolio'
-    id = db.Column(Integer, primary_key=True)
-    usuario_id = db.Column(Integer, ForeignKey('user.id'), nullable=False)
-    responsavel_id = db.Column(Integer, ForeignKey('user.id'), nullable=False)
-    data_criacao = db.Column(DateTime, default=datetime.now)
-    nome = db.Column(String(200))
+    id = db.Column(db.Integer, primary_key=True)
+    usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    responsavel_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    data_criacao = db.Column(db.DateTime, default=datetime.now)
+    nome = db.Column(db.String(200))
     ativo = db.Column(db.Boolean)
 
+    # Relacionamento com o criador da carteira
+    usuario = db.relationship('User', foreign_keys=[usuario_id], backref='carteiras_criadas')
+
+    # Relacionamento com o responsável pela carteira
+    responsavel = db.relationship('User', foreign_keys=[responsavel_id], backref='carteiras_geridas')
+
     def __repr__(self):
-        return '<name %r' % self.__name__
+        return f'<CustomerPortfolio {self.nome}>'
+
 
 
 
