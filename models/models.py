@@ -53,7 +53,6 @@ class CustomerPortfolio(db.Model):
     usuario_id = db.Column(Integer, ForeignKey('user.id'), nullable=False)
     responsavel_id = db.Column(Integer, ForeignKey('user.id'), nullable=False)
     data_criacao = db.Column(DateTime, default=datetime.now)
-    data_fim = db.Column(DateTime)
     nome = db.Column(String(200))
     ativo = db.Column(db.Boolean)
 
