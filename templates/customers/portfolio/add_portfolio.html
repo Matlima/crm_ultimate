@@ -7,16 +7,14 @@
          <button class="nav-link active" id="dados-usuario-tab" data-bs-toggle="tab" data-bs-target="#dados-usuario" type="button" role="tab" aria-controls="dados-usuario" aria-selected="true">Principal</button>
       </li>
       <li class="nav-item" role="presentation">
-         <button class="nav-link" id="config-tab" data-bs-toggle="tab" data-bs-target="#config" type="button" role="tab" aria-controls="config" aria-selected="false">Clientes</button>
+         <button class="nav-link" id="config-tab" data-bs-toggle="tab" data-bs-target="#config" type="button" role="tab" aria-controls="config" aria-selected="false">Clientes/Prospects</button>
       </li>
       <li class="nav-item" role="presentation">
-         <button class="nav-link" id="outra-info-tab" data-bs-toggle="tab" data-bs-target="#outra-info" type="button" role="tab" aria-controls="outra-info" aria-selected="false">Prospects</button>
+         <button class="nav-link" id="outra-info-tab" data-bs-toggle="tab" data-bs-target="#outra-info" type="button" role="tab" aria-controls="outra-info" aria-selected="false">Configurações</button>
       </li>
    </ul>
-
    <!-- Conteúdo das Abas -->
    <div class="tab-content" id="userTabContent">
-
       <!-- Aba Dados do Usuário -->
       <div class="tab-pane fade show active p-3 border rounded" id="dados-usuario" role="tabpanel" aria-labelledby="dados-usuario-tab">
          <h5 class="mb-3">Informações principais:</h5>
@@ -38,15 +36,12 @@
                              <option value="{{ usuario.id }}" {% if form.responsavel_id.data == usuario.id %}selected{% endif %}>{{ usuario.nome or 'Usuário sem nome' }}</option>
                          {% endfor %}
                      </select>
-
-
                   </div>
                   <div class="col-md-2 mt-4">
                      {{ form.ativo.label(class="form-label") }}
                      {{ form.ativo(class="form-check-input mt-2") }}
                   </div>
                </div>
-
                <!-- Botões de Ação -->
                <div class="text-center mt-4">
                   {{ form.salvar(class="btn btn-primary mx-2") }}
@@ -55,44 +50,24 @@
             </fieldset>
          </form>
       </div>
-
       <!-- Aba Clientes -->
       <div class="tab-pane fade p-3 border rounded" id="config" role="tabpanel" aria-labelledby="config-tab">
-         <h5 class="mb-3">Clientes</h5>
+         <h5 class="mb-3">Clientes / Prospects</h5>
          <div class="alert alert-warning d-flex align-items-center" role="alert">
             <div>
-               Crie primeiro a carteira, em seguida configure os clientes
+               Crie primeiro a carteira, em seguida configure os clientes e prospects
             </div>
          </div>
-         <!-- Novo Formulário na aba de clientes -->
-         <form action="#" method="post">
-            <!-- Campos do formulário de clientes -->
-            <div class="mb-3">
-               <label class="form-label">Campo Exemplo</label>
-               <input type="text" class="form-control" placeholder="Insira um valor">
-            </div>
-            <button type="submit" class="btn btn-primary">Salvar Configurações</button>
-         </form>
       </div>
-
       <!-- Aba Prospects -->
       <div class="tab-pane fade p-3 border rounded" id="outra-info" role="tabpanel" aria-labelledby="outra-info-tab">
-         <h5 class="mb-3">Prospects</h5>
+         <h5 class="mb-3">Configurações adicionais</h5>
          <div class="alert alert-warning d-flex align-items-center" role="alert">
             <div>
-               Crie primeiro a carteira, em seguida configure os prospects
+               Crie primeiro a carteira, em seguida configure as demais informações.
             </div>
          </div>
-         <!-- Novo Formulário na aba de prospects -->
-         <form action="#" method="post">
-            <div class="mb-3">
-               <label class="form-label">Campo Exemplo Prospect</label>
-               <input type="text" class="form-control" placeholder="Insira um valor">
-            </div>
-            <button type="submit" class="btn btn-primary">Salvar Informações</button>
-         </form>
       </div>
-
    </div>
 </div>
 {% endblock %}
