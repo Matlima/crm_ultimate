@@ -86,6 +86,13 @@ class FormCustomer(FlaskForm):
     cadastrar = SubmitField('Salvar')
 
 
+class FormPortfolioItem(FlaskForm):
+    usuario = SelectField('Usuário', coerce=int, validators=[DataRequired()])
+    portfolio = SelectField('Carteira de cliente', coerce=int, validators=[DataRequired()])
+    cliente = SelectField('Cliente', coerce=int, validators=[DataRequired()])
+    prospect = SelectField('Prospect', coerce=int, validators=[DataRequired()])
+    adicionar = SubmitField('Adicionar')
+
 class FormActivity(FlaskForm):
     data_inicio = DateTimeField('Data Início', [DataRequired()], format='%Y-%m-%dT%H:%M')
     data_fim = DateTimeField('Data Fim', format='%Y-%m-%dT%H:%M')
