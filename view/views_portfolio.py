@@ -77,3 +77,27 @@ def created_portfolio():
 
     flash("Carteira de cliente criado com sucesso!")
     return redirect(url_for('portfolio'))
+
+
+@app.route('/portfolio/delete/<int:id>')
+def delete_portfolio(id):
+    usuario_id = session['usuario_id']
+    usuario = User.query.filter_by(id=usuario_id).first()
+    portfolio = CustomerPortfolio.query.filter_by(id=id).first()
+
+    if usuario.grupo == 'administrador':
+        CustomerPortfolio.query.filter_by(id=id).delete()
+        db.session.commit()
+        flash('Carteira de clientes excluida com sucesso!')
+    else:
+        flash('O usuário logado não tem autorização para excluir a carteira, apenas administradores.')
+    return redirect(url_for('portfolio'))
+
+
+
+
+
+
+
+
+
