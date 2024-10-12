@@ -1,10 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "shared/template.html" %}
+{% block conteudo %}
+<div class="container mt-4">
+   <!-- Abas de Navegação -->
+   <ul class="nav nav-tabs bg-light color-light" id="userTab" role="tablist">
+      <li class="nav-item" role="presentation">
+         <button class="nav-link active" id="dados-usuario-tab" data-bs-toggle="tab" data-bs-target="#dados-usuario" type="button" role="tab" aria-controls="dados-usuario" aria-selected="true">Principal</button>
+      </li>
+      <li class="nav-item" role="presentation">
+         <button class="nav-link" id="config-tab" data-bs-toggle="tab" data-bs-target="#config" type="button" role="tab" aria-controls="config" aria-selected="false">Clientes/Prospects</button>
+      </li>
+      <li class="nav-item" role="presentation">
+         <button class="nav-link" id="outra-info-tab" data-bs-toggle="tab" data-bs-target="#outra-info" type="button" role="tab" aria-controls="outra-info" aria-selected="false">Configurações</button>
+      </li>
+   </ul>
+   <!-- Conteúdo das Abas -->
+   <div class="tab-content" id="userTabContent">
+      <!-- Aba Dados do Usuário -->
+      <div class="tab-pane fade show active p-3 border rounded" id="dados-usuario" role="tabpanel" aria-labelledby="dados-usuario-tab">
+         <h5 class="mb-3">Informações principais:</h5>
+         <form class="row g-3" action="{{ url_for('created_portfolio') }}" method="post" enctype="multipart/form-data">
+            <fieldset>
+               <input type="hidden" name="id" value="{{ id }}">
+               {{ form.csrf_token() }}
 
-</body>
-</html>
+               <div class="row mb-3">
+                  <div class="col-md-7">
+                     {{ form.nome.label(class="form-label") }}
+                     {{ form.nome(class="form-control") }}
+                  </div>
+                  <div class="col-md-3">
+                     {{ form.responsavel_id.label(class="form-label") }}
+                     <select class="form-select" name="responsavel_id">
+                         <option value="" selected>Selecione o usuário</option>
+                         {% for usuario in usuarios %}
+                             <option value="{{ usuario.id }}" {% if form.responsavel_id.data == usuario.id %}selected{% endif %}>{{ usuario.nome or 'Usuário sem nome' }}</option>
+                         {% endfor %}
+                     </select>
+                  </div>
+                  <div class="col-md-2 mt-4">
+                     {{ form.ativo.label(class="form-label") }}
+                     {{ form.ativo(class="form-check-input mt-2") }}
+                  </div>
+               </div>
+               <!-- Botões de Ação -->
+               <div class="text-center mt-4">
+                  {{ form.salvar(class="btn btn-primary mx-2") }}
+                  <a class="btn btn-danger mx-2" href="{{ url_for('portfolio') }}">Voltar</a>
+               </div>
+            </fieldset>
+         </form>
+      </div>
+      <!-- Aba Clientes -->
+      <div class="tab-pane fade p-3 border rounded" id="config" role="tabpanel" aria-labelledby="config-tab">
+         <h5 class="mb-3">Clientes / Prospects</h5>
+         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Adicionar</button>
+         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+           <div class="modal-dialog">
+             <div class="modal-content">
+               <div class="modal-header">
+                 <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+               <div class="modal-body">
+                 <form>
+                   <div class="mb-3">
+                     <label for="recipient-name" class="col-form-label">Recipient:</label>
+                     <input type="text" class="form-control" id="recipient-name">
+                   </div>
+                   <div class="mb-3">
+                     <label for="message-text" class="col-form-label">Message:</label>
+                     <textarea class="form-control" id="message-text"></textarea>
+                   </div>
+                 </form>
+               </div>
+               <div class="modal-footer">
+                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                 <button type="button" class="btn btn-primary">Send message</button>
+               </div>
+             </div>
+           </div>
+         </div>
+         <div class="alert alert-warning d-flex align-items-center" role="alert">
+            <div>
+               Crie primeiro a carteira, em seguida configure os clientes e prospects
+            </div>
+         </div>
+          {% include 'customers/portfolio/item-portfolio/list_item.html' %}
+      </div>
+      <!-- Aba Prospects -->
+      <div class="tab-pane fade p-3 border rounded" id="outra-info" role="tabpanel" aria-labelledby="outra-info-tab">
+         <h5 class="mb-3">Configurações adicionais</h5>
+         <div class="alert alert-warning d-flex align-items-center" role="alert">
+            <div>
+               Crie primeiro a carteira, em seguida configure as demais informações.
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}
