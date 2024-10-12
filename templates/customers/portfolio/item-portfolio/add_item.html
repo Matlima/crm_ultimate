@@ -1,10 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="tab-pane fade show active p-3 border rounded" id="dados-usuario" role="tabpanel" aria-labelledby="dados-usuario-tab">
+ <h5 class="mb-3">Informações principais:</h5>
+ <form class="row g-3" action="#" method="post" enctype="multipart/form-data">
+    <fieldset>
+       <input type="hidden" name="id" value="{{ id }}">
+       {{ form.csrf_token() }}
+       <div class="row mb-3">
+          <div class="col-md-3">
+             {{ form.cliente.label(class="form-label") }}
+             <select class="form-select" name="cliente">
+                 <option value="" selected>Selecione o cliente</option>
+                 {% for cliente in clientes %}
+                     <option value="{{ cliente.id }}" {% if form.cliente.data == cliente.id %}selected{% endif %}>{{ cliente.razao_social }}</option>
+                 {% endfor %}
+             </select>
+          </div>
+           <div class="col-md-3">
+             {{ form.prospect.label(class="form-label") }}
+             <select class="form-select" name="prospect">
+                 <option value="" selected>Selecione o prospect</option>
+                 {% for prospect in prospects %}
+                     <option value="{{ prospect.id }}" {% if form.prospect.data == prospect.id %}selected{% endif %}>{{ prospect.nome }}</option>
+                 {% endfor %}
+             </select>
+          </div>
+       </div>
+       <!-- Botões de Ação -->
+       <div class="text-center mt-4">
+          {{ form.adicionar(class="btn btn-primary mx-2") }}
+          <a class="btn btn-danger mx-2" href="{{ url_for('portfolio') }}">Cancelar</a>
+       </div>
+    </fieldset>
+ </form>
+</div>
