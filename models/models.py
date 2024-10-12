@@ -76,7 +76,20 @@ class CustomerPortfolio(db.Model):
         return f'<CustomerPortfolio {self.nome}>'
 
 
+class PortfolioItem(db.Model):
+    __tablename__ = 'portfolio_item'
 
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    portfolio_id = db.Column(db.Integer, db.ForeignKey('customer_portfolio.id'), nullable=False)
+    cliente_id = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=False)
+    prospect_id = db.Column(db.Integer, db.ForeignKey('prospect.id'), nullable=False)
+
+    # Definir os relacionamentos
+    usuario = db.relationship('User', backref=db.backref('portfolio_items', lazy=True))
+    portfolio = db.relationship('CustomerPortfolio', backref=db.backref('portfolio_items', lazy=True))
+    cliente = db.relationship('Customer', backref=db.backref('portfolio_items', lazy=True))
+    prospect = db.relationship('Prospect', backref=db.backref('portfolio_items', lazy=True))
 
 class Activity(db.Model):
     __tablename__ = 'activity'
