@@ -17,10 +17,26 @@
             </tr>
          </thead>
          <tbody>
-            {% for item in itens_carteiras %}
+            {% for item in itens_carteiras.items %}
             <tr>
-                <td>Prospect ou Cliente</td>
-                <td>{{ item.cliente.razao_social or item.prospect.nome }}</td>
+                <!-- Verificar se é cliente ou prospect -->
+                <td>
+                    {% if item.cliente %}
+                        Cliente
+                    {% elif item.prospect %}
+                        Prospect
+                    {% endif %}
+                </td>
+
+                <!-- Mostrar razão social se for cliente ou nome se for prospect -->
+                <td>
+                    {% if item.cliente %}
+                        {{ item.cliente.razao_social }}
+                    {% elif item.prospect %}
+                        {{ item.prospect.nome }}
+                    {% endif %}
+                </td>
+
                 <td>
                   <a class="btn btn-sm btn-secondary w-100 mb-1" href="#">
                      <i class="fas fa-ban"></i> Desativar
@@ -32,7 +48,7 @@
                   </a>
                </td>
                <td>
-                  <a class="btn btn-sm btn-danger w-100 mb-1 text-white" href="{{ url_for('delete_portfolio', id=carteira.id) }}">
+                  <a class="btn btn-sm btn-danger w-100 mb-1 text-white" href="{{ url_for('delete_portfolio', id=item.id) }}">
                      <i class="fas fa-trash-alt"></i> Excluir
                   </a>
                </td>
@@ -46,7 +62,6 @@
          </tbody>
       </table>
    </div>
-
 
     <!-- Paginação -->
     <nav aria-label="Page navigation">
@@ -72,7 +87,7 @@
             {% endfor %}
 
             <!-- Link para a próxima página -->
-            {% if carteiras.has_next %}
+            {% if itens_carteiras.has_next %}
             <li class="page-item">
                 <a class="page-link" href="{{ url_for('portfolio', page=itens_carteiras.next_num) }}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
