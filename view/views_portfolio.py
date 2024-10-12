@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, session, flash, url_for
 from application import app, db
-from models.models import Customer, CustomerPortfolio, User
-from helpers.forms_helpers import FormCustomerPortfolio, is_admin
+from models.models import Customer, CustomerPortfolio, User, PortfolioItem, Prospect
+from helpers.forms_helpers import FormCustomerPortfolio, is_admin, FormPortfolioItem
 from datetime import datetime
 
 
@@ -47,6 +47,29 @@ def new_portfolio():
                            )
 
 
+@app.route('/portfolio/config/<int:id>', methods=['GET'])
+def config_portfolio(id):
+    portfolio_id = request.args.get('id', type=int)
+    print(portfolio_id)
+
+    page = request.args.get('page', 1, type=int)
+    # Paginação dos itens de carteiras filtrados pelo 'CustomerPortfolio' específico
+    itens_carteiras = PortfolioItem.query.filter_by(portfolio_id=id).paginate(page=page, per_page=10)
+
+    portfolio = CustomerPortfolio.query.filter_by(id=id).first()
+    form = FormCustomerPortfolio()
+
+    form.nome.data = portfolio.nome
+    form.ativo.data = portfolio.ativo
+
+    form.responsavel_id.data = portfolio.responsavel_id
+
+
+
+    # Renderizar a página com os dados de portfolio_item
+    return render_template('customers/portfolio/config_portfolio.html',
+                           itens_carteiras=itens_carteiras
+                           )
 
 
 # Methods Action:
@@ -95,6 +118,30 @@ def delete_portfolio(id):
 
 
 
+
+@app.route('/portfolio/<int:id>/item/add', methods=['GET', 'POST'])
+def created_item_portfolio(id):
+    form = FormPortfolioItem(request.form)
+
+    form.cliente.choices = [(cliente.id, cliente.razao_social) for cliente in Customer.query.all()]
+    form.prospect.choices = [(prospect.id, prospect.nome) for prospect in Prospect.query.all()]
+
+    cliente = form.cliente.data
+    prospect = form.cliente.data
+    portfolio = id
+    usuario = session["usuario_id"]
+
+    new_item = PortfolioItem(
+        cliente=cliente,
+        prospect=prospect,
+        portfolio=portfolio,
+        usuario=usuario
+    )
+    db.session.add(new_item)
+    db.session.commit()
+
+    flash("Item adicionado na carteira de cliente com sucesso!")
+    return redirect(url_for('portfolio'))
 
 
 
