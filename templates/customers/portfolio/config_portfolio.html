@@ -2,7 +2,7 @@
 {% block conteudo %}
 <div class="container mt-4">
    <!-- Abas de Navegação -->
-   <ul class="nav nav-tabs bg-light color-light" id="userTab" role="tablist">
+   <ul class="nav nav-tabs bg-light" id="userTab" role="tablist">
       <li class="nav-item" role="presentation">
          <button class="nav-link active" id="dados-usuario-tab" data-bs-toggle="tab" data-bs-target="#dados-usuario" type="button" role="tab" aria-controls="dados-usuario" aria-selected="true">Principal</button>
       </li>
@@ -13,8 +13,10 @@
          <button class="nav-link" id="outra-info-tab" data-bs-toggle="tab" data-bs-target="#outra-info" type="button" role="tab" aria-controls="outra-info" aria-selected="false">Configurações</button>
       </li>
    </ul>
+
    <!-- Conteúdo das Abas -->
    <div class="tab-content" id="userTabContent">
+
       <!-- Aba Dados do Usuário -->
       <div class="tab-pane fade show active p-3 border rounded" id="dados-usuario" role="tabpanel" aria-labelledby="dados-usuario-tab">
          <h5 class="mb-3">Informações principais:</h5>
@@ -42,6 +44,7 @@
                      {{ form.ativo(class="form-check-input mt-2") }}
                   </div>
                </div>
+
                <!-- Botões de Ação -->
                <div class="text-center mt-4">
                   {{ form.salvar(class="btn btn-primary mx-2") }}
@@ -50,44 +53,42 @@
             </fieldset>
          </form>
       </div>
-      <!-- Aba Clientes -->
+
+      <!-- Aba Clientes/Prospects -->
       <div class="tab-pane fade p-3 border rounded" id="config" role="tabpanel" aria-labelledby="config-tab">
          <h5 class="mb-3">Clientes / Prospects</h5>
-         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Adicionar</button>
+         <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Adicionar Cliente/Prospect</button>
+
+         <!-- Modal para Adicionar Cliente/Prospect -->
          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
            <div class="modal-dialog">
              <div class="modal-content">
                <div class="modal-header">
-                 <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                 <h5 class="modal-title" id="exampleModalLabel">Adicionar Cliente/Prospect</h5>
                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                </div>
                <div class="modal-body">
-                 <form>
-                   <div class="mb-3">
-                     <label for="recipient-name" class="col-form-label">Recipient:</label>
-                     <input type="text" class="form-control" id="recipient-name">
-                   </div>
-                   <div class="mb-3">
-                     <label for="message-text" class="col-form-label">Message:</label>
-                     <textarea class="form-control" id="message-text"></textarea>
-                   </div>
-                 </form>
+                  <!-- Include do formulário para adicionar cliente/prospect -->
+                  {% include 'customers/portfolio/item-portfolio/add_item.html' %}
                </div>
                <div class="modal-footer">
-                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                 <button type="button" class="btn btn-primary">Send message</button>
+                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                </div>
              </div>
            </div>
          </div>
+
          <div class="alert alert-warning d-flex align-items-center" role="alert">
             <div>
-               Crie primeiro a carteira, em seguida configure os clientes e prospects
+               Crie primeiro a carteira, em seguida configure os clientes e prospects.
             </div>
          </div>
-          {% include 'customers/portfolio/item-portfolio/list_item.html' %}
+
+         <!-- Lista de Clientes/Prospects -->
+         {% include 'customers/portfolio/item-portfolio/list_item.html' %}
       </div>
-      <!-- Aba Prospects -->
+
+      <!-- Aba Configurações -->
       <div class="tab-pane fade p-3 border rounded" id="outra-info" role="tabpanel" aria-labelledby="outra-info-tab">
          <h5 class="mb-3">Configurações adicionais</h5>
          <div class="alert alert-warning d-flex align-items-center" role="alert">
