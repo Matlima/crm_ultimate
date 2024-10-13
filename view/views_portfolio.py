@@ -57,18 +57,26 @@ def config_portfolio(id):
     itens_carteiras = PortfolioItem.query.filter_by(portfolio_id=id).paginate(page=page, per_page=10)
 
     portfolio = CustomerPortfolio.query.filter_by(id=id).first()
+
     form = FormCustomerPortfolio()
+    formItem = FormPortfolioItem()
 
     form.nome.data = portfolio.nome
     form.ativo.data = portfolio.ativo
 
     form.responsavel_id.data = portfolio.responsavel_id
 
+    adm = is_admin()
 
 
     # Renderizar a página com os dados de portfolio_item
     return render_template('customers/portfolio/config_portfolio.html',
-                           itens_carteiras=itens_carteiras
+                           itens_carteiras=itens_carteiras,
+                           form=form,
+                           formItem=formItem,
+                           is_admin=adm,
+                           clientes=Customer.query.all(),
+                           prospects=Prospect.query.all()
                            )
 
 
