@@ -23,7 +23,7 @@
                         <option value="" selected>Selecione o prospect</option>
                         {% for prospect in prospects %}
                         <option value="{{ prospect.id }}" {% if formItem.prospect.data == prospect.id %}selected{% endif %}>
-                            {{ prospect.nome }}
+                            {{ prospect.nome_completo }}
                         </option>
                         {% endfor %}
                     </select>
