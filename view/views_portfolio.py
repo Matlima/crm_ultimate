@@ -49,13 +49,9 @@ def new_portfolio():
 
 @app.route('/portfolio/config/<int:id>', methods=['GET'])
 def config_portfolio(id):
-    portfolio_id = request.args.get('id', type=int)
-    print(portfolio_id)
-
     page = request.args.get('page', 1, type=int)
     # Paginação dos itens de carteiras filtrados pelo 'CustomerPortfolio' específico
     itens_carteiras = PortfolioItem.query.filter_by(portfolio_id=id).paginate(page=page, per_page=10)
-
     portfolio = CustomerPortfolio.query.filter_by(id=id).first()
 
     form = FormCustomerPortfolio()
@@ -63,11 +59,9 @@ def config_portfolio(id):
 
     form.nome.data = portfolio.nome
     form.ativo.data = portfolio.ativo
-
     form.responsavel_id.data = portfolio.responsavel_id
 
     adm = is_admin()
-
 
     # Renderizar a página com os dados de portfolio_item
     return render_template('customers/portfolio/config_portfolio.html',
@@ -75,6 +69,7 @@ def config_portfolio(id):
                            form=form,
                            formItem=formItem,
                            is_admin=adm,
+                           carteiras=CustomerPortfolio.query.all(),
                            clientes=Customer.query.all(),
                            prospects=Prospect.query.all()
                            )
