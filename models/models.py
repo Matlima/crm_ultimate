@@ -2,7 +2,6 @@ from application import db
 from datetime import datetime
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Boolean
 from sqlalchemy import DECIMAL
-
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
@@ -20,13 +19,18 @@ class User(db.Model):
     activities = db.relationship('Activity', backref='usuario', lazy=True)
 
     # Relacionamento para as carteiras que o usuário criou
-    carteiras = db.relationship('CustomerPortfolio', foreign_keys='CustomerPortfolio.usuario_id', backref='usuario_criador')
+    carteiras = db.relationship('CustomerPortfolio',
+                                foreign_keys='CustomerPortfolio.usuario_id',
+                                back_populates='usuario_criador')
 
     # Relacionamento para as carteiras onde o usuário é responsável
-    carteiras_responsavel = db.relationship('CustomerPortfolio', foreign_keys='CustomerPortfolio.responsavel_id', backref='usuario_responsavel')
+    carteiras_responsavel = db.relationship('CustomerPortfolio',
+                                            foreign_keys='CustomerPortfolio.responsavel_id',
+                                            back_populates='usuario_responsavel')
 
     def __repr__(self):
         return f'<User {self.nome}>'
+
 
 
 class Customer(db.Model):
@@ -54,9 +58,6 @@ class Customer(db.Model):
 
     def __repr__(self):
         return '<Customer %r>' % self.nome_fantasia
-
-
-
 class CustomerPortfolio(db.Model):
     __tablename__ = 'customer_portfolio'
     id = db.Column(db.Integer, primary_key=True)
@@ -67,14 +68,17 @@ class CustomerPortfolio(db.Model):
     ativo = db.Column(db.Boolean)
 
     # Relacionamento com o criador da carteira
-    usuario = db.relationship('User', foreign_keys=[usuario_id], backref='carteiras_criadas')
+    usuario_criador = db.relationship('User',
+                                      foreign_keys=[usuario_id],
+                                      back_populates='carteiras')
 
     # Relacionamento com o responsável pela carteira
-    responsavel = db.relationship('User', foreign_keys=[responsavel_id], backref='carteiras_geridas')
+    usuario_responsavel = db.relationship('User',
+                                          foreign_keys=[responsavel_id],
+                                          back_populates='carteiras_responsavel')
 
     def __repr__(self):
         return f'<CustomerPortfolio {self.nome}>'
-
 
 class PortfolioItem(db.Model):
     __tablename__ = 'portfolio_item'
@@ -90,6 +94,7 @@ class PortfolioItem(db.Model):
     portfolio = db.relationship('CustomerPortfolio', backref=db.backref('portfolio_items', lazy=True))
     cliente = db.relationship('Customer', backref=db.backref('portfolio_items', lazy=True))
     prospect = db.relationship('Prospect', backref=db.backref('portfolio_items', lazy=True))
+
 
 class Activity(db.Model):
     __tablename__ = 'activity'
