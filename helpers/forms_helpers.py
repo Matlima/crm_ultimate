@@ -87,10 +87,10 @@ class FormCustomer(FlaskForm):
 
 
 class FormPortfolioItem(FlaskForm):
-    usuario = SelectField('Usuário', coerce=int, validators=[DataRequired()])
-    portfolio = SelectField('Carteira de cliente', coerce=int, validators=[DataRequired()])
-    cliente = SelectField('Cliente', coerce=int, validators=[DataRequired()])
-    prospect = SelectField('Prospect', coerce=int, validators=[DataRequired()])
+    usuario = SelectField('Usuário', coerce=int,  choices=[])
+    portfolio = SelectField('Carteira de cliente', coerce=int, choices=[])
+    cliente = SelectField('Cliente', coerce=int, choices=[])
+    prospect = SelectField('Prospect', coerce=int, choices=[])
     adicionar = SubmitField('Adicionar')
 
 class FormActivity(FlaskForm):
