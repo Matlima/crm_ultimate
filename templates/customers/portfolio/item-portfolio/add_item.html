@@ -1,8 +1,8 @@
 <div class="tab-pane fade show active p-3 border rounded" id="dados-usuario" role="tabpanel" aria-labelledby="dados-usuario-tab">
-    <form class="row g-3" action="#" method="post" enctype="multipart/form-data">
+    <form class="row g-3" action="{{ url_for('created_item_portfolio', id=id) }}" method="post" enctype="multipart/form-data">
         <fieldset>
             <input type="hidden" name="id" value="{{ id }}">
-            {{ form.csrf_token() }}
+            {{ formItem.csrf_token() }}
 
             <div class="row mb-3">
                 <div class="col-md-12">
@@ -23,7 +23,7 @@
                         <option value="" selected>Selecione o prospect</option>
                         {% for prospect in prospects %}
                         <option value="{{ prospect.id }}" {% if formItem.prospect.data == prospect.id %}selected{% endif %}>
-                            {{ prospect.nome_completo }}
+                            {{ prospect.nome }}
                         </option>
                         {% endfor %}
                     </select>
@@ -37,24 +37,3 @@
         </fieldset>
     </form>
 </div>
-
-
-<!-- JavaScript para habilitar/desabilitar selects -->
-<script>
-    function toggleSelect(selected) {
-        var prospectSelect = document.getElementById('prospect_select');
-        var clienteSelect = document.getElementById('cliente_select');
-
-        if (selected === 'cliente') {
-            prospectSelect.disabled = clienteSelect.value !== '';
-        } else if (selected === 'prospect') {
-            clienteSelect.disabled = prospectSelect.value !== '';
-        }
-
-        // Reabilita ambos os selects se nenhum estiver selecionado
-        if (prospectSelect.value === '' && clienteSelect.value === '') {
-            prospectSelect.disabled = false;
-            clienteSelect.disabled = false;
-        }
-    }
-</script>

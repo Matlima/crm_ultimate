@@ -71,7 +71,8 @@ def config_portfolio(id):
                            is_admin=adm,
                            carteiras=CustomerPortfolio.query.all(),
                            clientes=Customer.query.all(),
-                           prospects=Prospect.query.all()
+                           prospects=Prospect.query.all(),
+                           id=id
                            )
 
 
@@ -143,32 +144,40 @@ def desativar_portfolio(id):
     return redirect(url_for('portfolio'))
 
 
-
-
 @app.route('/portfolio/<int:id>/item/add', methods=['GET', 'POST'])
 def created_item_portfolio(id):
     form = FormPortfolioItem(request.form)
 
-    form.cliente.choices = [(cliente.id, cliente.razao_social) for cliente in Customer.query.all()]
-    form.prospect.choices = [(prospect.id, prospect.nome) for prospect in Prospect.query.all()]
+    # Populando as opções dos selects, sempre garantindo que uma lista vazia seja retornada se não houver clientes/prospects
+    form.cliente.choices = [(cliente.id, cliente.razao_social) for cliente in Customer.query.all()] or []
+    form.prospect.choices = [(prospect.id, prospect.nome_completo) for prospect in Prospect.query.all()] or []
 
-    cliente = form.cliente.data
-    prospect = form.cliente.data
-    portfolio = id
-    usuario = session["usuario_id"]
+    if form.validate_on_submit():  # Verifica se o formulário foi submetido corretamente
+        form.cliente.choices = [(cliente.id, cliente.razao_social) for cliente in Customer.query.all()] or []
+        form.prospect.choices = [(prospect.id, prospect.nome_completo) for prospect in Prospect.query.all()] or []
+        cliente = form.cliente.data  # O valor do cliente selecionado
+        prospect = form.prospect.data  # O valor do prospect selecionado
+        usuario = session.get("usuario_id")  # Pegando o usuário da sessão
 
-    new_item = PortfolioItem(
-        cliente=cliente,
-        prospect=prospect,
-        portfolio=portfolio,
-        usuario=usuario
-    )
-    db.session.add(new_item)
-    db.session.commit()
+        # Criar o novo item no portfólio
+        new_item = PortfolioItem(
+            cliente_id=cliente if cliente else None,  # Apenas define se cliente for selecionado
+            prospect_id=prospect if prospect else None,  # Apenas define se prospect for selecionado
+            portfolio_id=id,  # Este é o id do portfólio que vem da URL
+            usuario_id=usuario  # Usuário da sessão
+        )
 
-    flash("Item adicionado na carteira de cliente com sucesso!")
-    return redirect(url_for('portfolio'))
+        # Adiciona e comita no banco
+        db.session.add(new_item)
+        db.session.commit()
 
+        flash("Item adicionado na carteira de cliente com sucesso!")
+        return redirect(url_for('config_portfolio', id=id))  # Redireciona para a página de configuração do portfólio
+    else:
+        # Se houver erros de validação
+        flash("Erro ao adicionar o item ao portfólio", "danger")
+
+    return redirect(url_for('config_portfolio', id=id))
 
 
 
