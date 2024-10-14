@@ -23,7 +23,7 @@
                         <option value="" selected>Selecione o prospect</option>
                         {% for prospect in prospects %}
                         <option value="{{ prospect.id }}" {% if formItem.prospect.data == prospect.id %}selected{% endif %}>
-                            {{ prospect.nome }}
+                            {{ prospect.nome_completo }}
                         </option>
                         {% endfor %}
                     </select>
@@ -37,3 +37,24 @@
         </fieldset>
     </form>
 </div>
+
+<script type="text/javascript">
+    function toggleSelect(selectedField) {
+        const clienteSelect = document.getElementById('cliente_select');
+        const prospectSelect = document.getElementById('prospect_select');
+
+        if (selectedField === 'cliente') {
+            if (clienteSelect.value) {
+                prospectSelect.disabled = true;  // Desabilita o select de prospect
+            } else {
+                prospectSelect.disabled = false; // Habilita o select de prospect se nada for selecionado
+            }
+        } else if (selectedField === 'prospect') {
+            if (prospectSelect.value) {
+                clienteSelect.disabled = true;  // Desabilita o select de cliente
+            } else {
+                clienteSelect.disabled = false; // Habilita o select de cliente se nada for selecionado
+            }
+        }
+    }
+</script>

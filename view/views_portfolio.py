@@ -143,18 +143,19 @@ def desativar_portfolio(id):
 
     return redirect(url_for('portfolio'))
 
-
 @app.route('/portfolio/<int:id>/item/add', methods=['GET', 'POST'])
 def created_item_portfolio(id):
     form = FormPortfolioItem(request.form)
 
-    # Populando as opções dos selects, sempre garantindo que uma lista vazia seja retornada se não houver clientes/prospects
-    form.cliente.choices = [(cliente.id, cliente.razao_social) for cliente in Customer.query.all()] or []
-    form.prospect.choices = [(prospect.id, prospect.nome_completo) for prospect in Prospect.query.all()] or []
+    # Populando as opções dos selects
+    clientes = Customer.query.all()  # Lista de clientes
+    prospects = Prospect.query.all()  # Lista de prospects
+
+    # Assegura que sempre haverá uma lista, mesmo que vazia
+    form.cliente.choices = [(cliente.id, cliente.razao_social) for cliente in clientes] if clientes else []
+    form.prospect.choices = [(prospect.id, prospect.nome_completo) for prospect in prospects] if prospects else []
 
     if form.validate_on_submit():  # Verifica se o formulário foi submetido corretamente
-        form.cliente.choices = [(cliente.id, cliente.razao_social) for cliente in Customer.query.all()] or []
-        form.prospect.choices = [(prospect.id, prospect.nome_completo) for prospect in Prospect.query.all()] or []
         cliente = form.cliente.data  # O valor do cliente selecionado
         prospect = form.prospect.data  # O valor do prospect selecionado
         usuario = session.get("usuario_id")  # Pegando o usuário da sessão
@@ -178,7 +179,6 @@ def created_item_portfolio(id):
         flash("Erro ao adicionar o item ao portfólio", "danger")
 
     return redirect(url_for('config_portfolio', id=id))
-
 
 
 

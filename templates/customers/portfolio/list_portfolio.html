@@ -24,7 +24,7 @@
             {% for carteira in carteiras %}
             <tr>
                 <td>{{ carteira.nome }}</td>
-                <td>{{ carteira.responsavel.nome }}</td>
+                <td>{{ carteira.usuario_responsavel.nome }}</td>
                 <td>{{ carteira.ativo }}</td>
                 <td>
                   <a class="btn btn-sm btn-secondary w-100 mb-1" href="{{ url_for('desativar_portfolio', id=carteira.id) }}">
