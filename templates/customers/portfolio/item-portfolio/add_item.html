@@ -1,35 +1,45 @@
-<div class="tab-pane fade show active p-3 border rounded" id="dados-usuario" role="tabpanel" aria-labelledby="dados-usuario-tab">
-    <form class="row g-3" action="{{ url_for('created_item_portfolio', id=id) }}" method="post" enctype="multipart/form-data">
-        <fieldset>
-            <input type="hidden" name="id" value="{{ id }}">
-            {{ formItem.csrf_token() }}
+<form method="POST" action="{{ url_for('created_item_portfolio', id=id) }}">
+    {{ formItem.csrf_token() }}
 
-            <div class="row mb-3">
-                <div class="col-md-12">
-                    {{ formItem.usuario.label(class="form-label") }}
-                    {{ formItem.usuario(class="form-select") }}
-                </div>
+    <!-- Campo oculto para o valor de usuario -->
+    <input type="hidden" name="usuario" value="{{ formItem.usuario.data }}">
 
-                <div class="col-md-12 mt-2">
-                    {{ formItem.portfolio.label(class="form-label") }}
-                    {{ formItem.portfolio(class="form-select") }}
-                </div>
+    <!-- Campo oculto para o valor de portfolio -->
+    <input type="hidden" name="portfolio" value="{{ formItem.portfolio.data }}">
 
-                <div class="col-md-12 mt-2">
-                    {{ formItem.cliente.label(class="form-label") }}
-                    {{ formItem.cliente(class="form-select") }}
-                </div>
+    <div class="form-group">
+        {{ formItem.cliente.label(class="form-label") }}
+        <!-- Adiciona o id 'cliente_select' para referenciar no JS -->
+        {{ formItem.cliente(class="form-control", id="cliente_select", onchange="toggleSelect('cliente')") }}
+    </div>
 
-                <div class="col-md-12 mt-2">
-                    {{ formItem.prospect.label(class="form-label") }}
-                    {{ formItem.prospect(class="form-select") }}
-                </div>
-            </div>
+    <div class="form-group">
+        {{ formItem.prospect.label(class="form-label") }}
+        <!-- Adiciona o id 'prospect_select' para referenciar no JS -->
+        {{ formItem.prospect(class="form-control", id="prospect_select", onchange="toggleSelect('prospect')") }}
+    </div>
 
-            <!-- Botões de Ação -->
-            <div class="text-center mt-4">
-                {{ formItem.adicionar(class="btn btn-primary mx-2") }}
-            </div>
-        </fieldset>
-    </form>
-</div>
+    <div class="text-center m-2">
+        <button type="submit" class="btn btn-primary">Adicionar</button>
+    </div>
+</form>
+<script type="text/javascript">
+    function toggleSelect(selectedField) {
+        const clienteSelect = document.getElementById('cliente_select');
+        const prospectSelect = document.getElementById('prospect_select');
+
+        if (selectedField === 'cliente') {
+            if (clienteSelect.value) {
+                prospectSelect.disabled = true;  // Desabilita o select de prospect
+            } else {
+                prospectSelect.disabled = false; // Habilita o select de prospect se nada for selecionado
+            }
+        } else if (selectedField === 'prospect') {
+            if (prospectSelect.value) {
+                clienteSelect.disabled = true;  // Desabilita o select de cliente
+            } else {
+                clienteSelect.disabled = false; // Habilita o select de cliente se nada for selecionado
+            }
+        }
+    }
+</script>

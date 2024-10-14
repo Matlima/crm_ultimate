@@ -89,8 +89,11 @@ class FormCustomer(FlaskForm):
 class FormPortfolioItem(FlaskForm):
     usuario = SelectField('Usuário', coerce=int,  choices=[])
     portfolio = SelectField('Carteira de cliente', coerce=int, choices=[])
-    cliente = SelectField('Cliente', coerce=int, choices=[])
-    prospect = SelectField('Prospect', coerce=int, choices=[])
+
+    # Tratar valores vazios como None
+    cliente = SelectField('Cliente', coerce=lambda x: int(x) if x else None, choices=[])
+    prospect = SelectField('Prospect', coerce=lambda x: int(x) if x else None, choices=[])
+
     adicionar = SubmitField('Adicionar')
 
 class FormActivity(FlaskForm):
