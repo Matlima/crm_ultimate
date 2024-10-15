@@ -230,6 +230,27 @@ def delete_item_portfolio(id):
     return redirect(url_for('portfolio'))
 
 
+@app.route('/portfolio/<int:id>/item/transfer')
+def transferir_unico_item_portfolio(id):
+    pass
+
+
+@app.route('/portfolio/<int:id>/item/transfer-all')
+def transferir_todos_item_portfolio(id):
+    pass
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
