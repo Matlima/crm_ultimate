@@ -60,8 +60,8 @@
       <div class="tab-pane fade p-3 border rounded" id="config" role="tabpanel" aria-labelledby="config-tab">
          <h5 class="mb-3">Gerenciamento de Clientes/Prospects</h5>
          <div>
-             <button type="button" class="btn btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Adicionar</button>
-             <button type="button" class="btn btn-secondary mb-1" data-bs-toggle="modal" data-bs-target="#ModalTranferir" data-bs-whatever="@mdo">Transferir todos</button>
+             <button type="button" class="btn btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="fas fa-plus"></i>Adicionar</button>
+             <button type="button" class="btn btn-secondary mb-1" data-bs-toggle="modal" data-bs-target="#ModalTranferirTodos" data-bs-whatever="@mdo"> <i class="fas fa-exchange-alt"></i> Transferir todos</button>
          </div>
          <!-- Modal para Adicionar Cliente/Prospect -->
          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -82,12 +82,12 @@
            </div>
          </div>
 
-          <!-- Modal para Transferir Cliente/Prospect -->
-         <div class="modal fade" id="ModalTranferir" tabindex="-1" aria-labelledby="ModalTranferir" aria-hidden="true">
+          <!-- Modal para Transferir Todos os Cliente/Prospect -->
+         <div class="modal fade" id="ModalTranferirTodos" tabindex="-1" aria-labelledby="ModalTranferirTodos" aria-hidden="true">
            <div class="modal-dialog">
              <div class="modal-content">
                <div class="modal-header">
-                 <h5 class="modal-title" id="exampleModalLabel">Transferir Cliente/Prospect</h5>
+                 <h5 class="modal-title" id="exampleModalLabel">Transferir todos</h5>
                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                </div>
                <div class="modal-body">
@@ -115,12 +115,6 @@
                             </fieldset>
                         </form>
                     </div>
-
-
-
-               </div>
-               <div class="modal-footer">
-
                </div>
              </div>
            </div>
@@ -129,6 +123,43 @@
          <!-- Lista de Clientes/Prospects -->
          {% include 'customers/portfolio/item-portfolio/list_item.html' %}
       </div>
+
+       <!-- Modal para Transferir Unico Cliente/Prospect -->
+       <div class="modal fade" id="ModalTranferirUnico" tabindex="-1" aria-labelledby="ModalTranferirUnico" aria-hidden="true">
+           <div class="modal-dialog">
+             <div class="modal-content">
+               <div class="modal-header">
+                 <h5 class="modal-title" id="exampleModalLabel">Transferir unico</h5>
+                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+               <div class="modal-body">
+                   <div class="tab-pane fade show active p-3 border rounded" id="dados-usuario" role="tabpanel" aria-labelledby="dados-usuario-tab">
+                        <form class="row g-3" action="#" method="post" enctype="multipart/form-data">
+                            <fieldset>
+                                <input type="hidden" name="id" value="{{ id }}">
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
+                                        <label class="form-label">Carteira de cliente:</label>
+                                        <select class="form-select" name="carteira" id="carteira_select" onchange="toggleSelect('carteira')">
+                                            <option value="" selected>Selecione a carteira de destino</option>
+                                            {% for carteira in carteiras %}
+                                            <option value="{{ carteira.id }}">
+                                                {{ carteira.nome }}
+                                            </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- Botões de Ação -->
+                                <div class="text-center mt-4">
+                                    <button type="submit" class="btn btn-primary">Transferir</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+               </div>
+             </div>
+           </div>
 
       <!-- Aba Configurações -->
       <div class="tab-pane fade p-3 border rounded" id="outra-info" role="tabpanel" aria-labelledby="outra-info-tab">
