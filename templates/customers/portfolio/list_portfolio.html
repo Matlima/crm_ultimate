@@ -16,6 +16,7 @@
             <tr>
                 <th>Nome</th>
                 <th>Responsável</th>
+                <th>Validade</th>
                 <th>Ativo</th>
                 <th colspan="4">Ações</th>
             </tr>
@@ -25,6 +26,7 @@
             <tr>
                 <td>{{ carteira.nome }}</td>
                 <td>{{ carteira.usuario_responsavel.nome }}</td>
+                <td>{{ carteira.data_validade }}</td>
                 <td>
                     {% if carteira.ativo %}
                         Sim
