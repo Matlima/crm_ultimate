@@ -25,12 +25,27 @@
             <tr>
                 <td>{{ carteira.nome }}</td>
                 <td>{{ carteira.usuario_responsavel.nome }}</td>
-                <td>{{ carteira.ativo }}</td>
                 <td>
-                  <a class="btn btn-sm btn-secondary w-100 mb-1" href="{{ url_for('desativar_portfolio', id=carteira.id) }}">
-                     <i class="fas fa-ban"></i> Desativar
-                  </a>
+                    {% if carteira.ativo %}
+                        Sim
+                    {% else %}
+                        Não
+                    {% endif %}
+                </td>
+                <td>
+                    {% if carteira.ativo %}
+                        <!-- Mostrar o botão "Desativar" se a carteira estiver ativa -->
+                        <a class="btn btn-sm btn-secondary w-100 mb-1" href="{{ url_for('desativar_portfolio', id=carteira.id) }}">
+                             <i class="fas fa-ban"></i> Desativar
+                        </a>
+                    {% else %}
+                        <!-- Mostrar o botão "Ativar" se a carteira estiver inativa -->
+                        <a class="btn btn-sm btn-success w-100 mb-1" href="{{ url_for('ativar_portfolio', id=carteira.id) }}">
+                             <i class="fas fa-check-circle"></i> Ativar
+                        </a>
+                    {% endif %}
                </td>
+
                <td>
                   <a class="btn btn-sm btn-info w-100 mb-1" href="{{ url_for('config_portfolio', id=carteira.id) }}">
                      <i class="fas fa-info-circle"></i> Configuração
@@ -46,7 +61,6 @@
          </tbody>
       </table>
    </div>
-
 
     <!-- Paginação -->
     <nav aria-label="Page navigation">

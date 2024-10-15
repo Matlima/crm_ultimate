@@ -160,6 +160,21 @@ def desativar_portfolio(id):
     return redirect(url_for('portfolio'))
 
 
+@app.route('/portfolio/ativate/<int:id>')
+def ativar_portfolio(id):
+    usuario_id = session['usuario_id']
+    usuario = User.query.filter_by(id=usuario_id).first()
+    portfolio = CustomerPortfolio.query.filter_by(id=id).first()
+
+    if usuario.grupo == 'Administrador':
+        portfolio.ativo = True
+        db.session.commit()
+        flash('Carteira de clientes desativada com sucesso!')
+    else:
+        flash('O usuário logado não tem autorização para desativar a carteira, apenas administradores.')
+
+    return redirect(url_for('portfolio'))
+
 # Item de carteira:
 
 @app.route('/portfolio/<int:id>/item/add', methods=['GET', 'POST'])
