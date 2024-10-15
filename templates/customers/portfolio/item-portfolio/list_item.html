@@ -30,22 +30,52 @@
                     {% endif %}
                 </td>
 
+                <!-- Botão para abrir o modal de transferência individual -->
                 <td>
-                  <a type="button" class="btn btn-sm w-100 btn-secondary mb-1" data-bs-toggle="modal" data-bs-target="#ModalTranferirUnico" data-bs-whatever="@mdo">
-                      <i class="fas fa-exchange-alt"></i> Transferir
-                  </a>
-               </td>
-               <td>
-                    {% if item.cliente %}
-                        <a type="button" class="btn btn-sm btn-warning w-100 mb-1" href="{{ url_for('edit_customer', id=item.cliente.id) }}">
-                            <i class="fas fa-edit"></i> Editar
-                        </a>
-                    {% else %}
-                        <a type="button" class="btn btn-sm btn-warning w-100 mb-1" href="{{ url_for('edit_prospect', id=item.prospect.id) }}" >
-                            <i class="fas fa-edit"></i> Editar
-                        </a>
-                    {% endif %}
+                    <a type="button" class="btn btn-sm w-100 btn-secondary mb-1" data-bs-toggle="modal" data-bs-target="#ModalTranferirUnico-{{ item.id }}">
+                        <i class="fas fa-exchange-alt"></i> Transferir
+                    </a>
                 </td>
+
+                <!-- Modal Dinâmico para cada item -->
+                <div class="modal fade" id="ModalTranferirUnico-{{ item.id }}" tabindex="-1" aria-labelledby="ModalTranferirUnico" aria-hidden="true">
+                   <div class="modal-dialog">
+                     <div class="modal-content">
+                       <div class="modal-header">
+                         <h5 class="modal-title" id="exampleModalLabel">Transferir único</h5>
+                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                       </div>
+                       <div class="modal-body">
+                           <div class="tab-pane fade show active p-3 border rounded" id="dados-usuario" role="tabpanel" aria-labelledby="dados-usuario-tab">
+                                <form class="row g-3" action="{{ url_for('transferir_unico_item_portfolio', id=id, item_id=item.id) }}" method="post" enctype="multipart/form-data">
+                                    <fieldset>
+                                        {{ form.csrf_token() }} <!-- Adiciona proteção CSRF -->
+                                        <input type="hidden" name="id" value="{{ id }}">
+                                        <input type="hidden" name="item_id" value="{{ item.id }}">
+                                        <div class="row mb-3">
+                                            <div class="col-md-12">
+                                                <label class="form-label">Carteira de cliente:</label>
+                                                <select class="form-select" name="carteira" id="carteira_select_{{ item.id }}">
+                                                    <option value="" selected>Selecione a carteira de destino</option>
+                                                    {% for carteira in carteiras %}
+                                                    <option value="{{ carteira.id }}">
+                                                        {{ carteira.nome }}
+                                                    </option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!-- Botões de Ação -->
+                                        <div class="text-center mt-4">
+                                            <button type="submit" class="btn btn-primary">Transferir</button>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                       </div>
+                     </div>
+                   </div>
+                </div>
 
                <td>
                   <a class="btn btn-sm btn-danger w-100 mb-1 text-white" href="{{ url_for('delete_item_portfolio', id=item.id) }}">
@@ -57,42 +87,3 @@
          </tbody>
       </table>
    </div>
-
-    <!-- Paginação -->
-    <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
-            <!-- Link para a página anterior -->
-            {% if itens_carteiras.has_prev %}
-            <li class="page-item">
-                <a class="page-link" href="{{ url_for('portfolio', page=itens_carteiras.prev_num) }}" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            {% else %}
-            <li class="page-item disabled">
-                <span class="page-link">&laquo;</span>
-            </li>
-            {% endif %}
-
-            <!-- Links de páginas numeradas -->
-            {% for page_num in range(1, itens_carteiras.pages + 1) %}
-            <li class="page-item {% if itens_carteiras.page == page_num %}active{% endif %}">
-                <a class="page-link" href="{{ url_for('portfolio', page=page_num) }}">{{ page_num }}</a>
-            </li>
-            {% endfor %}
-
-            <!-- Link para a próxima página -->
-            {% if itens_carteiras.has_next %}
-            <li class="page-item">
-                <a class="page-link" href="{{ url_for('portfolio', page=itens_carteiras.next_num) }}" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-            {% else %}
-            <li class="page-item disabled">
-                <span class="page-link">&raquo;</span>
-            </li>
-            {% endif %}
-        </ul>
-    </nav>
-</div>

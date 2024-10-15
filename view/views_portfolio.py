@@ -229,10 +229,25 @@ def delete_item_portfolio(id):
         flash('Somente administradores pode excluir o item da carteira.')
     return redirect(url_for('portfolio'))
 
+@app.route('/portfolio/<int:id>/item/transfer/<int:item_id>', methods=['POST'])
+def transferir_unico_item_portfolio(id, item_id):
+    # Obter o portfolio de destino do form
+    portfolioTransfer = request.form.get('carteira')
 
-@app.route('/portfolio/<int:id>/item/transfer')
-def transferir_unico_item_portfolio(id):
-    pass
+    # Busca o item específico do portfolio atual
+    itemPortfolio = PortfolioItem.query.filter_by(id=item_id, portfolio_id=id).first()
+
+    # Verifica se o item existe e se foi selecionada uma nova carteira
+    if itemPortfolio and portfolioTransfer:
+        itemPortfolio.portfolio_id = portfolioTransfer  # Atualiza o portfolio_id do item
+
+        db.session.commit()  # Realiza o commit após a transferência do item
+        flash('Cliente/Prospect transferido com sucesso!', 'success')
+    else:
+        flash('Não foi possível transferir o item.', 'danger')
+
+    # Redireciona para a página de configuração do portfólio
+    return redirect(url_for('config_portfolio', id=id))
 
 @app.route('/portfolio/<int:id>/item/transfer-all', methods=['POST'])
 def transferir_todos_item_portfolio(id):
