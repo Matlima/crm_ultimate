@@ -126,7 +126,7 @@ class FormPlano(FlaskForm):
     periodicidade = SelectField('Status', choices=[('Único', 'Único'),('Diário', 'Diário'), ('Mensal', 'Mensal'),('Anual', 'Anual'),])
     preco = DecimalField('Preço', validators=[DataRequired()], render_kw={"placeholder": "R$"})
     status = SelectField('Status', choices=[('Ativo', 'Ativo'), ('Inativo', 'Inativo'),])
-    tipo = SelectField('Tipo', choices=[('Plano', 'Plano'), ('Serviço', 'Serviço'),])
+    tipo = SelectField('Tipo', choices=[('Produto', 'Produto'), ('Plano', 'Plano'), ('Serviço', 'Serviço'),])
     id_category = SelectField('Categoria', coerce=int, validators=[DataRequired()])
     cadastrar = SubmitField('Salvar')
 
