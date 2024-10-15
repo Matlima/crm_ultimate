@@ -169,9 +169,9 @@ def ativar_portfolio(id):
     if usuario.grupo == 'Administrador':
         portfolio.ativo = True
         db.session.commit()
-        flash('Carteira de clientes desativada com sucesso!')
+        flash('Carteira de clientes ativada com sucesso!')
     else:
-        flash('O usuário logado não tem autorização para desativar a carteira, apenas administradores.')
+        flash('O usuário logado não tem autorização para ativar a carteira, apenas administradores.')
 
     return redirect(url_for('portfolio'))
 
