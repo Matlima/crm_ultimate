@@ -29,6 +29,8 @@ class FormCustomerPortfolio(FlaskForm):
     data_criacao = DateTimeField('Data', [DataRequired()], format='%Y-%m-%dT%H:%M')
     nome = StringField('Nome', validators=[DataRequired(), Length(min=1, max=200)])
     ativo = BooleanField('Ativo')
+    data_validade = DateTimeField('Validade', format='%Y-%m-%d %H:%M')
+    observacao = TextAreaField('Observação')
     salvar = SubmitField('Salvar')
 
 

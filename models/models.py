@@ -66,6 +66,8 @@ class CustomerPortfolio(db.Model):
     data_criacao = db.Column(db.DateTime, default=datetime.now)
     nome = db.Column(db.String(200))
     ativo = db.Column(db.Boolean)
+    data_validade = db.Column(db.DateTime)
+    observacao = db.Column(db.Text)
 
     # Relacionamento com o criador da carteira
     usuario_criador = db.relationship('User',
