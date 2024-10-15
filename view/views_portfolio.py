@@ -159,6 +159,9 @@ def desativar_portfolio(id):
 
     return redirect(url_for('portfolio'))
 
+
+# Item de carteira:
+
 @app.route('/portfolio/<int:id>/item/add', methods=['GET', 'POST'])
 def created_item_portfolio(id):
     formItem = FormPortfolioItem(request.form)
@@ -212,3 +215,22 @@ def created_item_portfolio(id):
                            clientes=Customer.query.all(),
                            prospects=Prospect.query.all(),
                            usuarios=User.query.all())
+
+
+@app.route('/portfolio/<int:id>/item/delete')
+def delete_item_portfolio(id):
+    usuario = session['usuario_id']
+    usuario = User.query.filter_by(id=usuario).first()
+    if usuario.grupo == 'Administrador':
+        PortfolioItem.query.filter_by(id=id).delete()
+        db.session.commit()
+        flash('Item excluido com sucesso')
+    else:
+        flash('Somente administradores pode excluir o item da carteira.')
+    return redirect(url_for('portfolio'))
+
+
+
+
+
+
