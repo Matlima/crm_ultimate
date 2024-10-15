@@ -234,10 +234,26 @@ def delete_item_portfolio(id):
 def transferir_unico_item_portfolio(id):
     pass
 
-
-@app.route('/portfolio/<int:id>/item/transfer-all')
+@app.route('/portfolio/<int:id>/item/transfer-all', methods=['POST'])
 def transferir_todos_item_portfolio(id):
-    pass
+    # Obter o portfolio de destino do form
+    portfolioTransfer = request.form.get('carteira')
+
+    # Busca todos os itens do portfolio atual
+    itemsPortfolio = PortfolioItem.query.filter_by(portfolio_id=id).all()
+
+    # Verifica se há itens a transferir
+    if itemsPortfolio and portfolioTransfer:
+        for item in itemsPortfolio:
+            item.portfolio_id = portfolioTransfer  # Atualiza o portfolio_id de cada item
+
+        db.session.commit()  # Realiza o commit após a transferência de todos os itens
+        flash('Todos os clientes/prospect foram transferidos com sucesso!', 'success')
+    else:
+        flash('Não foi possível transferir os itens.', 'danger')
+
+    # Redireciona para a página de configuração do portfólio
+    return redirect(url_for('config_portfolio', id=id))
 
 
 
