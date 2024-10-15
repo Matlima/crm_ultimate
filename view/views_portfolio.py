@@ -107,13 +107,17 @@ def created_portfolio():
     nome = form.nome.data
     responsavel = form.responsavel_id.data
     usuario = session["usuario_id"]
+    data_validade = form.data_validade.data
+    observacao = form.observacao.data
 
     new_portfolio = CustomerPortfolio(
         data_criacao=data_criacao,
         usuario_id=usuario,
         responsavel_id=responsavel,
         nome=nome,
-        ativo=ativo
+        ativo=ativo,
+        data_validade=data_validade,
+        observacao=observacao
     )
     db.session.add(new_portfolio)
     db.session.commit()
