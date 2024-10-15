@@ -36,10 +36,17 @@
                   </a>
                </td>
                <td>
-                  <a type="button" class="btn btn-sm btn-info w-100 mb-1" href="#">
-                     <i class="fas fa-info-circle"></i> Informações
-                  </a>
-               </td>
+                    {% if item.cliente %}
+                        <a type="button" class="btn btn-sm btn-warning w-100 mb-1" href="{{ url_for('edit_customer', id=item.cliente.id) }}">
+                            <i class="fas fa-edit"></i> Editar
+                        </a>
+                    {% else %}
+                        <a type="button" class="btn btn-sm btn-warning w-100 mb-1" href="{{ url_for('edit_prospect', id=item.prospect.id) }}" >
+                            <i class="fas fa-edit"></i> Editar
+                        </a>
+                    {% endif %}
+                </td>
+
                <td>
                   <a class="btn btn-sm btn-danger w-100 mb-1 text-white" href="{{ url_for('delete_item_portfolio', id=item.id) }}">
                      <i class="fas fa-trash-alt"></i> Excluir
