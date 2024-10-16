@@ -49,7 +49,7 @@
             <tbody>
                 {% for atividade in atividades %}
                 <tr>
-                    <td>{{ atividade.data_inicio }}</td>
+                    <td>{{ atividade.data_inicio.strftime('%d/%m/%Y %H:%M:%S') }}</td>
                     <td>{{ atividade.usuario.nome }}</td>
                     <td>{{ atividade.tipo }}</td>
                     <td>{{ atividade.titulo }}</td>
