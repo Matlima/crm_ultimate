@@ -46,6 +46,44 @@ def proposal():
                            )
 
 
+@app.route('/proposal/add', methods=['GET', 'POST'])
+def new_proposal():
+    if 'usuario_logado' not in session or session['usuario_logado'] is None:
+        return redirect(url_for('login', proxima=url_for('proposal')))
+
+    adm = is_admin()
+
+    form = FormProposal()
+
+    # Preencher os choices para cliente e responsável
+    form.customer_id.choices = [(cliente.id, cliente.razao_social) for cliente in Customer.query.all()]
+    form.responsavel_id.choices = [(user.id, user.nome) for user in User.query.all()]
+
+    if form.validate_on_submit():
+        nova_proposta = Proposal(
+            customer_id=form.customer_id.data,
+            responsavel_id=form.responsavel_id.data,
+            nome=form.nome.data,
+            valor_total=form.valor_total.data,
+            valor_total_service=form.valor_total_service.data,
+            valor_total_plan=form.valor_total_plan.data,
+            valor_total_product=form.valor_total_product.data,
+            condicoes_pagamento=form.condicoes_pagamento.data,
+            condicoes_comerciais=form.condicoes_comerciais.data,
+            disposicao_gerais=form.disposicao_gerais.data,
+            status=form.status.data
+        )
+        db.session.add(nova_proposta)
+        db.session.commit()
+        flash('Proposta criada com sucesso!')
+        return redirect(url_for('proposal'))
+
+    return render_template('proposal/add_proposal.html',
+                           form=form,
+                           is_admin=adm
+                           )
+
+
 @app.route('/proposta/nova', methods=['GET', 'POST'])
 def created_proposal():
     form = FormProposal()

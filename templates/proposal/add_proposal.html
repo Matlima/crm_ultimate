@@ -1,0 +1,111 @@
+{% extends "shared/template.html" %}
+{% block conteudo %}
+    <div class="card mx-auto shadow-lg" style="max-width: 100%; border-radius: 20px;">
+        <div class="card-body p-4">
+            <h5 class="text-left mb-4">Nova Proposta</h5>
+
+            <!-- Abas de Navegação -->
+            <ul class="nav nav-tabs" id="proposalTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab" aria-controls="info" aria-selected="true">Informações Gerais</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="produtos-tab" data-bs-toggle="tab" data-bs-target="#produtos" type="button" role="tab" aria-controls="produtos" aria-selected="false">Produtos/Planos/Serviços</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="adicional-tab" data-bs-toggle="tab" data-bs-target="#adicional" type="button" role="tab" aria-controls="adicional" aria-selected="false">Adicional</button>
+                </li>
+            </ul>
+
+            <!-- Conteúdo das Abas -->
+            <div class="tab-content" id="proposalTabContent">
+                <!-- Aba Informações Gerais -->
+                <div class="tab-pane fade show active p-4" id="info" role="tabpanel" aria-labelledby="info-tab">
+                    <form action="{{ url_for('created_proposal') }}" method="post" enctype="multipart/form-data">
+                        <fieldset>
+                            {{ form.csrf_token() }}
+
+                            <!-- Cliente e Responsável -->
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Cliente</label>
+                                    {{ form.customer_id(class="form-select") }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Responsável</label>
+                                    {{ form.responsavel_id(class="form-select") }}
+                                </div>
+                            </div>
+
+                            <!-- Nome da Proposta e Status -->
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Nome da Proposta</label>
+                                    {{ form.nome(class="form-control") }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Status</label>
+                                    {{ form.status(class="form-control") }}
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+
+                <!-- Aba Produtos/Planos/Serviços -->
+                <div class="tab-pane fade p-4" id="produtos" role="tabpanel" aria-labelledby="produtos-tab">
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Valor Total de Serviços</label>
+                                {{ form.valor_total_service(class="form-control") }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Valor Total de Planos</label>
+                                {{ form.valor_total_plan(class="form-control") }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Valor Total de Produtos</label>
+                                {{ form.valor_total_product(class="form-control") }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">Valor Total</label>
+                                {{ form.valor_total(class="form-control") }}
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <!-- Aba Adicional -->
+                <div class="tab-pane fade p-4" id="adicional" role="tabpanel" aria-labelledby="adicional-tab">
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Condições de Pagamento</label>
+                                {{ form.condicoes_pagamento(class="form-control") }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Condições Comerciais</label>
+                                {{ form.condicoes_comerciais(class="form-control") }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">Disposições Gerais</label>
+                                {{ form.disposicao_gerais(class="form-control") }}
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <!-- Botão de Envio -->
+            <div class="text-center mt-4">
+                {{ form.salvar(class="btn btn-primary px-5") }}
+                <a class="btn btn-danger mx-2" href="{{ url_for('proposal') }}">Voltar</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
