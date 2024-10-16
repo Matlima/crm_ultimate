@@ -158,3 +158,28 @@ class Plan(db.Model):
     def __repr__(self):
         return '<name %r' % self.__name__
 
+class Proposal(db.Model):
+    __tablename__ = 'proposal'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=False)
+    usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    responsavel_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    data_criacao = db.Column(db.DateTime, default=datetime.now, nullable=False)
+    nome = db.Column(db.String(300), nullable=False)
+    valor_total = db.Column(db.Numeric(10, 2), nullable=False)
+    valor_total_service = db.Column(db.Numeric(10, 2), nullable=False)
+    valor_total_plan = db.Column(db.Numeric(10, 2), nullable=False)
+    valor_total_product = db.Column(db.Numeric(10, 2), nullable=False)
+    condicoes_pagamento = db.Column(db.String(100), nullable=True)
+    condicoes_comerciais = db.Column(db.Text, nullable=True)
+    disposicao_gerais = db.Column(db.Text, nullable=True)
+    status = db.Column(db.String(100), nullable=True)
+
+    # Relacionamentos com outras tabelas
+    customer = db.relationship('Customer', backref=db.backref('propostas', lazy=True))
+    usuario = db.relationship('User', foreign_keys=[usuario_id], backref=db.backref('propostas_criadas', lazy=True))
+    responsavel = db.relationship('User', foreign_keys=[responsavel_id], backref=db.backref('propostas_responsavel', lazy=True))
+
+    def __repr__(self):
+        return f'<Proposal {self.nome}>'
