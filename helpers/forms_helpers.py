@@ -22,14 +22,12 @@ class FormUser(FlaskForm):
     entrar = SubmitField('Login')
 
 
-
 class FormCustomerPortfolio(FlaskForm):
-    usuario_id = SelectField('Usuário', coerce=int, validators=[DataRequired()])
-    responsavel_id = SelectField('Responsável', coerce=int, validators=[DataRequired()])
-    data_criacao = DateTimeField('Data', [DataRequired()], format='%Y-%m-%dT%H:%M')
-    nome = StringField('Nome', validators=[DataRequired(), Length(min=1, max=200)])
+    responsavel_id = SelectField('Responsável', coerce=int)  # coerce=int adicionado
+    data_criacao = DateTimeField('Data de Criação', format='%Y-%m-%dT%H:%M')
+    nome = StringField('Nome', validators=[Length(min=1, max=200)])
     ativo = BooleanField('Ativo')
-    data_validade = DateTimeField('Validade', format='%Y-%m-%d %H:%M')
+    data_validade = DateTimeField('Data de Validade', format='%Y-%m-%dT%H:%M')
     observacao = TextAreaField('Observação')
     salvar = SubmitField('Salvar')
 

@@ -58,6 +58,8 @@ class Customer(db.Model):
 
     def __repr__(self):
         return '<Customer %r>' % self.nome_fantasia
+
+
 class CustomerPortfolio(db.Model):
     __tablename__ = 'customer_portfolio'
     id = db.Column(db.Integer, primary_key=True)

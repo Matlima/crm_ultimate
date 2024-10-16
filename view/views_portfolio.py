@@ -45,50 +45,55 @@ def new_portfolio():
                            form=form,
                            usuarios=User.query.all()
                            )
-@app.route('/portfolio/config/<int:id>', methods=['GET'])
+
+@app.route('/portfolio/config/<int:id>', methods=['GET', 'POST'])
 def config_portfolio(id):
+    # Obter a página atual da paginação
     page = request.args.get('page', 1, type=int)
     itens_carteiras = PortfolioItem.query.filter_by(portfolio_id=id).paginate(page=page, per_page=10)
-    portfolio = CustomerPortfolio.query.get(id)
-
-    form = FormCustomerPortfolio()
     formItem = FormPortfolioItem()
 
-    # Populando as opções dos selects
-    clientes = Customer.query.all()
-    prospects = Prospect.query.all()
-    usuarios = User.query.all()
+    # Buscar o portfólio atual
+    portfolio = CustomerPortfolio.query.get(id)
 
-    # Assegura que os choices estão sempre preenchidos
-    formItem.cliente.choices = [("", "Selecione um cliente")] + [(cliente.id, cliente.razao_social) for cliente in clientes]
-    formItem.prospect.choices = [("", "Selecione um prospect")] + [(prospect.id, prospect.nome_completo) for prospect in prospects]
+    # Instanciar o formulário com request.form para suporte ao POST
+    form = FormCustomerPortfolio(request.form or None)
 
-    # Preencher usuário e carteira, mas usando readonly ao invés de disabled
-    formItem.usuario.choices = [(usuario.id, usuario.nome) for usuario in usuarios]
-    usuario_atual_id = session.get("usuario_id")
-    formItem.usuario.data = usuario_atual_id
-    formItem.usuario.render_kw = {'readonly': True}  # Deixar apenas leitura, não desabilitado
+    # Definir as choices para os campos 'usuario_id' e 'responsavel_id'
+    usuarios = [(usuario.id, usuario.nome) for usuario in User.query.all()]
+    form.usuario_id.choices = [(0, "Selecione um usuário")] + usuarios
+    form.responsavel_id.choices = [(0, "Selecione um responsável")] + usuarios
 
-    formItem.portfolio.choices = [(portfolio.id, portfolio.nome)]
-    formItem.portfolio.data = portfolio.id
-    formItem.portfolio.render_kw = {'readonly': True}  # Deixar apenas leitura, não desabilitado
+    if request.method == 'POST' and form.validate_on_submit():
+        # Atualizar os dados do portfólio
+        portfolio.nome = form.nome.data
+        portfolio.ativo = form.ativo.data
+        portfolio.responsavel_id = form.responsavel_id.data
+        portfolio.usuario_id = form.usuario_id.data  # Atualizando o campo usuario_id
+        portfolio.data_validade = form.data_validade.data
+        portfolio.observacao = form.observacao.data
 
-    form.nome.data = portfolio.nome
-    form.ativo.data = portfolio.ativo
-    form.responsavel_id.data = portfolio.responsavel_id
+        # Commit das alterações no banco de dados
+        db.session.commit()
+        flash("Carteira de cliente atualizada com sucesso!")
+        return redirect(url_for('config_portfolio', id=id))
 
-    adm = is_admin()
+    # Pré-preencher o formulário no GET
+    if request.method == 'GET':
+        form.nome.data = portfolio.nome
+        form.ativo.data = portfolio.ativo
+        form.responsavel_id.data = portfolio.responsavel_id
+        form.usuario_id.data = portfolio.usuario_id  # Preenchendo o campo usuario_id
+        form.data_validade.data = portfolio.data_validade
+        form.observacao.data = portfolio.observacao
 
     return render_template('customers/portfolio/config_portfolio.html',
                            form=form,
                            formItem=formItem,
-                           is_admin=adm,
                            itens_carteiras=itens_carteiras,
-                           carteiras=CustomerPortfolio.query.all(),
-                           clientes=Customer.query.all(),
-                           prospects=Prospect.query.all(),
-                           usuarios=User.query.all(),
-                           id=id)
+                           id=id
+                           )
+
 
 
 
@@ -178,6 +183,66 @@ def ativar_portfolio(id):
         flash('O usuário logado não tem autorização para ativar a carteira, apenas administradores.')
 
     return redirect(url_for('portfolio'))
+
+
+@app.route('/portfolio/<int:id>/edit', methods=['GET', 'POST'])
+def edit_portfolio(id):
+    # Buscar o portfólio que será editado
+    portfolio = CustomerPortfolio.query.get_or_404(id)
+
+    # Obter a página atual da paginação
+    page = request.args.get('page', 1, type=int)
+    itens_carteiras = PortfolioItem.query.filter_by(portfolio_id=id).paginate(page=page, per_page=10)
+    formItem = FormPortfolioItem()
+
+    # Instanciar o formulário com request.form
+    form = FormCustomerPortfolio(request.form or None)
+
+    # Definir as choices para os campos 'usuario_id' e 'responsavel_id'
+    usuarios = [(usuario.id, usuario.nome) for usuario in User.query.all()]
+    form.responsavel_id.choices = usuarios
+
+    if request.method == 'POST':
+        print("Valores enviados no formulário:")
+        print(request.form)  # Isso imprime os valores enviados pelo formulário
+
+        if form.validate_on_submit():
+            # Atualizar os dados do portfólio
+            portfolio.nome = form.nome.data
+            portfolio.ativo = form.ativo.data
+            portfolio.responsavel_id = form.responsavel_id.data
+            portfolio.data_validade = form.data_validade.data
+            portfolio.observacao = form.observacao.data
+
+            # Commit ao banco de dados
+            db.session.commit()
+            flash("Carteira de cliente atualizada com sucesso!")
+            return redirect(url_for('portfolio'))
+        else:
+            print("Erros de validação: ", form.errors)
+            flash("Erro ao atualizar a carteira", "danger")
+
+    # Pré-preencher os campos do formulário no GET
+    if request.method == 'GET':
+        form.nome.data = portfolio.nome
+        form.ativo.data = portfolio.ativo
+        form.responsavel_id.data = portfolio.responsavel_id
+        if portfolio.data_validade:
+            form.data_validade.data = portfolio.data_validade.strftime('%Y-%m-%dT%H:%M')  # Formato datetime-local
+        form.observacao.data = portfolio.observacao
+
+    return render_template('customers/portfolio/config_portfolio.html',
+                           titulo='Editar Carteira',
+                           form=form,
+                           formItem=formItem,
+                           itens_carteiras=itens_carteiras,
+                           portfolio=portfolio,
+                           id=id)
+
+
+
+
+
 
 # Item de carteira:
 

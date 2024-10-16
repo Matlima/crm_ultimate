@@ -22,48 +22,47 @@
          <h5>Configuração de carteira</h5>
           <hr>
           <h5 class="mb-3">Informações principais:</h5>
-         <form class="row g-3" action="{{ url_for('created_portfolio') }}" method="post" enctype="multipart/form-data">
-            <fieldset>
-               <input type="hidden" name="id" value="{{ id }}">
-               {{ form.csrf_token() }}
 
-               <div class="row mb-3">
-                  <div class="col-md-5">
-                     {{ form.nome.label(class="form-label") }}
-                     {{ form.nome(class="form-control") }}
-                  </div>
-                  <div class="col-md-3">
-                     {{ form.responsavel_id.label(class="form-label") }}
-                     <select class="form-select" name="responsavel_id">
-                         <option value="" selected>Selecione o usuário</option>
-                         {% for usuario in usuarios %}
-                             <option value="{{ usuario.id }}" {% if form.responsavel_id.data == usuario.id %}selected{% endif %}>{{ usuario.nome or 'Usuário sem nome' }}</option>
-                         {% endfor %}
-                     </select>
-                  </div>
-                  <div class="col-md-2">
-                     {{ form.data_validade.label(class="form-label") }}
-                     {{ form.data_validade(class="form-control", type="date") }}
-                  </div>
-                  <div class="col-md-2 mt-4">
-                     {{ form.ativo.label(class="form-label") }}
-                     {{ form.ativo(class="form-check-input mt-2") }}
-                  </div>
-               </div>
-               <div class="row mb-3">
-                  <div class="col-md-12 mt-4">
-                     {{ form.observacao.label(class="form-label") }}
-                     {{ form.observacao(class="form-control mt-2") }}
-                  </div>
-               </div>
+          <form class="row g-3" action="{{ url_for('edit_portfolio', id=id) }}" method="post" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}  <!-- CSRF Token -->
 
-               <!-- Botões de Ação -->
-               <div class="text-center mt-4">
-                  {{ form.salvar(class="btn btn-primary mx-2") }}
-                  <a class="btn btn-danger mx-2" href="{{ url_for('portfolio') }}">Voltar</a>
-               </div>
-            </fieldset>
-         </form>
+    <div class="row mb-3">
+        <div class="col-md-5">
+            {{ form.nome.label(class="form-label") }}
+            {{ form.nome(class="form-control") }}
+        </div>
+        <div class="col-md-3">
+            {{ form.responsavel_id.label(class="form-label") }}
+            {{ form.responsavel_id(class="form-select") }}
+        </div>
+        <div class="col-md-2">
+            {{ form.data_validade.label(class="form-label") }}
+            <!-- Ajuste para o formato datetime-local -->
+            {{ form.data_validade(class="form-control", type="datetime-local") }}
+        </div>
+        <div class="col-md-2 mt-4">
+            {{ form.ativo.label(class="form-label") }}
+            {{ form.ativo(class="form-check-input mt-2") }}
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-12 mt-4">
+            {{ form.observacao.label(class="form-label") }}
+            {{ form.observacao(class="form-control mt-2") }}
+        </div>
+    </div>
+
+    <!-- Botões de Ação -->
+    <div class="text-center mt-4">
+        {{ form.salvar(class="btn btn-primary mx-2") }}
+        <a class="btn btn-danger mx-2" href="{{ url_for('portfolio') }}">Voltar</a>
+    </div>
+</form>
+
+
+
+
       </div>
 
       <!-- Aba Clientes/Prospects -->
