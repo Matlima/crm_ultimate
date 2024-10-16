@@ -4,7 +4,7 @@ from flask import session
 from models.models import User,Customer, Activity
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField, SelectField, DateTimeField, TextAreaField, validators, BooleanField, DecimalField
-from wtforms.validators import DataRequired, Email, EqualTo, Optional, Length
+from wtforms.validators import DataRequired, Email, EqualTo, Optional, Length, NumberRange
 
 
 class FormUser(FlaskForm):
@@ -135,7 +135,22 @@ class FormCategoryPlano(FlaskForm):
     cadastrar = SubmitField('Salvar')
 
 
+class FormProposal(FlaskForm):
+    customer_id = SelectField('Cliente', coerce=int, validators=[DataRequired()])
+    usuario_id = SelectField('Usuário Criador', coerce=int, validators=[DataRequired()])
+    responsavel_id = SelectField('Responsável', coerce=int, validators=[DataRequired()])
+    data_criacao = DateTimeField('Data de Criação', format='%Y-%m-%d %H:%M', validators=[DataRequired()])
+    nome = StringField('Nome da Proposta', validators=[DataRequired(), Length(min=1, max=300)])
+    valor_total = DecimalField('Valor Total', places=2, validators=[DataRequired(), NumberRange(min=0)])
+    valor_total_service = DecimalField('Valor Total de Serviços', places=2, validators=[DataRequired(), NumberRange(min=0)])
+    valor_total_plan = DecimalField('Valor Total do Plano', places=2, validators=[DataRequired(), NumberRange(min=0)])
+    valor_total_product = DecimalField('Valor Total de Produtos', places=2, validators=[DataRequired(), NumberRange(min=0)])
+    condicoes_pagamento = StringField('Condições de Pagamento', validators=[Length(max=100)])
+    condicoes_comerciais = TextAreaField('Condições Comerciais')
+    disposicao_gerais = TextAreaField('Disposições Gerais')
+    status = StringField('Status', validators=[Length(max=100)])
 
+    salvar = SubmitField('Salvar')
 
 
 # Funções para upload de imagem na pasta /Upload
