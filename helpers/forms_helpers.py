@@ -189,16 +189,22 @@ class FormCategoryPlano(FlaskForm):
 class FormProposal(FlaskForm):
     customer_id = SelectField('Cliente', coerce=int, validators=[DataRequired()])
     responsavel_id = SelectField('Responsável', coerce=int, validators=[DataRequired()])
-    data_criacao = DateTimeField('Data de Criação', format='%Y-%m-%d %H:%M', validators=[DataRequired()])
     nome = StringField('Nome da Proposta', validators=[DataRequired(), Length(min=1, max=300)])
     valor_total = DecimalField('Valor Total', places=2, validators=[DataRequired(), NumberRange(min=0)])
-    valor_total_service = DecimalField('Valor Total de Serviços', places=2, validators=[DataRequired(), NumberRange(min=0)])
+    valor_total_service = DecimalField('Valor Total de Serviços', places=2,
+                                       validators=[DataRequired(), NumberRange(min=0)])
     valor_total_plan = DecimalField('Valor Total do Plano', places=2, validators=[DataRequired(), NumberRange(min=0)])
-    valor_total_product = DecimalField('Valor Total de Produtos', places=2, validators=[DataRequired(), NumberRange(min=0)])
-    condicoes_pagamento = SelectField('Condições de Pagamento', validators=[Length(max=100)], choices=condicoesPagamento)
+    valor_total_product = DecimalField('Valor Total de Produtos', places=2,
+                                       validators=[DataRequired(), NumberRange(min=0)])
+
+    # Ajustando a validação do campo status para garantir que seja obrigatório
+    status = SelectField('Status',
+                         choices=[('Pendente', 'Pendente'), ('Aprovada', 'Aprovada'), ('Reprovada', 'Reprovada')],
+                         validators=[DataRequired()])
+
+    condicoes_pagamento = SelectField('Condições de Pagamento', choices=condicoesPagamento, validators=[DataRequired()])
     condicoes_comerciais = TextAreaField('Condições Comerciais')
     disposicao_gerais = TextAreaField('Disposições Gerais')
-    status = SelectField('Status', choices=[('Pendente', 'Pendente'), ('Aprovada', 'Aprovada'), ('Reprovada', 'Reprovada')], validators=[Length(max=100)])
 
     salvar = SubmitField('Salvar')
 
