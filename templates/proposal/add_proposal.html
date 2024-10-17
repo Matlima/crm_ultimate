@@ -7,10 +7,10 @@
             <!-- Abas de Navegação -->
             <ul class="nav nav-tabs" id="proposalTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab" aria-controls="info" aria-selected="true">Informações Gerais</button>
+                    <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab" aria-controls="info" aria-selected="true">Principal</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="produtos-tab" data-bs-toggle="tab" data-bs-target="#produtos" type="button" role="tab" aria-controls="produtos" aria-selected="false">Produtos/Planos/Serviços</button>
+                    <button class="nav-link" id="produtos-tab" data-bs-toggle="tab" data-bs-target="#produtos" type="button" role="tab" aria-controls="produtos" aria-selected="false">Items da proposta</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="adicional-tab" data-bs-toggle="tab" data-bs-target="#adicional" type="button" role="tab" aria-controls="adicional" aria-selected="false">Adicional</button>
@@ -95,7 +95,13 @@
 
                 <!-- Aba Produtos/Planos/Serviços -->
                 <div class="tab-pane fade p-4" id="produtos" role="tabpanel" aria-labelledby="produtos-tab">
-                    <h5>Em desenvolvimento</h5>
+                    <div>
+                        <h5>Produtos | Planos | Serviços</h5>
+                        <span class="text-secondary mt-2">É necessário criar a proposta para adicionar os items</span>
+                    </div>
+                    <div class="alert alert-warning mt-3" role="alert">
+                        Primeiro preencha os dados principais da proposta, em seguida, edite e adicione os items.
+                    </div>
                 </div>
 
                 <!-- Aba Adicional -->
