@@ -46,9 +46,9 @@ def new_portfolio():
                            usuarios=User.query.all()
                            )
 
+
 @app.route('/portfolio/config/<int:id>', methods=['GET', 'POST'])
 def config_portfolio(id):
-    # Obter a página atual da paginação
     page = request.args.get('page', 1, type=int)
     itens_carteiras = PortfolioItem.query.filter_by(portfolio_id=id).paginate(page=page, per_page=10)
     formItem = FormPortfolioItem()
@@ -64,13 +64,16 @@ def config_portfolio(id):
     form.usuario_id.choices = [(0, "Selecione um usuário")] + usuarios
     form.responsavel_id.choices = [(0, "Selecione um responsável")] + usuarios
 
+    # Processar a submissão do formulário no POST
     if request.method == 'POST' and form.validate_on_submit():
-        # Atualizar os dados do portfólio
         portfolio.nome = form.nome.data
         portfolio.ativo = form.ativo.data
         portfolio.responsavel_id = form.responsavel_id.data
-        portfolio.usuario_id = form.usuario_id.data  # Atualizando o campo usuario_id
+        portfolio.usuario_id = form.usuario_id.data
+
+        # Tratar o campo data_validade corretamente como datetime
         portfolio.data_validade = form.data_validade.data
+
         portfolio.observacao = form.observacao.data
 
         # Commit das alterações no banco de dados
@@ -83,8 +86,14 @@ def config_portfolio(id):
         form.nome.data = portfolio.nome
         form.ativo.data = portfolio.ativo
         form.responsavel_id.data = portfolio.responsavel_id
-        form.usuario_id.data = portfolio.usuario_id  # Preenchendo o campo usuario_id
-        form.data_validade.data = portfolio.data_validade
+        form.usuario_id.data = portfolio.usuario_id
+
+        # Preencher corretamente o campo data_validade como datetime
+        # if portfolio.data_validade:
+            # form.data_validade.data = portfolio.data_validade
+        # else:
+            #form.data_validade.data = datetime.now()  # Caso não haja valor, preencher com data atual
+
         form.observacao.data = portfolio.observacao
 
     return render_template('customers/portfolio/config_portfolio.html',
@@ -93,7 +102,6 @@ def config_portfolio(id):
                            itens_carteiras=itens_carteiras,
                            id=id
                            )
-
 
 
 
@@ -112,7 +120,7 @@ def created_portfolio():
     nome = form.nome.data
     responsavel = form.responsavel_id.data
     usuario = session["usuario_id"]
-    data_validade = form.data_validade.data
+    # data_validade = form.data_validade.data
     observacao = form.observacao.data
 
     new_portfolio = CustomerPortfolio(
@@ -121,7 +129,7 @@ def created_portfolio():
         responsavel_id=responsavel,
         nome=nome,
         ativo=ativo,
-        data_validade=data_validade,
+        # data_validade=data_validade,
         observacao=observacao
     )
     db.session.add(new_portfolio)
@@ -211,7 +219,7 @@ def edit_portfolio(id):
             portfolio.nome = form.nome.data
             portfolio.ativo = form.ativo.data
             portfolio.responsavel_id = form.responsavel_id.data
-            portfolio.data_validade = form.data_validade.data
+            # portfolio.data_validade = form.data_validade.data
             portfolio.observacao = form.observacao.data
 
             # Commit ao banco de dados
@@ -227,8 +235,8 @@ def edit_portfolio(id):
         form.nome.data = portfolio.nome
         form.ativo.data = portfolio.ativo
         form.responsavel_id.data = portfolio.responsavel_id
-        if portfolio.data_validade:
-            form.data_validade.data = portfolio.data_validade.strftime('%Y-%m-%dT%H:%M')  # Formato datetime-local
+        # if portfolio.data_validade:
+            # form.data_validade.data = portfolio.data_validade.strftime('%Y-%m-%dT%H:%M')  # Formato datetime-local
         form.observacao.data = portfolio.observacao
 
     return render_template('customers/portfolio/config_portfolio.html',

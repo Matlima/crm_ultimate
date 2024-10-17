@@ -3,7 +3,7 @@ from application import app
 from flask import session
 from models.models import User,Customer, Activity
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField, SelectField, DateTimeField, TextAreaField, validators, BooleanField, DecimalField
+from wtforms import StringField, SubmitField, PasswordField, SelectField, DateTimeField, TextAreaField, validators, BooleanField, DecimalField, DateField
 from wtforms.validators import DataRequired, Email, EqualTo, Optional, Length, NumberRange
 
 estados = [
@@ -74,11 +74,12 @@ class FormUser(FlaskForm):
 
 
 class FormCustomerPortfolio(FlaskForm):
-    responsavel_id = SelectField('Responsável', coerce=int)  # coerce=int adicionado
-    data_criacao = DateTimeField('Data de Criação', format='%Y-%m-%dT%H:%M')
+    usuario_id = SelectField('Usuário', coerce=int)
+    responsavel_id = SelectField('Responsável', coerce=int)
     nome = StringField('Nome', validators=[Length(min=1, max=200)])
     ativo = BooleanField('Ativo')
-    data_validade = DateTimeField('Data de Validade', format='%Y-%m-%dT%H:%M')
+    # Usando DateTimeField para lidar com datetime, mas com render_kw para mostrar apenas o datepicker
+    # data_validade = DateTimeField('Validade', format='%Y-%m-%d %H:%M:%S', render_kw={'type': 'datetime-local'})
     observacao = TextAreaField('Observação')
     salvar = SubmitField('Salvar')
 

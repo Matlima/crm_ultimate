@@ -13,131 +13,110 @@
          <button class="nav-link" id="outra-info-tab" data-bs-toggle="tab" data-bs-target="#outra-info" type="button" role="tab" aria-controls="outra-info" aria-selected="false">Configurações</button>
       </li>
    </ul>
-
    <!-- Conteúdo das Abas -->
    <div class="tab-content" id="userTabContent">
-
       <!-- Aba Dados do Usuário -->
       <div class="tab-pane fade show active p-3 border rounded" id="dados-usuario" role="tabpanel" aria-labelledby="dados-usuario-tab">
          <h5>Configuração de carteira</h5>
-          <hr>
-          <h5 class="mb-3">Informações principais:</h5>
+         <hr>
+         <h5 class="mb-3">Informações principais:</h5>
+         <form class="row g-3" action="{{ url_for('edit_portfolio', id=id) }}" method="post" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}  <!-- CSRF Token -->
+            <div class="row mb-3">
+               <div class="col-md-5">
+                  {{ form.nome.label(class="form-label") }}
+                  {{ form.nome(class="form-control") }}
+               </div>
+               <div class="col-md-3">
+                  {{ form.responsavel_id.label(class="form-label") }}
+                  {{ form.responsavel_id(class="form-select") }}
+               </div>
+               <div class="col-md-2">
 
-          <form class="row g-3" action="{{ url_for('edit_portfolio', id=id) }}" method="post" enctype="multipart/form-data">
-    {{ form.hidden_tag() }}  <!-- CSRF Token -->
-
-    <div class="row mb-3">
-        <div class="col-md-5">
-            {{ form.nome.label(class="form-label") }}
-            {{ form.nome(class="form-control") }}
-        </div>
-        <div class="col-md-3">
-            {{ form.responsavel_id.label(class="form-label") }}
-            {{ form.responsavel_id(class="form-select") }}
-        </div>
-        <div class="col-md-2">
-            {{ form.data_validade.label(class="form-label") }}
-            <!-- Ajuste para o formato datetime-local -->
-            {{ form.data_validade(class="form-control", type="datetime-local") }}
-        </div>
-        <div class="col-md-2 mt-4">
-            {{ form.ativo.label(class="form-label") }}
-            {{ form.ativo(class="form-check-input mt-2") }}
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-md-12 mt-4">
-            {{ form.observacao.label(class="form-label") }}
-            {{ form.observacao(class="form-control mt-2") }}
-        </div>
-    </div>
-
-    <!-- Botões de Ação -->
-    <div class="text-center mt-4">
-        {{ form.salvar(class="btn btn-primary mx-2") }}
-        <a class="btn btn-danger mx-2" href="{{ url_for('portfolio') }}">Voltar</a>
-    </div>
-</form>
-
-
-
-
+               </div>
+               <div class="col-md-2 mt-4">
+                  {{ form.ativo.label(class="form-label") }}
+                  {{ form.ativo(class="form-check-input mt-2") }}
+               </div>
+            </div>
+            <div class="row mb-3">
+               <div class="col-md-12 mt-4">
+                  {{ form.observacao.label(class="form-label") }}
+                  {{ form.observacao(class="form-control mt-2") }}
+               </div>
+            </div>
+            <!-- Botões de Ação -->
+            <div class="text-center mt-4">
+               {{ form.salvar(class="btn btn-primary mx-2") }}
+               <a class="btn btn-danger mx-2" href="{{ url_for('portfolio') }}">Voltar</a>
+            </div>
+         </form>
       </div>
-
       <!-- Aba Clientes/Prospects -->
       <div class="tab-pane fade p-3 border rounded" id="config" role="tabpanel" aria-labelledby="config-tab">
          <h5 class="mb-3">Gerenciamento de Clientes/Prospects</h5>
          <div>
-             <button type="button" class="btn btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="fas fa-plus"></i>Adicionar</button>
-             <button type="button" class="btn btn-secondary mb-1" data-bs-toggle="modal" data-bs-target="#ModalTranferirTodos" data-bs-whatever="@mdo"> <i class="fas fa-exchange-alt"></i> Transferir todos</button>
+            <button type="button" class="btn btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="fas fa-plus"></i>Adicionar</button>
+            <button type="button" class="btn btn-secondary mb-1" data-bs-toggle="modal" data-bs-target="#ModalTranferirTodos" data-bs-whatever="@mdo"> <i class="fas fa-exchange-alt"></i> Transferir todos</button>
          </div>
          <!-- Modal para Adicionar Cliente/Prospect -->
          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-           <div class="modal-dialog">
-             <div class="modal-content">
-               <div class="modal-header">
-                 <h5 class="modal-title" id="exampleModalLabel">Adicionar Cliente/Prospect</h5>
-                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-dialog">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="exampleModalLabel">Adicionar Cliente/Prospect</h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                     <!-- Include do formulário para adicionar cliente/prospect -->
+                     {% include 'customers/portfolio/item-portfolio/add_item.html' %}
+                  </div>
+                  <div class="modal-footer">
+                  </div>
                </div>
-               <div class="modal-body">
-                  <!-- Include do formulário para adicionar cliente/prospect -->
-                  {% include 'customers/portfolio/item-portfolio/add_item.html' %}
-               </div>
-               <div class="modal-footer">
-
-               </div>
-             </div>
-           </div>
-         </div>
-
-        <!-- Modal para Transferir Todos os Cliente/Prospect -->
-        <div class="modal fade" id="ModalTranferirTodos" tabindex="-1" aria-labelledby="ModalTranferirTodos" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Transferir todos</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <div class="tab-pane fade show active p-3 border rounded" id="dados-usuario" role="tabpanel" aria-labelledby="dados-usuario-tab">
-                  <form class="row g-3" action="{{ url_for('transferir_todos_item_portfolio', id=id) }}" method="post" enctype="multipart/form-data">
-                    <fieldset>
-                      <input type="hidden" name="id" value="{{ id }}">
-                      {{ form.csrf_token() }} <!-- Adiciona proteção CSRF -->
-
-                      <div class="row mb-3">
-                        <div class="col-md-12">
-                          <label class="form-label">Carteira de cliente:</label>
-                          <select class="form-select" name="carteira" id="carteira_select" required>
-                            <option value="" selected>Selecione a carteira de destino</option>
-                            {% for carteira in carteiras %}
-                            <option value="{{ carteira.id }}">
-                              {{ carteira.nome }}
-                            </option>
-                            {% endfor %}
-                          </select>
-                        </div>
-                      </div>
-
-                      <!-- Botões de Ação -->
-                      <div class="text-center mt-4">
-                        <button type="submit" class="btn btn-primary">Transferir</button>
-                      </div>
-                    </fieldset>
-                  </form>
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
-
-
+         </div>
+         <!-- Modal para Transferir Todos os Cliente/Prospect -->
+         <div class="modal fade" id="ModalTranferirTodos" tabindex="-1" aria-labelledby="ModalTranferirTodos" aria-hidden="true">
+            <div class="modal-dialog">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="exampleModalLabel">Transferir todos</h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                     <div class="tab-pane fade show active p-3 border rounded" id="dados-usuario" role="tabpanel" aria-labelledby="dados-usuario-tab">
+                        <form class="row g-3" action="{{ url_for('transferir_todos_item_portfolio', id=id) }}" method="post" enctype="multipart/form-data">
+                           <fieldset>
+                              <input type="hidden" name="id" value="{{ id }}">
+                              {{ form.csrf_token() }} <!-- Adiciona proteção CSRF -->
+                              <div class="row mb-3">
+                                 <div class="col-md-12">
+                                    <label class="form-label">Carteira de cliente:</label>
+                                    <select class="form-select" name="carteira" id="carteira_select" required>
+                                       <option value="" selected>Selecione a carteira de destino</option>
+                                       {% for carteira in carteiras %}
+                                       <option value="{{ carteira.id }}">
+                                          {{ carteira.nome }}
+                                       </option>
+                                       {% endfor %}
+                                    </select>
+                                 </div>
+                              </div>
+                              <!-- Botões de Ação -->
+                              <div class="text-center mt-4">
+                                 <button type="submit" class="btn btn-primary">Transferir</button>
+                              </div>
+                           </fieldset>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
          <!-- Lista de Clientes/Prospects -->
          {% include 'customers/portfolio/item-portfolio/list_item.html' %}
       </div>
-
-
       <!-- Aba Configurações -->
       <div class="tab-pane fade p-3 border rounded" id="outra-info" role="tabpanel" aria-labelledby="outra-info-tab">
          <h5 class="mb-3">Configurações adicionais</h5>

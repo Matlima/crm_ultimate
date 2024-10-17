@@ -26,7 +26,7 @@
             <tr>
                 <td>{{ carteira.nome }}</td>
                 <td>{{ carteira.usuario_responsavel.nome }}</td>
-                <td>{{ carteira.data_validade.strftime('%d/%m/%Y %H:%M:%S') }}</td>
+                <td>{{ carteira.data_validade }}</td>
                 <td>
                     {% if carteira.ativo %}
                         Sim
