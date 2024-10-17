@@ -181,5 +181,7 @@ class Proposal(db.Model):
     usuario = db.relationship('User', foreign_keys=[usuario_id], backref=db.backref('propostas_criadas', lazy=True))
     responsavel = db.relationship('User', foreign_keys=[responsavel_id], backref=db.backref('propostas_responsavel', lazy=True))
 
+
+
     def __repr__(self):
         return f'<Proposal {self.nome}>'
