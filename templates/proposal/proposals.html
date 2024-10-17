@@ -53,8 +53,8 @@
             <tr>
                <td>{{ proposta.data_criacao.strftime('%d/%m/%Y %H:%M:%S') }}</td>
                <td>{{ proposta.status }}</td>
-               <td>{{ proposta.usuario.nome }}</td>
-               <td>{{ proposta.cliente.razao_social }}</td>
+               <td>{{ proposta.responsavel.nome }}</td>
+               <td>{{ proposta.customer.razao_social }}</td>
                <td>{{ proposta.nome }}</td>
                <td>
                   <a class="btn btn-sm btn-info w-100 mb-1" href="{{ url_for('info_proposal', id=proposta.id) }}">
