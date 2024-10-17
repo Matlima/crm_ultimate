@@ -82,8 +82,6 @@ def new_proposal():
                            form=form,
                            is_admin=adm
                            )
-
-
 @app.route('/proposal/add', methods=['GET', 'POST'])
 def created_proposal():
     form = FormProposal()
@@ -92,25 +90,61 @@ def created_proposal():
     form.customer_id.choices = [(cliente.id, cliente.razao_social) for cliente in Customer.query.all()]
     form.responsavel_id.choices = [(responsavel.id, responsavel.nome) for responsavel in User.query.all()]
 
-    if form.validate_on_submit():
-        # Criar a proposta com os dados do formulário
-        nova_proposta = Proposal(
-            customer_id=form.customer_id.data,
-            usuario_id=session.get('usuario_id'),
-            responsavel_id=form.responsavel_id.data,
-            data_criacao=form.data_criacao.data,
-            nome=form.nome.data,
-            valor_total=form.valor_total.data,
-            valor_total_service=form.valor_total_service.data,
-            valor_total_plan=form.valor_total_plan.data,
-            valor_total_product=form.valor_total_product.data,
-            condicoes_pagamento=form.condicoes_pagamento.data,
-            condicoes_comerciais=form.condicoes_comerciais.data,
-            disposicao_gerais=form.disposicao_gerais.data,
-            status=form.status.data
-        )
-        db.session.add(nova_proposta)
-        db.session.commit()
-        flash("Proposta criada com sucesso!")
+    # Log para verificar o método da requisição
+    print("Método da requisição:", request.method)
 
-    return redirect(url_for('proposal'))
+    # Log para verificar se a sessão contém o usuario_id
+    if "usuario_id" in session:
+        print("Usuário logado ID:", session["usuario_id"])
+    else:
+        print("Nenhum usuário logado encontrado na sessão!")
+
+    if form.validate_on_submit():
+        try:
+            print("Formulário validado com sucesso.")
+            # Criar a proposta com os dados do formulário
+            nova_proposta = Proposal(
+                customer_id=form.customer_id.data,
+                usuario_id=session.get("usuario_id"),  # Obtém o id do usuário da sessão
+                responsavel_id=form.responsavel_id.data,
+                data_criacao=datetime.now(),  # A data de criação será capturada automaticamente
+                nome=form.nome.data,
+                valor_total=form.valor_total.data,
+                valor_total_service=form.valor_total_service.data,
+                valor_total_plan=form.valor_total_plan.data,
+                valor_total_product=form.valor_total_product.data,
+                condicoes_pagamento=form.condicoes_pagamento.data,
+                condicoes_comerciais=form.condicoes_comerciais.data,
+                disposicao_gerais=form.disposicao_gerais.data,
+                status=form.status.data
+            )
+            db.session.add(nova_proposta)
+            db.session.commit()
+            flash("Proposta criada com sucesso!")
+            print("Proposta criada com sucesso.")
+            return redirect(url_for('proposal'))
+
+        except Exception as e:
+            db.session.rollback()  # Em caso de erro, reverte a transação no banco
+            flash(f"Ocorreu um erro ao criar a proposta: {str(e)}", "danger")
+            print(f"Erro ao inserir no banco: {e}")
+    else:
+        # Se o formulário não validar, exibe os erros no console para depuração
+        print("Erros de validação:", form.errors)
+        flash("Erro na validação do formulário.", "danger")
+
+    return render_template('proposal/add_proposal.html', form=form)
+
+
+@app.route('/proposal/info/<int:id>', methods=['GET', 'POST'])
+def info_proposal():
+    pass
+
+@app.route('/proposal/edit/<int:id>', methods=['GET', 'POST'])
+def edit_proposal():
+    pass
+
+@app.route('/proposal/delete/<int:id>', methods=['GET', 'POST'])
+def delete_proposal():
+    pass
+
