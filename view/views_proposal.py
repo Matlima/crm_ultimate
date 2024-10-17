@@ -84,20 +84,19 @@ def new_proposal():
                            )
 
 
-@app.route('/proposta/nova', methods=['GET', 'POST'])
+@app.route('/proposal/add', methods=['GET', 'POST'])
 def created_proposal():
     form = FormProposal()
 
     # Preenchendo os choices para os selects
-    form.customer_id.choices = [(cliente.id, cliente.nome) for cliente in Customer.query.all()]
-    form.usuario_id.choices = [(usuario.id, usuario.nome) for usuario in User.query.all()]
+    form.customer_id.choices = [(cliente.id, cliente.razao_social) for cliente in Customer.query.all()]
     form.responsavel_id.choices = [(responsavel.id, responsavel.nome) for responsavel in User.query.all()]
 
     if form.validate_on_submit():
         # Criar a proposta com os dados do formulário
         nova_proposta = Proposal(
             customer_id=form.customer_id.data,
-            usuario_id=form.usuario_id.data,
+            usuario_id=session.get('usuario_id'),
             responsavel_id=form.responsavel_id.data,
             data_criacao=form.data_criacao.data,
             nome=form.nome.data,
@@ -113,6 +112,5 @@ def created_proposal():
         db.session.add(nova_proposta)
         db.session.commit()
         flash("Proposta criada com sucesso!")
-        return redirect(url_for('lista_propostas'))
 
-    return render_template('proposta/nova.html', form=form)
+    return redirect(url_for('proposal'))

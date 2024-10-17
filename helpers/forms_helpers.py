@@ -6,6 +6,57 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField, SelectField, DateTimeField, TextAreaField, validators, BooleanField, DecimalField
 from wtforms.validators import DataRequired, Email, EqualTo, Optional, Length, NumberRange
 
+estados = [
+    ('', 'Estado'),
+    ('AC', 'Acre'),
+    ('AL', 'Alagoas'),
+    ('AP', 'Amapá'),
+    ('AM', 'Amazonas'),
+    ('BA', 'Bahia'),
+    ('CE', 'Ceará'),
+    ('DF', 'Distrito Federal'),
+    ('ES', 'Espírito Santo'),
+    ('GO', 'Goiás'),
+    ('MA', 'Maranhão'),
+    ('MT', 'Mato Grosso'),
+    ('MS', 'Mato Grosso do Sul'),
+    ('MG', 'Minas Gerais'),
+    ('PA', 'Pará'),
+    ('PB', 'Paraíba'),
+    ('PR', 'Paraná'),
+    ('PE', 'Pernambuco'),
+    ('PI', 'Piauí'),
+    ('RJ', 'Rio de Janeiro'),
+    ('RN', 'Rio Grande do Norte'),
+    ('RS', 'Rio Grande do Sul'),
+    ('RO', 'Rondônia'),
+    ('RR', 'Roraima'),
+    ('SC', 'Santa Catarina'),
+    ('SP', 'São Paulo'),
+    ('SE', 'Sergipe'),
+    ('TO', 'Tocantins')
+]
+
+
+
+grupoUsuarios = [
+    ('Administrador', 'Administrador'),
+    ('Cliente', 'Cliente'),
+    ('Diretoria', 'Diretoria'),
+    ('Funcionario', 'Funcionário'),
+    ('Gerente', 'Gerente')
+
+]
+
+condicoesPagamento = [
+    ('A vista', 'A vista'),
+    ('Cartão de credito', 'Cartão de credito'),
+    ('Cartão de debito', 'Cartão de debito'),
+    ('Boleto', 'Boleto'),
+    ('Pix', 'Pix')
+
+]
+
 
 class FormUser(FlaskForm):
     nome = StringField('Nome', validators=[DataRequired(), Length(min=1, max=300)])
@@ -137,7 +188,6 @@ class FormCategoryPlano(FlaskForm):
 
 class FormProposal(FlaskForm):
     customer_id = SelectField('Cliente', coerce=int, validators=[DataRequired()])
-    usuario_id = SelectField('Usuário Criador', coerce=int, validators=[DataRequired()])
     responsavel_id = SelectField('Responsável', coerce=int, validators=[DataRequired()])
     data_criacao = DateTimeField('Data de Criação', format='%Y-%m-%d %H:%M', validators=[DataRequired()])
     nome = StringField('Nome da Proposta', validators=[DataRequired(), Length(min=1, max=300)])
@@ -145,10 +195,10 @@ class FormProposal(FlaskForm):
     valor_total_service = DecimalField('Valor Total de Serviços', places=2, validators=[DataRequired(), NumberRange(min=0)])
     valor_total_plan = DecimalField('Valor Total do Plano', places=2, validators=[DataRequired(), NumberRange(min=0)])
     valor_total_product = DecimalField('Valor Total de Produtos', places=2, validators=[DataRequired(), NumberRange(min=0)])
-    condicoes_pagamento = StringField('Condições de Pagamento', validators=[Length(max=100)])
+    condicoes_pagamento = SelectField('Condições de Pagamento', validators=[Length(max=100)], choices=condicoesPagamento)
     condicoes_comerciais = TextAreaField('Condições Comerciais')
     disposicao_gerais = TextAreaField('Disposições Gerais')
-    status = StringField('Status', validators=[Length(max=100)])
+    status = SelectField('Status', choices=[('Pendente', 'Pendente'), ('Aprovada', 'Aprovada'), ('Reprovada', 'Reprovada')], validators=[Length(max=100)])
 
     salvar = SubmitField('Salvar')
 
