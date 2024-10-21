@@ -186,7 +186,18 @@ def edit_proposal(id):
 
 @app.route('/proposal/delete/<int:id>', methods=['GET', 'POST'])
 def delete_proposal():
-    pass
+    usuario_id = session['usuario_id']
+    usuario = User.query.filter_by(id=usuario_id).first()
+    proposta = Proposal.query.filter_by(id=id).first()
+    # portfolio = CustomerPortfolio.query.filter_by(id=id).first()
+
+    if usuario.grupo == 'administrador' or proposta.responsavel_id == usuario.id:
+        Proposal.query.filter_by(id=id).delete()
+        db.session.commit()
+        flash('Proposta excluida com sucesso!')
+    else:
+        flash('O usuário logado não tem autorização para excluir a proposta, apenas administradores ou responsável.')
+    return redirect(url_for('proposal'))
 
 
 
