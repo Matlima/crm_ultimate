@@ -100,11 +100,15 @@
                 <div class="tab-pane fade p-4" id="produtos" role="tabpanel" aria-labelledby="produtos-tab">
                     <div>
                         <h5>Produtos | Planos | Serviços</h5>
-                        <span class="text-secondary mt-2">É necessário criar a proposta para adicionar os items</span>
+                        <span class="text-secondary mt-2">Adicione os items da proposta aqui</span>
                     </div>
-                    <div class="alert alert-warning mt-3" role="alert">
-                        Primeiro preencha os dados principais da proposta, em seguida, edite e adicione os items.
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="fas fa-plus"></i>Adicionar</button>
                     </div>
+
+                    {% include 'proposal/list_item.html' %}
+
+
                 </div>
 
                 <!-- Aba Adicional -->
