@@ -1,14 +1,5 @@
-{% extends "shared/template.html" %}
-{% block conteudo %}
-<div class="container mt-4">
-   <!-- Linha para o botão adicionar cliente -->
-   <div class="row my-3">
-      <div class="d-flex justify-content-between align-items-center">
-          <h4 class="text-secondary">Carteira de Clientes</h4>
-         <a class="btn btn-primary color-alcance" href="{{ url_for('new_portfolio') }}">Criar carteira</a>
-      </div>
-   </div>
 
+<div class="container mt-4">
    <!-- Tabela responsiva com bordas e listras -->
    <div class="table-responsive">
       <table class="table table-striped table-bordered align-middle text-center">
@@ -86,4 +77,4 @@
         </ul>
     </nav>
 </div>
-{% endblock %}
+
