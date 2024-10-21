@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, session, flash, url_for
 from application import app, db
-from models.models import Activity, User, Customer, Prospect, Proposal
-from helpers.forms_helpers import FormActivity, is_admin, FormProposal
+from models.models import Activity, User, Customer, Prospect, Proposal, ItemProposta
+from helpers.forms_helpers import FormActivity, is_admin, FormProposal, FormItemProposta
 from datetime import datetime
 
 
@@ -177,4 +177,33 @@ def edit_proposal(id):
 @app.route('/proposal/delete/<int:id>', methods=['GET', 'POST'])
 def delete_proposal():
     pass
+
+
+
+# ItemProposta:
+
+@app.route('/proposal/<int:id>/item/create', methods=['GET', 'POST'])
+def created_item_proposta(id):
+    formItem = FormItemProposta()
+
+    # Preenche os choices para os selects
+    formItem.proposta_id.choices = [(proposta.id, proposta.nome) for proposta in Proposal.query.all()]
+    formItem.plan_id.choices = [(plano.id, plano.nome) for plano in Plan.query.all()]
+
+    if formItem.validate_on_submit():
+        # Criar um novo ItemProposta com os dados do formulário
+        novo_item = ItemProposta(
+            proposta_id=formItem.proposta_id.data,
+            plan_id=formItem.plan_id.data,
+            quantidade=formItem.quantidade.data,
+            desconto=formItem.desconto.data,
+            total=formItem.total.data
+        )
+        db.session.add(novo_item)
+        db.session.commit()
+        flash("Item adicionado à proposta com sucesso!")
+        return redirect(url_for('view_proposal', id=id))
+
+    return render_template('proposal/add_item_proposta.html', formItem=formItem, id=id)
+
 
