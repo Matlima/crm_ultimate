@@ -1,45 +1,38 @@
-<form method="POST" action="{{ url_for('created_item_portfolio', id=id) }}">
+<form method="POST" action="{{ url_for('created_item_proposta', id=id) }}">
     {{ formItem.csrf_token() }}
 
-    <!-- Campo oculto para o valor de usuario -->
-    <input type="hidden" name="usuario" value="{{ formItem.usuario.data }}">
-
-    <!-- Campo oculto para o valor de portfolio -->
-    <input type="hidden" name="portfolio" value="{{ formItem.portfolio.data }}">
-
+    <!-- Campo para selecionar a proposta -->
     <div class="form-group">
-        {{ formItem.cliente.label(class="form-label") }}
-        <!-- Adiciona o id 'cliente_select' para referenciar no JS -->
-        {{ formItem.cliente(class="form-control", id="cliente_select", onchange="toggleSelect('cliente')") }}
+        {{ formItem.proposta_id.label(class="form-label") }}
+        {{ formItem.proposta_id(class="form-control") }}
     </div>
 
+    <!-- Campo para selecionar o plano -->
     <div class="form-group">
-        {{ formItem.prospect.label(class="form-label") }}
-        <!-- Adiciona o id 'prospect_select' para referenciar no JS -->
-        {{ formItem.prospect(class="form-control", id="prospect_select", onchange="toggleSelect('prospect')") }}
+        {{ formItem.plan_id.label(class="form-label") }}
+        {{ formItem.plan_id(class="form-control") }}
     </div>
 
+    <!-- Campo para quantidade -->
+    <div class="form-group">
+        {{ formItem.quantidade.label(class="form-label") }}
+        {{ formItem.quantidade(class="form-control") }}
+    </div>
+
+    <!-- Campo para desconto -->
+    <div class="form-group">
+        {{ formItem.desconto.label(class="form-label") }}
+        {{ formItem.desconto(class="form-control") }}
+    </div>
+
+    <!-- Campo para o valor total -->
+    <div class="form-group">
+        {{ formItem.total.label(class="form-label") }}
+        {{ formItem.total(class="form-control") }}
+    </div>
+
+    <!-- Botão de submissão -->
     <div class="text-center m-2">
-        <button type="submit" class="btn btn-primary">Adicionar</button>
+        <button type="submit" class="btn btn-primary">Adicionar Item</button>
     </div>
 </form>
-<script type="text/javascript">
-    function toggleSelect(selectedField) {
-        const clienteSelect = document.getElementById('cliente_select');
-        const prospectSelect = document.getElementById('prospect_select');
-
-        if (selectedField === 'cliente') {
-            if (clienteSelect.value) {
-                prospectSelect.disabled = true;  // Desabilita o select de prospect
-            } else {
-                prospectSelect.disabled = false; // Habilita o select de prospect se nada for selecionado
-            }
-        } else if (selectedField === 'prospect') {
-            if (prospectSelect.value) {
-                clienteSelect.disabled = true;  // Desabilita o select de cliente
-            } else {
-                clienteSelect.disabled = false; // Habilita o select de cliente se nada for selecionado
-            }
-        }
-    }
-</script>
