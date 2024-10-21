@@ -183,3 +183,20 @@ class Proposal(db.Model):
 
     def __repr__(self):
         return f'<Proposal {self.nome}>'
+
+    class ItemProposta(db.Model):
+        __tablename__ = 'item_proposta'
+
+        id = db.Column(db.Integer, primary_key=True)
+        proposta_id = db.Column(db.Integer, db.ForeignKey('proposal.id'), nullable=False)
+        plan_id = db.Column(db.Integer, db.ForeignKey('plan.id'), nullable=False)
+        quantidade = db.Column(db.Integer, nullable=False)
+        desconto = db.Column(db.Float, nullable=False)
+        total = db.Column(db.Float, nullable=False)
+
+        # Relacionamento com as tabelas 'Proposal' e 'Plan'
+        proposta = db.relationship('Proposal', backref='itens')
+        plano = db.relationship('Plan', backref='itens')
+
+        def __repr__(self):
+            return f'<ItemProposta {self.id} - Quantidade: {self.quantidade}, Total: {self.total}>'
