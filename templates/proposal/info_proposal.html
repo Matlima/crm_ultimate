@@ -1,0 +1,116 @@
+{% extends "shared/template.html" %}
+{% block conteudo %}
+    <div class="card mx-auto shadow-lg" style="max-width: 100%; border-radius: 20px;">
+        <div class="card-body p-4">
+            <h5 class="text-left mb-4">Nova Proposta</h5>
+
+            <!-- Abas de Navegação -->
+            <ul class="nav nav-tabs" id="proposalTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab" aria-controls="info" aria-selected="true">Principal</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="produtos-tab" data-bs-toggle="tab" data-bs-target="#produtos" type="button" role="tab" aria-controls="produtos" aria-selected="false">Items da proposta</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="adicional-tab" data-bs-toggle="tab" data-bs-target="#adicional" type="button" role="tab" aria-controls="adicional" aria-selected="false">Adicional</button>
+                </li>
+            </ul>
+
+            <!-- Conteúdo das Abas -->
+            <div class="tab-content" id="proposalTabContent">
+                <!-- Aba Informações Gerais -->
+                <div class="tab-pane fade show active p-4" id="info" role="tabpanel" aria-labelledby="info-tab">
+                    <form action="{{ url_for('created_proposal') }}" method="post" enctype="multipart/form-data">
+                        <fieldset>
+                            {{ form.csrf_token() }}
+                            <!-- Cliente, Responsável e Status -->
+                            <div class="row">
+                                <h5>Informações principais</h5>
+                                <div class="col-md-3 mb-3">
+                                    <label class="form-label">Responsável</label>
+                                    {{ form.responsavel_id(class="form-select") }}
+                                </div>
+                                <div class="col-md-2 mb-3">
+                                    <label class="form-label">Status</label>
+                                    {{ form.status(class="form-select") }}
+                                </div>
+                                <div class="col-md-7 mb-3">
+                                    <label class="form-label">Cliente</label>
+                                    {{ form.customer_id(class="form-select") }}
+                                </div>
+                            </div>
+                            <!-- Nome da Proposta -->
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Nome da Proposta</label>
+                                    {{ form.nome(class="form-control") }}
+                                </div>
+
+                            </div>
+                            <!-- Nome da Proposta -->
+                            <div class="row mt-4">
+                                <h5>Totais da proposta</h5>
+                                <div class="col-md-2 mb-3">
+                                    <label class="form-label">Total de Serviços</label>
+                                    {{ form.valor_total_service(class="form-control") }}
+                                </div>
+                                <div class="col-md-2 mb-3">
+                                    <label class="form-label">Total de Planos</label>
+                                    {{ form.valor_total_plan(class="form-control") }}
+                                </div>
+                                <div class="col-md-2 mb-3">
+                                    <label class="form-label">Total de Produtos</label>
+                                    {{ form.valor_total_product(class="form-control") }}
+                                </div>
+                                <div class="col-md-2 mb-3">
+                                    <label class="form-label">Total</label>
+                                    {{ form.valor_total(class="form-control") }}
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label class="form-label">Condições de Pagamento</label>
+                                    {{ form.condicoes_pagamento(class="form-select") }}
+                                </div>
+                            </div>
+                            <!-- Condições comerciais e Disposições Gerais -->
+                            <div class="row mt-4">
+                                <h5>Informações adicionais</h5>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Condições Comerciais</label>
+                                    {{ form.condicoes_comerciais(class="form-control") }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Disposições Gerais</label>
+                                    {{ form.disposicao_gerais(class="form-control") }}
+                                </div>
+                            </div>
+                        </fieldset>
+                        <!-- Botão de Envio -->
+                        <div class="text-center mt-4">
+                            {{ form.salvar(class="btn btn-primary px-5") }}
+                            <a class="btn btn-danger mx-2" href="{{ url_for('proposal') }}">Voltar</a>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Aba Produtos/Planos/Serviços -->
+                <div class="tab-pane fade p-4" id="produtos" role="tabpanel" aria-labelledby="produtos-tab">
+                    <div>
+                        <h5>Produtos | Planos | Serviços</h5>
+                        <span class="text-secondary mt-2">É necessário criar a proposta para adicionar os items</span>
+                    </div>
+                    <div class="alert alert-warning mt-3" role="alert">
+                        Primeiro preencha os dados principais da proposta, em seguida, edite e adicione os items.
+                    </div>
+                </div>
+
+                <!-- Aba Adicional -->
+                <div class="tab-pane fade p-4" id="adicional" role="tabpanel" aria-labelledby="adicional-tab">
+                    <h5>Em desenvolvimento</h5>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+{% endblock %}
