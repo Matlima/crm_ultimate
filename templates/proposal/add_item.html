@@ -1,34 +1,34 @@
 <form method="POST" action="{{ url_for('created_item_proposta', id=id) }}">
-    {{ formItem.csrf_token() }}
+    {{ formItemProposta.csrf_token() }}
 
     <!-- Campo para selecionar a proposta -->
     <div class="form-group">
-        {{ formItem.proposta_id.label(class="form-label") }}
-        {{ formItem.proposta_id(class="form-control") }}
+        {{ formItemProposta.proposta_id.label(class="form-label") }}
+        {{ formItemProposta.proposta_id(class="form-control") }}
     </div>
 
     <!-- Campo para selecionar o plano -->
     <div class="form-group">
-        {{ formItem.plan_id.label(class="form-label") }}
-        {{ formItem.plan_id(class="form-control") }}
+        {{ formItemProposta.plan_id.label(class="form-label") }}
+        {{ formItemProposta.plan_id(class="form-control") }}
     </div>
 
     <!-- Campo para quantidade -->
     <div class="form-group">
-        {{ formItem.quantidade.label(class="form-label") }}
-        {{ formItem.quantidade(class="form-control") }}
+        {{ formItemProposta.quantidade.label(class="form-label") }}
+        {{ formItemProposta.quantidade(class="form-control") }}
     </div>
 
     <!-- Campo para desconto -->
     <div class="form-group">
-        {{ formItem.desconto.label(class="form-label") }}
-        {{ formItem.desconto(class="form-control") }}
+        {{ formItemProposta.desconto.label(class="form-label") }}
+        {{ formItemProposta.desconto(class="form-control") }}
     </div>
 
     <!-- Campo para o valor total -->
     <div class="form-group">
-        {{ formItem.total.label(class="form-label") }}
-        {{ formItem.total(class="form-control") }}
+        {{ formItemProposta.total.label(class="form-label") }}
+        {{ formItemProposta.total(class="form-control") }}
     </div>
 
     <!-- Botão de submissão -->
