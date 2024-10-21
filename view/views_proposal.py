@@ -146,6 +146,7 @@ def edit_proposal(id):
     proposta = Proposal.query.filter_by(id=id).first()
     page = request.args.get('page', 1, type=int)
     items_proposta = ItemProposta.query.filter_by(proposta_id=id).paginate(page=page, per_page=10)
+    plans = Plan.query.all()
 
     form = FormProposal()
     formItemProposta = FormItemProposta()
@@ -153,6 +154,9 @@ def edit_proposal(id):
     form.responsavel_id.choices = [(user.id, user.nome) for user in User.query.all()]
     form.customer_id.choices = [(customer.id, customer.razao_social) for customer in Customer.query.all()]
     form.process()
+
+    formItemProposta.plan_id.choices = [(plan.id, plan.nome) for plan in plans]
+    formItemProposta.process()
 
     form.customer_id.data = proposta.customer_id
     form.responsavel_id.data = proposta.responsavel_id
@@ -174,7 +178,8 @@ def edit_proposal(id):
                            form=form,
                            formItemProposta=formItemProposta,
                            adm=adm,
-                           items_proposta=items_proposta
+                           items_proposta=items_proposta,
+                           plans=plans
                            )
 
 
@@ -192,13 +197,14 @@ def created_item_proposta(id):
     formItem = FormItemProposta()
 
     # Preenche os choices para os selects
-    formItem.proposta_id.choices = [(proposta.id, proposta.nome) for proposta in Proposal.query.all()]
+    proposta = Proposal.query.get(id)
+    # formItem.proposta_id.choices = [(proposta.id, proposta.nome)]
     formItem.plan_id.choices = [(plano.id, plano.nome) for plano in Plan.query.all()]
 
     if formItem.validate_on_submit():
         # Criar um novo ItemProposta com os dados do formulário
         novo_item = ItemProposta(
-            proposta_id=formItem.proposta_id.data,
+            proposta_id=proposta.id,
             plan_id=formItem.plan_id.data,
             quantidade=formItem.quantidade.data,
             desconto=formItem.desconto.data,
@@ -207,8 +213,11 @@ def created_item_proposta(id):
         db.session.add(novo_item)
         db.session.commit()
         flash("Item adicionado à proposta com sucesso!")
-        return redirect(url_for('view_proposal', id=id))
+        return redirect(url_for('edit_proposal', id=id))
+    else:
+        print("Erros de validação do formulário:", formItem.errors)
+        flash(f"Erro ao adicionar o item da proposta: {formItem.errors}", "danger")
 
-    return render_template('proposal/add_item_proposta.html', formItem=formItem, id=id)
+    return redirect(url_for('edit_proposal', id=id))
 
 

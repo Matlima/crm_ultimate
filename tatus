@@ -1,0 +1,1193 @@
+[33mcommit 797aacc2e874c330d12c821109057e1f4a95a473[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 20 23:44:38 2024 -0300
+
+    Ajustando include
+
+[33mcommit caadaa7758462ae152bbe89e40d938c9aa7edd87[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 20 23:44:18 2024 -0300
+
+    Ajustado lista
+
+[33mcommit 57cccb379ae58d17f5ae9c0a917ecd5d8c4300ed[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 20 23:43:35 2024 -0300
+
+    Ajustando nome do form
+
+[33mcommit d19c1f18f1729a0b2416811e61040d83c4d19267[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 20 23:42:55 2024 -0300
+
+    Adicionando pagina e items da proposta
+
+[33mcommit f9f2f8e3f2055c72eb0246da291f68ff783b5978[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 20 23:20:29 2024 -0300
+
+    Corrigindo erro que tava dentro de proposta
+
+[33mcommit 9c825c43a26c33fda37b5fc3a109f604c380ede8[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 20 23:10:48 2024 -0300
+
+    Ajustando lista de item da proposta
+
+[33mcommit b581e8909c1214d7c1fd7e322cdb8377aac5fab0[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 20 23:06:39 2024 -0300
+
+    Criando pagina para adicionar item na proposta
+
+[33mcommit bdb08746959948291989d79970ca25780be5b55a[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 20 23:05:13 2024 -0300
+
+    Criando metodo created_item_proposal()
+
+[33mcommit 50c8573d9e0de2b92d82abd15ec67ed7bc400475[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 20 22:51:50 2024 -0300
+
+    Aplicando os arquivos no include, mas falta ajustar as coisas pendetes
+
+[33mcommit c7a0b2267f96aa72393cc394772a0b3e2f842a80[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 20 22:51:16 2024 -0300
+
+    Criando arquivo para adicionar item mas falta terminar, so copiei
+
+[33mcommit 44b6e76e9292b299fdcd9e710c0d9b901c441bbe[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 20 22:37:26 2024 -0300
+
+    Criando form de item de proposta
+
+[33mcommit a070225670db1c93be133223a8d25eadc8a83eae[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 20 22:35:59 2024 -0300
+
+    Criando models de ItemProposta()
+
+[33mcommit 479358fc0c9714d12a04d1e8339a9908f2af4d04[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 20 22:34:22 2024 -0300
+
+    Criando list de items da proposta
+
+[33mcommit da7a0f0e64e1d22fd5cf4745df088a80090ff9e7[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 20 22:34:02 2024 -0300
+
+    Ajustando campos e adicionado chamada de model
+
+[33mcommit 976b58ff69917d055996cbbed3f31d904dee5200[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 20 21:58:39 2024 -0300
+
+    Tornando campo disabled
+
+[33mcommit 5b6abe553c1b010048b3ff3f7ce6699a15866e0c[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 20 21:55:07 2024 -0300
+
+    Organizando form de proposta
+
+[33mcommit 334b6b1833d4e17fc1142d2d74781482c3bb62ed[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 20 21:53:54 2024 -0300
+
+    Criando info_proposal()
+
+[33mcommit a745d71b2e1ff0078c9a7759806b2c5b8b2d75e4[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 20 21:27:56 2024 -0300
+
+    Criando info_proposal.html para configurar os itens da proposta
+
+[33mcommit 5d6a52ce00ef2babeb84fc3a582c5886276076cc[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Thu Oct 17 00:05:14 2024 -0300
+
+    Tirei o campo de validade do formulário de portfolio porque tava dando erro no config. Ver se coloca a data, ou se adicionar 15 dias automaticamente. E depois mostrar para visualização apenas
+
+[33mcommit 51c59c7f84682db750bfb07e840602395968d464[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Thu Oct 17 00:02:56 2024 -0300
+
+    Preenchendo dados para a aba de items, adicionando titulo e mensagem de alert para salvar a proposta primeiro
+
+[33mcommit cb293ee35f139ce487cee07004fbc8e11ea7cbee[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Wed Oct 16 23:21:26 2024 -0300
+
+    Corrigindo função para adicionar nova proposta
+
+[33mcommit 8fcecbceb963a8a96a43faac55a7eb2cb423eb73[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Wed Oct 16 23:21:09 2024 -0300
+
+    Corrigindo acesso a campos para exibir na tela
+
+[33mcommit 72da12c4df17d01332a84d1daca33af3a80935b2[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Wed Oct 16 23:19:58 2024 -0300
+
+    Ajustes necessários no form para fazer a inserção
+
+[33mcommit 65fa7e95a0f6980394d43f0b356d274b5b2efeea[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Wed Oct 16 23:19:15 2024 -0300
+
+    Nada mudou
+
+[33mcommit 7a8555032dfa5a24b0f91f5bb330ce7244eebe06[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Wed Oct 16 23:03:01 2024 -0300
+
+    Ajustando formulário para adicionar a proposta comercial
+
+[33mcommit ec93af9482ac0a4d0bf3cafb5b30cc9e3c9c75ad[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Wed Oct 16 19:49:19 2024 -0300
+
+    Criando pagina para adicionar proposta, falta ajustar os campos, e fazer o teste de adição
+
+[33mcommit 4e7d53cb04a3ff2cced60d1ffb74b0aa57b6d457[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Wed Oct 16 19:43:15 2024 -0300
+
+    Ajustando metodo para listar as propostas na pagina de listagem geral
+
+[33mcommit b55c44c875f15c0ddc31af207e44ff29df42b2a9[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Wed Oct 16 19:42:53 2024 -0300
+
+    Adicionando metodo para ir para as propostas
+
+[33mcommit 5d4097f131ebfefff4af5b31f18ccdd4d8497fe5[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Wed Oct 16 19:42:20 2024 -0300
+
+    Adicionando view da proposta para a aplicação conseguir ver
+
+[33mcommit 7e032159c1705181877722b37af2c555c93c656b[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Wed Oct 16 19:32:09 2024 -0300
+
+    Criando página para listar as propostas no menu 'administração'
+
+[33mcommit bcd40258a49a43b280acc533d2683da2d0d6407f[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Wed Oct 16 18:58:29 2024 -0300
+
+    Criando arquivo de view para a proposta e adicionando metodo para criar proposta, created_proposal()
+
+[33mcommit 7d7480d83e384166c39c7d3ea531890505b063e8[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Wed Oct 16 18:58:02 2024 -0300
+
+    Criando classe FormProposal() para a proposta
+
+[33mcommit bf33f1c7846442339b121cbf900543cc2a7ae630[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Wed Oct 16 18:57:32 2024 -0300
+
+    Criando classe model de proposta
+
+[33mcommit 05dab7377fb16e4d43dfd953ac9211c3aa39ec65[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Wed Oct 16 18:41:58 2024 -0300
+
+    Tirando titulo do cabeçalho da tabela de categorias dos produtos
+
+[33mcommit 01d1292bc7a369c382e98eeaaeee6f199283b5a0[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Wed Oct 16 18:38:38 2024 -0300
+
+    Aplicando ajustes na exibição da data nos lugares que usam
+
+[33mcommit 394d5fa615c771470f070361c1ce273252942637[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Wed Oct 16 18:34:12 2024 -0300
+
+    Aplicando update na carteira, finalmente kkk
+
+[33mcommit 0dd9dd63bc1eed05733efe027eccde32e8635bb5[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 15 23:12:55 2024 -0300
+
+    Ajustando a pagina config_portfolio.html
+
+[33mcommit ab2f0abb7a38d0510cc67cf65cfb2c7f52bb1c13[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 15 19:24:04 2024 -0300
+
+    Aplicando validade na lista de carteira de clientes
+
+[33mcommit c786ac7d5ad9d2a01a902bc57e12b19cb3339820[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 15 19:22:50 2024 -0300
+
+    Adicionando opção de 'produto' no tipo de produtos cadastrados
+
+[33mcommit 4c77f49d1019cc479573af8d896fe46fa33acaeb[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 15 19:21:07 2024 -0300
+
+    Criando novos campos na pagina de adição e na função created()
+
+[33mcommit 2f4fc3d7e12cbcd2b2661321f498b444e9057be9[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 15 19:14:47 2024 -0300
+
+    Adicionando os campos novos no CustomerPortfolio
+
+[33mcommit aa667e9985831f51e9abce24c3d903ba4ec7f379[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 15 19:09:50 2024 -0300
+
+    Corrigindo texto de resultado
+
+[33mcommit 923c4a9555f7960d1004a3d51732e0b927092bac[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 15 19:09:05 2024 -0300
+
+    Criando ativação e colocando botão orientado por logica para ativar e desativar carteira
+
+[33mcommit 2f013741488aae6c8d4bb6505eeb38568e93b4f6[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 15 19:01:59 2024 -0300
+
+    Alterando titulo do botão apenas para 'Configuração'
+
+[33mcommit ff0340f88b2f5a5b65ab54ab97b813aebdca5ae9[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 15 19:01:19 2024 -0300
+
+    Aplicando transferencia unica de cliente/prospect para carteira
+
+[33mcommit cb2afaf09da02b2bfaebfc3d7e77c2ac1618cdbb[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 15 18:46:53 2024 -0300
+
+    Criando função transferir_todos_item_portfolio() e ajustando modal para transferencia na pagina de configuração
+
+[33mcommit b4b75f464446029acba0b61ead08691a25fc7dee[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Mon Oct 14 23:57:19 2024 -0300
+
+    Começando a criar metodo para transferir os cliente/prospect da carteira, função transferir_unico_item_portfolio() e transferir_todos_item_portfolio()
+
+[33mcommit 8fd29590c63a1bca6f4faaa912cd4c71f6d5168a[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Mon Oct 14 23:54:19 2024 -0300
+
+    Aplicando metodo para editar o prospect ou o cliente na carteira de cliente
+
+[33mcommit c7c09f16c51f8cf35e1c081ad75ae44f73d239e1[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Mon Oct 14 23:47:45 2024 -0300
+
+    Criando modal para transferir unico, adicionando icones para os botões para 'adicionar' e 'transferir todos'
+
+[33mcommit 83fa06b7f272babf3ce3f14d5b3b39bfa04fa883[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Mon Oct 14 23:34:33 2024 -0300
+
+    Implantando a função para excluir item da carteira de clientes
+
+[33mcommit fafdbef100612ed8bb70020fd30774da49b9cb28[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Mon Oct 14 23:18:57 2024 -0300
+
+    Corrigindo botão geral para 'transferir todos'
+
+[33mcommit 4449d2bc5e3c9df308cdfde9d023df53a6362ceb[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Mon Oct 14 23:17:43 2024 -0300
+
+    Ajustando ações da lista de clientes e prospect da carteira para as ações finais, falta implementar cada função
+
+[33mcommit c4c817d48a460ee4ca8d7bb23525898b9e9367b6[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Mon Oct 14 19:34:33 2024 -0300
+
+    Finalizando a implementação para adicionar cliente ou prospect na carteira, tudo ok
+
+[33mcommit 67fc6f10127f362f6ba5a7e378c1f5d5f5dfdafb[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Mon Oct 14 18:19:42 2024 -0300
+
+    Criando inserção de item na lista de item da carteira, mas ainda ta adicionando o cliente e prospect de vez, e não está default o usuário e a carteira.
+
+[33mcommit edfda5f6cd1a758ee41331f2dfadd524f37fe802[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Mon Oct 14 17:51:02 2024 -0300
+
+    Criando validação de select para adicionar apenas um na carteira
+
+[33mcommit ac91b14781881ae3ebcd20abdc2daeaee4bd8a44[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Mon Oct 14 17:50:39 2024 -0300
+
+    Resolvendo conflito de relacionamentos
+
+[33mcommit 6f5eb67beb266083d5673af0b4a81dae9573f1ea[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 13 23:57:47 2024 -0300
+
+    Aplicando insert no item, mas ta dando erro ainda
+
+[33mcommit a7fa1a2759ff43b6bf9ffdefc26cb3c63be80ac5[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 13 20:37:14 2024 -0300
+
+    Criando metodo para desativar carteira
+
+[33mcommit 7297414f38eeaf57853a627dc05c20139c82094e[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 13 20:24:14 2024 -0300
+
+    Criando modal para transferir os clientes para outra carteira
+
+[33mcommit 193d9c22c1a381dbc12bd1bef59c6597e60a46f2[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 13 20:17:05 2024 -0300
+
+    Ajustando campo do prospect da lista que tava errado
+
+[33mcommit 85d3ede76c4e7e0d95c4c7e4fe6487a537f6b456[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 13 20:16:36 2024 -0300
+
+    Ajustando campo do select do formulario que tava errado
+
+[33mcommit f7dd0c47cd231920900a9fd29e67314f63d861b9[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 13 20:15:14 2024 -0300
+
+    Corrigindo javascript da validação
+
+[33mcommit 4f5be17ac04291c8bde623fdf96b2267004537cc[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 13 20:14:49 2024 -0300
+
+    Tirando o botão desnecessário da lista, apenas aparecer a lista
+
+[33mcommit 600e1892d010c268cc3d0ec7687de66611ad16e1[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 13 20:14:08 2024 -0300
+
+    Fazendo ajustes no modal e adicionando campo para transferir osclientes e prospects
+
+[33mcommit 06bb000e6e018c6cc6e5205890a590a079efa443[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 13 19:57:51 2024 -0300
+
+    Ajustando erros de formulário que tem ao adicionar o item da carteira de clientes.
+
+[33mcommit 14aff70fc1007314d8955ea46f0154cbf9631957[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 13 19:57:31 2024 -0300
+
+    Criando metodo config_porfolio() para enviar para a página de configuração de carteira de clientes
+
+[33mcommit 32f7d7af9fdda1116ddf5af1e51d1b7dcec0a343[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Oct 13 19:56:56 2024 -0300
+
+    Criando página de configuração de carteira de cliente, e adicionando o esqueleto do modal para adicionar os clientes e prospect. Falta evoluir para finalizar, a base ja ta pronta.
+
+[33mcommit 655fa319abcfd0cc12b5c0884014127b159661e0[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Oct 12 00:07:02 2024 -0300
+
+    Criando função para adicionar carteira e item
+
+[33mcommit 5ed3a5667403ff485508505907f3b66ba21857da[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Oct 12 00:06:43 2024 -0300
+
+    Criando página para listar todas as carteiras
+
+[33mcommit aa18cc773ba7320241c3582fe03238d7bc79cf61[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Oct 12 00:06:17 2024 -0300
+
+    Criando pagina para listar os itens de clientes/prospect dentro da configuração da carteira
+
+[33mcommit 1eb25ef8d48c53dbf8f8428cb37f9c1ce137cdc3[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Oct 12 00:05:44 2024 -0300
+
+    Criando pagina para adicionar cliente ou prospect na tabela
+
+[33mcommit b7622fb1d4cd31e8f74932ab3dc9974436e9432c[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Oct 12 00:05:06 2024 -0300
+
+    Criando página para configuração de carteira de clientes
+
+[33mcommit 2556708d5e64e6a3c3567abfa6e974b930ed7cc7[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Oct 12 00:04:32 2024 -0300
+
+    Criando página para criar nova carteira de clientes
+
+[33mcommit 6db4db8691550bae776608a3a63a7fab77f35846[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Oct 12 00:04:01 2024 -0300
+
+    Criando models do item do portfolio
+
+[33mcommit 4e4d50baa3bcba53238d360bea7764b4ecba7480[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Oct 12 00:03:34 2024 -0300
+
+    Criando form para item do portfolio
+
+[33mcommit e1668d8a5e098b91e5fc8e6787568fad651f5d5c[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Oct 11 22:51:05 2024 -0300
+
+    Criando metodo delete_porfolio()
+
+[33mcommit 7b9fd65bc11d0d3eee9748a4521c27c75e183f1e[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Oct 11 19:53:21 2024 -0300
+
+    Ajustando join, relacionamentos e listagem na tabela de carteira de clientes
+
+[33mcommit 44dcdb96b11e3e0c9a49b7063b8cc80d2a2ec81a[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Oct 11 19:11:26 2024 -0300
+
+    Criando metodo created_portfolio() e corrigindo erro para listar responsavel na list_portfolio.html
+
+[33mcommit 5aca848025c4babf8cd677c531288f0a03da2186[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Oct 11 18:35:49 2024 -0300
+
+    Criando função new_portfolio() e ajustando pagina
+
+[33mcommit eadc991840802fc3eb216122c62847869f235250[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Oct 11 18:02:46 2024 -0300
+
+    Refatorando o codigo
+
+[33mcommit 9cdefef6b56b814304d522d6022024acd15c1262[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Oct 11 18:00:14 2024 -0300
+
+    Criando estrutura de pastas de carteira de clientes e itens, criando primeiro metodo para acessar a pagina de lista de carteiras e demais arquivos necessários para comecar
+
+[33mcommit ce5bcf5da3ead2896eb55fd2e9115ba964694ea9[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Oct 11 17:37:46 2024 -0300
+
+    Criando class FormCustomerPortfolio
+
+[33mcommit f1473d6c662f7a20d8222d50740d2995638e5429[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Oct 11 17:37:27 2024 -0300
+
+    Finalizando class CustomerPortfolio()
+
+[33mcommit c7de591515c9613c746d9c58d8cb3739a4d3535b[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Oct 11 17:22:33 2024 -0300
+
+    Excluindo class e codigo não usado
+
+[33mcommit bd3453cbbd5d7e212198b1b713e15f4446782cd5[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Thu Oct 10 19:27:23 2024 -0300
+
+    Criando class model CustomerPorfolio()
+
+[33mcommit fc92b8992bb5b384ae5a32bbcce6f51a0ac74f14[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Thu Oct 10 18:46:59 2024 -0300
+
+    Aplicando ação de retorno para as info_activity.html falta apenas configurar os campos da info na pagina de info que não ta indo certo
+
+[33mcommit 367f843122a467e325ffb7fb9c13f23c7a0a9d03[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Thu Oct 10 18:38:15 2024 -0300
+
+    Adicionando avatar padrão no profile e arquivo na pasta de img
+
+[33mcommit 93555415540b5e9db89e885c6b815d671173b8bd[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Thu Oct 10 18:35:45 2024 -0300
+
+    Adicionando parametros dos clientes e prospect para ir pro filtro da pagina
+
+[33mcommit 623eb19afa4e92e7d947cde4e9dc77eea84fb755[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Thu Oct 10 18:34:37 2024 -0300
+
+    Padronizando todas as paginas de tabelas com titulo e adicionando html do filtro na pagina de atividades
+
+[33mcommit 0c1939abb8d83b53b4889b61305b32098293d3b0[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Thu Oct 10 18:28:24 2024 -0300
+
+    Adicionando titulo na pagina, classes para ficar padrão na div geral do container e na do botão e titulo
+
+[33mcommit fd4b569a48b6bccde749d31e5fa73f33d2ee1205[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Thu Oct 10 18:26:57 2024 -0300
+
+    Tirando cor da tech coffee do butão de buscar, tava muito fora do padrão
+
+[33mcommit d5e6a510d09d87e0fe400db61efc23c73ee0c42c[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Thu Oct 10 18:25:10 2024 -0300
+
+    Ajustando pagina de my_activities.html adicionando botão para concluir, status da atividade e função no botão para concluir
+
+[33mcommit e0ee8389e2a0a24f8191ca7efa51aed408e3429f[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Thu Oct 10 18:13:17 2024 -0300
+
+    Ajustando model da my_activity para ficar profissional
+
+[33mcommit f0bb65406bb146d22f6f43af44cf74bcd693fa49[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Thu Oct 10 18:12:58 2024 -0300
+
+    Passando lista de prospect para o my_activity para ser usado no model
+
+[33mcommit 4bdada4b1c13edadb6380a368fd8ed4524578486[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Thu Oct 10 18:05:44 2024 -0300
+
+    Ajustando modal da minhas atividade para ficar igual ao do add_activity.html
+
+[33mcommit 819e71b168196628950d10f38aa74d450665de15[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Thu Oct 10 18:02:16 2024 -0300
+
+    Aplicando para listar ou clientes ou prospect na grade de atividades
+
+[33mcommit 8e20b36ba286800dcca835248adc79269f2fe473[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Thu Oct 10 17:59:15 2024 -0300
+
+    Adicionando join para o prospect e clientes para listar
+
+[33mcommit fcff4f44606f59ea1256ffb6036eba0674ff0496[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Thu Oct 10 17:55:51 2024 -0300
+
+    Ajustando função created_activity() para inserir o prospect tambem
+
+[33mcommit a0722b6acabfb08da05a24d622987a766004251c[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Thu Oct 10 17:55:27 2024 -0300
+
+    Ajustando pagina para selecionar um vazio e adicionando validação para selecionar ou prospect ou cliente
+
+[33mcommit e58e066d7eac60fd673da243492f9e14e85d6dd8[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 8 19:19:41 2024 -0300
+
+    Adicionando query de prospects para listar no campo de prospect na pagina de adição
+
+[33mcommit f43aace3e1b8a2a515684c381b7102c17f4f0a2c[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 8 19:19:09 2024 -0300
+
+    Adicionando label e select-control no html da adição de atividade
+
+[33mcommit 844d51c5ad2193e80b7e7ecd4c1fdaecfca443a8[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 8 19:18:31 2024 -0300
+
+    Adicionando campo de 'prospect_id' no models de Activity
+
+[33mcommit 95268b7bf9cb3feb3bd14314a8ca6f34505e8d1d[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 8 19:18:04 2024 -0300
+
+    Adicionando campo de 'prospect' no formulário de atividades
+
+[33mcommit 2e6dd6b1cae6e25fafdae46789420086e12eb5a4[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 8 19:04:29 2024 -0300
+
+    Ajeitando pagina para adicionar atividade manual
+
+[33mcommit 46a1a6a069a329b6cf3d234375915fe1c92efe59[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 8 18:59:44 2024 -0300
+
+    Adicionando separador no menu de administração
+
+[33mcommit 617ae0540e51857d1a53fe626dba169c7f135b58[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 8 18:55:28 2024 -0300
+
+    Adicionando paginação na pagina de produtos
+
+[33mcommit 4a8c0801feceb9da9f69dfa90549ddd7a229d5c0[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 8 18:51:00 2024 -0300
+
+    Refatorando codigo e alterando 'plans' para 'products'
+
+[33mcommit 8dd9250840fd8b0fe4a9e93a63bf36a824103081[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 8 18:42:41 2024 -0300
+
+    Aplicando paginação na tabela de prospects
+
+[33mcommit 7ed69452349b8efcdf5a1f1babe4acdceb860ce8[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 8 18:31:35 2024 -0300
+
+    Aplicando paginação na tabela de usuarios
+
+[33mcommit 646a5c36852596473494f6a88b224f6e50e73295[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 8 18:28:43 2024 -0300
+
+    Aplicando paginação na tabela de clientes
+
+[33mcommit f78271af4f0a1ae4309c0619da2381edfa673010[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 8 18:22:23 2024 -0300
+
+    Padronizando pagina de info e diminuindo item por pagina de atividade para 10
+
+[33mcommit b732ce4ae306f126042b1993e52a4d9a8b5d1cfb[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 8 18:20:38 2024 -0300
+
+    Colocando lista de atividades no padrão
+
+[33mcommit a5af98cf3d764fe52cf5ec2b4e1a2325b7390559[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 8 18:18:23 2024 -0300
+
+    Adicionando paginação na pagina de atividades
+
+[33mcommit 5b13ce75367a9ded75d9c5ddb42e05f407bed6f7[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 8 17:59:00 2024 -0300
+
+    Tirando linha de 'nome fantasia' e adicionando botões
+
+[33mcommit f2d1610a516bcf3df02ec27e4b916448b406e05b[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 8 17:58:41 2024 -0300
+
+    Eliminando todas as classes que colidem com o bootstrap
+
+[33mcommit 7bb4d406adbfe31f10c60d543f6d901852b55d1b[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 8 17:50:02 2024 -0300
+
+    Ajustando e padronizando telas de add e edit de prospects
+
+[33mcommit 613ae1bcd430e586dd5b042007f7341428ec28bb[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Oct 8 17:48:17 2024 -0300
+
+    Ajustando e padronizando telas de add e edit de usuarios
+
+[33mcommit e26f5a9c1acaef113afd45976aef54c66f385d18[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Oct 5 00:28:15 2024 -0300
+
+    Corrigindo erro ao passar os dados do select para o front na edição do produto
+
+[33mcommit f7fd05c159002de5ae8ee43c2428ff6e894d273f[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Oct 5 00:21:41 2024 -0300
+
+    Adicionando metodo delete_plan()
+
+[33mcommit b1e29be482611854e6ef991b7953fb3b876a6fc5[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Oct 5 00:16:24 2024 -0300
+
+    Deixando campo de usuario sem aparecer
+
+[33mcommit f642762709b62203f643de6088ab48de81734d7a[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Oct 5 00:12:23 2024 -0300
+
+    Aplicando novas funções
+
+[33mcommit ce89b646f6de69959b325e2c6233740d04417e43[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Oct 5 00:11:33 2024 -0300
+
+    Refatorando e organizando tabela de usuarios
+
+[33mcommit e7eaffaf50186f0429ab70bfe9f8b7c91e1cf625[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Oct 5 00:11:06 2024 -0300
+
+    Aplicando novo template na aplicação, modernizando e tornando minimalista
+
+[33mcommit 86c6c525367d4d87dbafe79ecfef66a1ac7cd755[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Oct 5 00:10:37 2024 -0300
+
+    Adicionando planilha de categoria e produtos juntos
+
+[33mcommit 3c031da57e058bd47caadf616d2ef0352a88bcd4[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Oct 5 00:10:12 2024 -0300
+
+    Ajustando pagina de edição de plano
+
+[33mcommit f815055da1cd52a2e679bade0b98260c26efca73[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Oct 5 00:09:48 2024 -0300
+
+    Criando pagina para editar categoria de plano
+
+[33mcommit b4ade5bb34cabaadb67fc7230a9609fe0137b772[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Oct 5 00:09:20 2024 -0300
+
+    Criando pagina de adição de categoria para plano
+
+[33mcommit 14a4f35b9cf1a8314ce6be6565e0d57ffd206c73[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Oct 5 00:08:47 2024 -0300
+
+    Aplicando novo formulario para plano e adicionando campos novos
+
+[33mcommit b9b238147fa55b009adc92ea94924fcad22e952c[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Oct 5 00:08:20 2024 -0300
+
+    Adicionando novos campos
+
+[33mcommit 0e829953ce2f9d1baa6baa4e4756d3cd30b0f0c9[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Oct 5 00:08:01 2024 -0300
+
+    Aplicando ajustes no helpers dos forms
+
+[33mcommit 1bcc7897559efc67d1896a75136c40ab17217d9b[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Oct 4 19:52:03 2024 -0300
+
+    Ajustando atividades e escopo geral da aplicação
+
+[33mcommit 17e337dfe3dce8569c9d3b5a2919ed7da8aba8f9[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Oct 4 18:59:17 2024 -0300
+
+    Criando menu inicial tipo dashboard e atualizando template
+
+[33mcommit d4144df031f6fa3b1590a591d38843b8f753c6d0[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Oct 4 18:53:19 2024 -0300
+
+    Melhorando atividades
+
+[33mcommit 9f326085ccca1774092ddd3068ef6ea3a4928ee9[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Oct 4 18:44:38 2024 -0300
+
+    Ajustando formulários dos prospects
+
+[33mcommit 70de013d3724335990631b47beebe040929727f1[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Oct 4 18:38:36 2024 -0300
+
+    Ajeitando todos os formularios de usuarios
+
+[33mcommit 2ababa2c1150726f524bbab63c2fc056d14ac850[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Oct 4 18:23:41 2024 -0300
+
+    AJustando template e falta ajeitar a responsividade da tabela de usuarios que ta zoada
+
+[33mcommit 3405516b27be08c1ef372cfd336d1f9495ab7760[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Oct 4 17:55:07 2024 -0300
+
+    Novo layout e deixando profissional
+
+[33mcommit 8bd35fda0467fb904fa39c0c49f031cf6614f68d[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Oct 4 17:33:12 2024 -0300
+
+    Criando os arquivos de helpers no codigo
+
+[33mcommit ff98c31349c4ebf8c6043c8d6cea610e5f81a0a5[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Oct 4 17:27:25 2024 -0300
+
+    Criando perfil do usuario e edição
+
+[33mcommit 2ef54b3db7fc7ea44b68863b6fed368266a310ea[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Oct 4 17:10:36 2024 -0300
+
+    Criando lista de categorias e planos na pagina '/plans' e listando na função
+
+[33mcommit 0a6a1b6b22a05d593e56ad068f6c7502885776b5[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Oct 4 17:04:26 2024 -0300
+
+    criando função created_category_plan(), finalizando e testando adição de categoria de plano
+
+[33mcommit 5429e80b3cd354727063bce0663e93cde9618762[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Oct 4 16:53:29 2024 -0300
+
+    Criando função para criar categoria de plano
+
+[33mcommit a8d4c6285302ef255f0ee39a902cfad2c828b0ed[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Oct 4 16:44:24 2024 -0300
+
+    Corrigindo erro do models da categoria e erro do admin
+
+[33mcommit 9240f56238837b60a5d33a5dab3a9cca7182b33d[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Sep 14 00:23:45 2024 -0300
+
+    Criando formulario de categoria de plano
+
+[33mcommit 721606e837b4b4d70d53710a8d9be39251c4e7e7[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Sep 14 00:12:32 2024 -0300
+
+    Refatorando codigo
+
+[33mcommit 62c10e4148e43737ed138321dde71b15bd2aa6c7[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Sep 14 00:01:28 2024 -0300
+
+    Refatorando codigo de 'planos' para 'plan' e croa~]ap do models e pagina de adição de categoria de plano
+
+[33mcommit 38d0500a444703cb7a86e416d28195357eba9432[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Sep 13 19:08:26 2024 -0300
+
+    Ajustes template
+
+[33mcommit e1f248f98131b983c3e73dd83e81ca59a04c3ce4[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Sep 13 19:03:44 2024 -0300
+
+    Ajustando tabelas e botoes de clientes e prospects
+
+[33mcommit 4a7378648ac82b6ccccc79e2f025bc23cb0baa0c[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Sep 13 19:00:12 2024 -0300
+
+    Ajustando rotas de atividades, planos e prospects
+
+[33mcommit 61020c0d1ae61252e34563c1d19fe7c8514ea9fb[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Sep 13 18:57:48 2024 -0300
+
+    Ajustando rotas de clientes
+
+[33mcommit 94ac89481f671901406ce192c4cef5c9602bad99[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Sep 13 18:56:04 2024 -0300
+
+    Ajustando urls de usuarios
+
+[33mcommit e86e2a4f17016b966c0c921c9a5b7f4c219124ec[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Sep 13 18:49:26 2024 -0300
+
+    Finalizando update_prospect()
+
+[33mcommit 97ba5257005e81e32aa8ec7ad83b3789ec873b6d[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Sep 13 18:29:40 2024 -0300
+
+    Personalizando cores
+
+[33mcommit 3a448fefed5758c8b5c62574ee58a366c7f45c07[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Sep 13 18:25:21 2024 -0300
+
+    Ajustando tela de login
+
+[33mcommit c0e42621c99f78d61351840d757c47baf77d9e2e[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Sep 13 18:16:44 2024 -0300
+
+    Corrigindo autenticação e fazendo tratamento de senhas
+
+[33mcommit 204f1155543e0a57114006ca56c15de0b0a896dc[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Sep 13 18:14:31 2024 -0300
+
+    Adicionando favicon na aplicação com a logo da tech coffee
+
+[33mcommit 801d28da94b28c1f6c375e8c0876a5804f7ee4e7[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Sep 13 18:08:42 2024 -0300
+
+    Refatorando codigo
+
+[33mcommit b4ba699dfb9f51403fe2df60e367a788492f4861[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Aug 31 00:00:21 2024 -0300
+
+    Finalizando atualização de plano
+
+[33mcommit 2185144c7fd289effa2d5637511efc9c65ceb752[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Aug 30 23:50:10 2024 -0300
+
+    Finalizando update_plan()
+
+[33mcommit 9c589651c21243de1f2a9e479520e0231eba90a0[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Aug 30 23:42:53 2024 -0300
+
+    Ajustando e finalizando edit_plan() e começando a cria update_plan()
+
+[33mcommit a5e854d6202f6c5338a6fd833964ddca70990ffe[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Aug 30 23:38:06 2024 -0300
+
+    Criando metodo para abrir edit_plan()
+
+[33mcommit b0b67f7df8b00070da1f73d4e391624c113016f9[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Aug 30 23:32:33 2024 -0300
+
+    Ajustando tela e adicionando placeholders no preço
+
+[33mcommit cb2a4bf8a7c8aa6b24871f846ada1aaa69d20109[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Aug 30 23:28:35 2024 -0300
+
+    Ajustando tela do prospect
+
+[33mcommit 614db7bfe3c744559257603d55cc3092e9d479a9[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Aug 30 23:25:30 2024 -0300
+
+    Ajustando my_activities()
+
+[33mcommit 5edcd56a5c5bfa62319f23413641b06fdfcfb293[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Aug 30 23:10:42 2024 -0300
+
+    Uniformizando titulo e sub-titulo dos formulários
+
+[33mcommit 7ebea2e7849c0637a49a1d1239d8d43d22ee934b[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Aug 30 23:06:38 2024 -0300
+
+    Criando função e pagina para editar o prospects
+
+[33mcommit a27147b164829f57a3eb734c3e590a12a35f184c[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Aug 30 23:00:28 2024 -0300
+
+    Ajustando tela de add_prospect
+
+[33mcommit 0f6598f25e029f49bb8399939105eeeb806c87af[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Wed Aug 28 00:20:36 2024 -0300
+
+    Aplicando modelo de formulário no edit_user.html
+
+[33mcommit d7698aa7866a29072d80fb72a88401c8b2688607[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Wed Aug 28 00:10:10 2024 -0300
+
+    Formatando view de add_user.html
+
+[33mcommit f7b1b41e1829d39a45d10a79c763d5a2b7d5c59a[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Aug 27 23:58:09 2024 -0300
+
+    Ajustando tela de criação de usuário para colocar card
+
+[33mcommit 9eec2c48ab3470d0b01a25d3dbbf7279bd9ad42c[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Aug 27 23:56:38 2024 -0300
+
+    Ajustando função de voltar dos formulários de customers
+
+[33mcommit ecf9206f81082fbc4475caca28ed3bb21996a34c[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Aug 27 23:55:12 2024 -0300
+
+    Jusntando erro do metodo upload_customer()
+
+[33mcommit ef2e781fb068b590eecbc9016d9a6da20c437c90[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Aug 27 23:53:41 2024 -0300
+
+    Ajustando pagina e script para edição de clientes
+
+[33mcommit cf0a8cc1211f2c8585a8defbe616e7a421a74985[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Aug 27 23:45:51 2024 -0300
+
+    Ajustando layout da pagina add_customer.html para ficar mais armonico
+
+[33mcommit 46090b07773dd03972e5edfc75581469d1a14b8b[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Aug 27 23:41:25 2024 -0300
+
+    Adicionando no menu o Usuários e ajustando links para a nova pasta
+
+[33mcommit 2951e39639a008b98dc51a045d6b8b851c129703[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Aug 27 23:38:38 2024 -0300
+
+    Refatorando home para a pasta auth
+
+[33mcommit dd64f7cd9fac007c1f9d705fd4511727013aff39[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Aug 27 23:06:49 2024 -0300
+
+    Ajustando formulário de adição de atividade
+
+[33mcommit 281846f0d72da85aa3537847fe4a54ba4995bf2a[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Aug 20 00:21:04 2024 -0300
+
+    Finalizando adicao de atividades
+
+[33mcommit d6ee67d491c5aa7a884bfcfddd9500e212f238fc[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Tue Aug 20 00:16:04 2024 -0300
+
+    Ajustando erro de relacionamento de banco de dados
+
+[33mcommit 09c22ac45359c93f9e4f0ea8a72e7b76c7f8eb7b[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Mon Aug 19 23:50:19 2024 -0300
+
+    Criando renderização das atividades do usuario em forma de card
+
+[33mcommit 60c7d95e7996d0a77e589adc9fb60a09bdeef926[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Aug 18 22:14:28 2024 -0300
+
+    Adição de plano
+
+[33mcommit d82aaf2ccd673662d4da14d8c118f7121d3b17d3[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Aug 18 22:00:00 2024 -0300
+
+    Criando pagina de adição de plano
+
+[33mcommit 3ef96783268bef538827a98dcf0d1631a0d9d2fe[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Aug 18 21:49:30 2024 -0300
+
+    Criando estrutura de plano e planos geral
+
+[33mcommit 01479b00ca7df6f328696916fbc2aa985b9d8145[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Aug 18 21:00:13 2024 -0300
+
+    Criando model e helpersform de Planos
+
+[33mcommit 8b04ef74ffb86d1a13f777494075d68b6d501d6e[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Aug 18 20:11:26 2024 -0300
+
+    Criando method delete do prospect
+
+[33mcommit 629d065d4f16fa5700aa119b26cad1ff7b1311c1[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Aug 18 20:07:36 2024 -0300
+
+    Criando method post de prospect
+
+[33mcommit bf05a2bb43dea0e28eb2c2e75a9aaab37add3b10[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sun Aug 18 19:34:21 2024 -0300
+
+    Aplicando form atualizado em atividades
+
+[33mcommit 6af5551ef2f8489329c7ea466e31f8940f9a312e[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Aug 17 21:27:08 2024 -0300
+
+    Ajustando customers completo
+
+[33mcommit 9af8e447ed6dba3951c86a5ff866942040c06b04[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Aug 17 01:18:53 2024 -0300
+
+    Aplicando modelo de form novo em customer, falta testar e ajeitar
+
+[33mcommit 83660226c0fb813e7a2ae9783758e50bf1915686[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Aug 17 01:01:54 2024 -0300
+
+    Criando prospects
+
+[33mcommit 66f5bcdda8f9affd10119c893bafe641a3641746[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Aug 17 00:52:19 2024 -0300
+
+    Aplicando downlist no menu
+
+[33mcommit 3f35c88360a69a4cef255bee48e51aabb75164d5[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Aug 17 00:16:19 2024 -0300
+
+    Aplicando navbar, responsividade no template e criando profile
+
+[33mcommit 5fc1b52eaf2afff9b6f333fd163daa27b66d7e7e[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Sat Aug 17 00:05:59 2024 -0300
+
+    Refatorando aplicação
+
+[33mcommit 83445b1f8cc1e2e592507a6a248b3c4a7d6723d8[m
+Author: Matheus Alcance <limarios18@outlook.com>
+Date:   Fri Aug 16 18:54:08 2024 -0300
+
+    Upload github
+
+[33mcommit 401d472492e05565d3b64a673bb305fb2e9228f5[m
+Author: Matheus <limarios18@outlook.com>
+Date:   Tue Aug 13 19:46:41 2024 -0300
+
+    Refatorando codigo
+
+[33mcommit b8d39a1f188bfa18658397d29d2e719d6bfe6356[m
+Author: Matheus <limarios18@outlook.com>
+Date:   Tue Aug 13 19:40:14 2024 -0300
+
+    Ajustando tela principal com os menus da aplicação e refatorando o codigo
+
+[33mcommit fc537c649fc0f8522ee48b3af05337d5da52eafc[m
+Author: Matheus <limarios18@outlook.com>
+Date:   Tue Aug 13 19:31:48 2024 -0300
+
+    Ajustando tela principal da aplicação
+
+[33mcommit b214097724bbbc38ea63f9a3e3214e418767a97f[m
+Author: Matheus <limarios18@outlook.com>
+Date:   Tue Aug 13 19:21:04 2024 -0300
+
+    Atualizando html de atividades e usuarios para ficar responsivo e criando main-menu.html
+
+[33mcommit bb76682adc6a3983bf927d18d7959b06b502a53b[m
+Author: Matheus <limarios18@outlook.com>
+Date:   Tue Aug 13 19:10:00 2024 -0300
+
+    Upload github
