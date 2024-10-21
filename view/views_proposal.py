@@ -133,16 +133,46 @@ def created_proposal():
         print("Erros de validação:", form.errors)
         flash("Erro na validação do formulário.", "danger")
 
-    return render_template('proposal/add_proposal.html', form=form)
+    return render_template('proposal/add_proposal.html',
+                           form=form
+                           )
 
-
-@app.route('/proposal/info/<int:id>', methods=['GET', 'POST'])
-def info_proposal():
-    pass
 
 @app.route('/proposal/edit/<int:id>', methods=['GET', 'POST'])
-def edit_proposal():
-    pass
+def edit_proposal(id):
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login', proxima=url_for('novo')))
+
+    proposta = Proposal.query.filter_by(id=id).first()
+
+    form = FormProposal()
+
+    form.responsavel_id.choices = [(user.id, user.nome) for user in User.query.all()]
+    form.customer_id.choices = [(customer.id, customer.razao_social) for customer in Customer.query.all()]
+    form.process()
+
+    form.customer_id.data = proposta.customer_id
+    form.responsavel_id.data = proposta.responsavel_id
+
+    form.status.data = proposta.status
+    form.nome.data = proposta.nome
+    form.valor_total.data = proposta.valor_total
+    form.valor_total_service.data = proposta.valor_total_service
+    form.valor_total_plan.data = proposta.valor_total_plan
+    form.valor_total.data = proposta.valor_total
+    form.condicoes_pagamento.data = proposta.condicoes_pagamento
+    form.condicoes_comerciais.data = proposta.condicoes_comerciais
+    form.disposicao_gerais.data = proposta.disposicao_gerais
+    form.valor_total_product.data = proposta.valor_total_product
+
+    adm = is_admin()
+    return render_template('proposal/info_proposal.html',
+                           id=id,
+                           form=form,
+                           adm=adm
+                           )
+
+
 
 @app.route('/proposal/delete/<int:id>', methods=['GET', 'POST'])
 def delete_proposal():
