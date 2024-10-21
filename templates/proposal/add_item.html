@@ -1,35 +1,34 @@
 <form method="POST" action="{{ url_for('created_item_proposta', id=id) }}">
     {{ formItemProposta.csrf_token() }}
 
-    <!-- Campo para selecionar a proposta -->
-    <div class="form-group">
-        {{ formItemProposta.proposta_id.label(class="form-label") }}
-        {{ formItemProposta.proposta_id(class="form-control") }}
+    <div class="row mb-3">
+        <!-- Campo para selecionar o plano -->
+        <div class="col-md-5 form-group">
+            {{ formItemProposta.plan_id.label(class="form-label") }}
+            {{ formItemProposta.plan_id(class="form-select") }}
+        </div>
+        <!-- Campo para quantidade -->
+        <div class="col-md-2 form-group">
+            {{ formItemProposta.quantidade.label(class="form-label") }}
+            {{ formItemProposta.quantidade(class="form-control") }}
+        </div>
+        <!-- Campo para desconto -->
+        <div class="col-md-2 form-group">
+            {{ formItemProposta.desconto.label(class="form-label") }}
+            {{ formItemProposta.desconto(class="form-control") }}
+        </div>
+
+        <!-- Campo para o valor total -->
+        <div class="col-md-2 form-group">
+            {{ formItemProposta.total.label(class="form-label") }}
+            {{ formItemProposta.total(class="form-control") }}
+        </div>
     </div>
 
-    <!-- Campo para selecionar o plano -->
-    <div class="form-group">
-        {{ formItemProposta.plan_id.label(class="form-label") }}
-        {{ formItemProposta.plan_id(class="form-control") }}
-    </div>
 
-    <!-- Campo para quantidade -->
-    <div class="form-group">
-        {{ formItemProposta.quantidade.label(class="form-label") }}
-        {{ formItemProposta.quantidade(class="form-control") }}
-    </div>
 
-    <!-- Campo para desconto -->
-    <div class="form-group">
-        {{ formItemProposta.desconto.label(class="form-label") }}
-        {{ formItemProposta.desconto(class="form-control") }}
-    </div>
 
-    <!-- Campo para o valor total -->
-    <div class="form-group">
-        {{ formItemProposta.total.label(class="form-label") }}
-        {{ formItemProposta.total(class="form-control") }}
-    </div>
+
 
     <!-- Botão de submissão -->
     <div class="text-center m-2">
