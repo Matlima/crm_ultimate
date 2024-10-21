@@ -199,6 +199,6 @@ class ItemProposta(db.Model):
 
     # Adicione o relacionamento com Proposal se necessário
     proposta = db.relationship('Proposal', backref='items_proposta')
-    
+
     def __repr__(self):
         return f'<ItemProposta {self.id} - Quantidade: {self.quantidade}, Total: {self.total}>'
