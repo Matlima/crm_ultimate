@@ -105,12 +105,7 @@
                     <div class="d-flex justify-content-end">
                         <button type="button" class="btn btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="fas fa-plus"></i>Adicionar</button>
                     </div>
-
-
-
                     {% include 'proposal/list_item.html' %}
-
-
                 </div>
 
                 <!-- Aba Adicional -->
@@ -124,8 +119,8 @@
     </div>
 
  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                           <div class="modal-content">
+                        <div class="modal-dialog" style="max-width: 80%;">
+                           <div class="modal-content" >
                               <div class="modal-header">
                                  <h5 class="modal-title" id="exampleModalLabel">Adicionar item na proposta</h5>
                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
