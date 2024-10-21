@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, session, flash, url_for
 from application import app, db
-from models.models import Activity, User, Customer, Prospect, Proposal, ItemProposta
+from models.models import Activity, User, Customer, Prospect, Proposal, ItemProposta, Plan
 from helpers.forms_helpers import FormActivity, is_admin, FormProposal, FormItemProposta
 from datetime import datetime
 
@@ -144,8 +144,11 @@ def edit_proposal(id):
         return redirect(url_for('login', proxima=url_for('novo')))
 
     proposta = Proposal.query.filter_by(id=id).first()
+    page = request.args.get('page', 1, type=int)
+    items_proposta = ItemProposta.query.filter_by(proposta_id=id).paginate(page=page, per_page=10)
 
     form = FormProposal()
+    formItemProposta = FormItemProposta()
 
     form.responsavel_id.choices = [(user.id, user.nome) for user in User.query.all()]
     form.customer_id.choices = [(customer.id, customer.razao_social) for customer in Customer.query.all()]
@@ -169,7 +172,9 @@ def edit_proposal(id):
     return render_template('proposal/info_proposal.html',
                            id=id,
                            form=form,
-                           adm=adm
+                           formItemProposta=formItemProposta,
+                           adm=adm,
+                           items_proposta=items_proposta
                            )
 
 
