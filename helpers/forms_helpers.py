@@ -211,7 +211,7 @@ class FormProposal(FlaskForm):
 
 
 class FormItemProposta(FlaskForm):
-    proposta_id = SelectField('Proposta', coerce=int, validators=[DataRequired()])
+    # proposta_id = SelectField('Proposta', coerce=int)
     plan_id = SelectField('Plano', coerce=int, validators=[DataRequired()])
     quantidade = IntegerField('Quantidade', validators=[DataRequired(), NumberRange(min=1)])
     desconto = FloatField('Desconto (%)', validators=[DataRequired(), NumberRange(min=0, max=100)])
