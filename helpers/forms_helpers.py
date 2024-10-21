@@ -3,7 +3,7 @@ from application import app
 from flask import session
 from models.models import User,Customer, Activity
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField, SelectField, DateTimeField, TextAreaField, validators, BooleanField, DecimalField, DateField
+from wtforms import StringField, SubmitField, PasswordField, SelectField, DateTimeField, TextAreaField, validators, BooleanField, DecimalField, DateField, IntegerField, FloatField
 from wtforms.validators import DataRequired, Email, EqualTo, Optional, Length, NumberRange
 
 estados = [
@@ -209,6 +209,15 @@ class FormProposal(FlaskForm):
 
     salvar = SubmitField('Salvar')
 
+
+class FormItemProposta(FlaskForm):
+    proposta_id = SelectField('Proposta', coerce=int, validators=[DataRequired()])
+    plan_id = SelectField('Plano', coerce=int, validators=[DataRequired()])
+    quantidade = IntegerField('Quantidade', validators=[DataRequired(), NumberRange(min=1)])
+    desconto = FloatField('Desconto (%)', validators=[DataRequired(), NumberRange(min=0, max=100)])
+    total = FloatField('Total', validators=[DataRequired(), NumberRange(min=0)])
+
+    salvar = SubmitField('Salvar')
 
 # Funções para upload de imagem na pasta /Upload
 def recupera_imagem(id):
