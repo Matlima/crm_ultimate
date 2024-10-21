@@ -181,7 +181,11 @@ class Proposal(db.Model):
     usuario = db.relationship('User', foreign_keys=[usuario_id], backref=db.backref('propostas_criadas', lazy=True))
     responsavel = db.relationship('User', foreign_keys=[responsavel_id], backref=db.backref('propostas_responsavel', lazy=True))
 
-    def __repr__(self):
+    # Relacionamento com ItemProposta
+    items_proposta = db.relationship('ItemProposta', backref='proposta', cascade="all, delete-orphan", passive_deletes=True)
+
+
+def __repr__(self):
         return f'<Proposal {self.nome}>'
 
 class ItemProposta(db.Model):
@@ -197,8 +201,6 @@ class ItemProposta(db.Model):
     # Relacionamento com Plan
     plan = db.relationship('Plan', backref='items_proposta')
 
-    # Adicione o relacionamento com Proposal se necessário
-    proposta = db.relationship('Proposal', backref='items_proposta')
 
     def __repr__(self):
         return f'<ItemProposta {self.id} - Quantidade: {self.quantidade}, Total: {self.total}>'

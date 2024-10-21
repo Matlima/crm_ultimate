@@ -185,20 +185,30 @@ def edit_proposal(id):
 
 
 @app.route('/proposal/delete/<int:id>', methods=['GET', 'POST'])
-def delete_proposal():
+def delete_proposal(id):
     usuario_id = session['usuario_id']
     usuario = User.query.filter_by(id=usuario_id).first()
     proposta = Proposal.query.filter_by(id=id).first()
-    # portfolio = CustomerPortfolio.query.filter_by(id=id).first()
 
-    if usuario.grupo == 'administrador' or proposta.responsavel_id == usuario.id:
-        Proposal.query.filter_by(id=id).delete()
-        db.session.commit()
-        flash('Proposta excluida com sucesso!')
+    # Verificar se a proposta existe
+    if not proposta:
+        flash('Proposta não encontrada.', 'danger')
+        return redirect(url_for('proposal'))
+
+    # Verificar permissões de exclusão
+    if usuario.grupo == 'Administrador' or proposta.responsavel_id == usuario.id:
+        # Verificar se há itens associados à proposta
+        if proposta.items_proposta:
+            flash('Não é possível excluir a proposta, pois há itens associados.', 'danger')
+        else:
+            # Excluir a proposta, pois não há itens associados
+            Proposal.query.filter_by(id=id).delete()
+            db.session.commit()
+            flash('Proposta excluída com sucesso!', 'success')
     else:
-        flash('O usuário logado não tem autorização para excluir a proposta, apenas administradores ou responsável.')
-    return redirect(url_for('proposal'))
+        flash('O usuário logado não tem autorização para excluir a proposta, apenas administradores ou o responsável.', 'danger')
 
+    return redirect(url_for('proposal'))
 
 
 # ItemProposta:
