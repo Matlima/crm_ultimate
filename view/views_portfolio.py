@@ -203,6 +203,13 @@ def edit_portfolio(id):
     itens_carteiras = PortfolioItem.query.filter_by(portfolio_id=id).paginate(page=page, per_page=10)
     formItem = FormPortfolioItem()
 
+    # Carteiras, Cliente e Prospect para passar nos selects dos Model:
+    carteiras = CustomerPortfolio.query.all()
+    clientes = [(cliente.id, cliente.razao_social) for cliente in Customer.query.all()]
+    prospects = [(prospect.id, prospect.nome_completo) for prospect in Prospect.query.all()]
+    formItem.cliente.choices = clientes
+    formItem.prospect.choices = prospects
+
     # Instanciar o formulário com request.form
     form = FormCustomerPortfolio(request.form or None)
 
@@ -245,6 +252,7 @@ def edit_portfolio(id):
                            formItem=formItem,
                            itens_carteiras=itens_carteiras,
                            portfolio=portfolio,
+                           carteiras=carteiras,
                            id=id)
 
 
