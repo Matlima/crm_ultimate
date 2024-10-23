@@ -242,3 +242,25 @@ def created_item_proposta(id):
     return redirect(url_for('edit_proposal', id=id))
 
 
+@app.route('/proposal/<int:id>/item/delete/<int:id_item>', methods=['GET', 'POST'])
+def delete_item_proposal(id, id_item):
+    usuario_id = session['usuario_id']
+    usuario = User.query.filter_by(id=usuario_id).first()
+    proposta = Proposal.query.filter_by(id=id).first()
+    item_proposta = ItemProposta.query.filter_by(id=id_item)
+
+    # Verificar se a proposta existe
+    if not proposta:
+        flash('Proposta não encontrada.', 'danger')
+        return redirect(url_for('edit_proposal', id=id))
+
+    # Verificar permissões de exclusão
+    if usuario.grupo == 'Administrador' or proposta.responsavel_id == usuario.id:
+        # Excluir o item da proposta
+        ItemProposta.query.filter_by(id=id_item).delete()
+        db.session.commit()
+        flash('Item excluído com sucesso!', 'success')
+    else:
+        flash('O usuário logado não tem autorização para excluir o item da proposta, apenas administradores ou o responsável.', 'danger')
+
+    return redirect(url_for('edit_proposal', id=id))
