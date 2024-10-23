@@ -40,7 +40,7 @@
                 <tr>
                     <th>Data</th>
                     <th>Usuário</th>
-                    <th>Tipo</th>
+                    <th>Cliente / Prospect</th>
                     <th>Título</th>
                     <th></th>
                     <th></th>
@@ -51,7 +51,14 @@
                 <tr>
                     <td>{{ atividade.data_inicio.strftime('%d/%m/%Y %H:%M:%S') }}</td>
                     <td>{{ atividade.usuario.nome }}</td>
-                    <td>{{ atividade.tipo }}</td>
+                    <td>
+                        {% if atividade.customer.razao_social %}
+                            {{ atividade.customer.razao_social }}
+                        {% else %}
+                            {{ atividade.prospect.nome_completo }}
+                        {% endif %}
+
+                    </td>
                     <td>{{ atividade.titulo }}</td>
                     <td>
                       <a class="btn btn-sm btn-info w-100 mb-1" href="{{ url_for('info_activity', id=atividade.id, action='activity') }}">
