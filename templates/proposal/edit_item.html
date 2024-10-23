@@ -1,0 +1,30 @@
+<form method="POST" action="{{ url_for('edit_item_proposta', id=id) }}">
+    {{ formItemProposta.csrf_token() }}
+    <div class="row mb-3">
+        <!-- Campo para selecionar o plano -->
+        <div class="col-md-5 form-group">
+            {{ formItemProposta.plan_id.label(class="form-label") }}
+            {{ formItemProposta.plan_id(class="form-select") }}
+        </div>
+        <!-- Campo para quantidade -->
+        <div class="col-md-2 form-group">
+            {{ formItemProposta.quantidade.label(class="form-label") }}
+            {{ formItemProposta.quantidade(class="form-control") }}
+        </div>
+        <!-- Campo para desconto -->
+        <div class="col-md-2 form-group">
+            {{ formItemProposta.desconto.label(class="form-label") }}
+            {{ formItemProposta.desconto(class="form-control") }}
+        </div>
+
+        <!-- Campo para o valor total -->
+        <div class="col-md-2 form-group">
+            {{ formItemProposta.total.label(class="form-label") }}
+            {{ formItemProposta.total(class="form-control") }}
+        </div>
+    </div>
+    <!-- Botão de submissão -->
+    <div class="text-center m-2">
+        <button type="submit" class="btn btn-primary">Adicionar Item</button>
+    </div>
+</form>
