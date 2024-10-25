@@ -53,6 +53,11 @@ def config_portfolio(id):
     itens_carteiras = PortfolioItem.query.filter_by(portfolio_id=id).paginate(page=page, per_page=10)
     formItem = FormPortfolioItem()
 
+    # Definir as choices para os campos 'cliente' e 'prospect' do modal
+    clientes = [(cliente.id, cliente.nome) for cliente in Customer.query.all()]
+    formItem.cliente.choices = [(0, "Selecione um usuário")] + clientes
+    formItem.cliente.choices = [(0, "Selecione um responsável")] + clientes
+
     # Buscar o portfólio atual
     portfolio = CustomerPortfolio.query.get(id)
 
@@ -333,10 +338,8 @@ def delete_item_portfolio(id):
 def transferir_unico_item_portfolio(id, item_id):
     # Obter o portfolio de destino do form
     portfolioTransfer = request.form.get('carteira')
-
     # Busca o item específico do portfolio atual
     itemPortfolio = PortfolioItem.query.filter_by(id=item_id, portfolio_id=id).first()
-
     # Verifica se o item existe e se foi selecionada uma nova carteira
     if itemPortfolio and portfolioTransfer:
         itemPortfolio.portfolio_id = portfolioTransfer  # Atualiza o portfolio_id do item
@@ -345,7 +348,6 @@ def transferir_unico_item_portfolio(id, item_id):
         flash('Cliente/Prospect transferido com sucesso!', 'success')
     else:
         flash('Não foi possível transferir o item.', 'danger')
-
     # Redireciona para a página de configuração do portfólio
     return redirect(url_for('config_portfolio', id=id))
 
