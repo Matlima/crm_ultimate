@@ -15,27 +15,30 @@
             </tr>
          </thead>
          <tbody>
-            {% for item in items_proposta %}
-            <tr>
-                <td>{{ item.plan.tipo }}</td>
-                <td>{{ item.plan.nome }}</td>
-                <td>{{ item.plan.preco }}</td>
-                <td>{{ item.quantidade }}</td>
-                <td>{{ item.desconto }}</td>
-                <td>{{ item.total }}</td>
-               <td>
-                  <a class="btn btn-sm btn-info w-100 mb-1" href="{{ url_for('edit_portfolio', id=item.id) }}">
-                     <i class="fas fa-info-circle"></i> Editar
-                  </a>
-               </td>
-               <td>
-                  <a class="btn btn-sm btn-danger w-100 mb-1 text-white" href="{{ url_for('delete_item_proposal', id=id, id_item=item.id) }}">
-                     <i class="fas fa-trash-alt"></i> Excluir
-                  </a>
-               </td>
-            </tr>
-            {% endfor %}
-         </tbody>
+    {% for item in items_proposta %}
+    <tr>
+        <td>{{ item.plan.tipo }}</td>
+        <td>{{ item.plan.nome }}</td>
+        <td>{{ item.plan.preco }}</td>
+        <td>{{ item.quantidade }}</td>
+        <td>{{ item.desconto }}</td>
+        <td>{{ item.total }}</td>
+        <td>
+            <button type="button" class="btn btn-sm btn-info w-100 mb-1" data-bs-toggle="modal" data-bs-target="#ModalEdit"
+                    onclick="loadEditForm({{ item.id }})">
+                <i class="fas fa-info-circle"></i> Editar
+            </button>
+        </td>
+
+        <td>
+            <a class="btn btn-sm btn-danger w-100 mb-1 text-white" href="{{ url_for('delete_item_proposal', id=id, id_item=item.id) }}">
+                <i class="fas fa-trash-alt"></i> Excluir
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
+
       </table>
    </div>
 
