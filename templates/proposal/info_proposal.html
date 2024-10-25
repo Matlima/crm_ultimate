@@ -124,4 +124,38 @@
       </div>
    </div>
 </div>
+<!-- Modal para edição do item -->
+<div class="modal fade" id="ModalEdit" tabindex="-1" aria-labelledby="ModalEdit" aria-hidden="true">
+   <div class="modal-dialog" style="max-width: 80%;">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title">Atualizar Item</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+            <!-- O conteúdo do formulário de edição será carregado aqui -->
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+
+<script>
+   function loadEditForm(idItem) {
+    const modalBody = document.querySelector("#ModalEdit .modal-body");
+    fetch(`/proposal/{{ id }}/item/edit/${idItem}/`)
+        .then(response => response.text())
+        .then(html => {
+            modalBody.innerHTML = html;
+        })
+        .catch(error => console.error("Erro ao carregar o formulário:", error));
+}
+
+
+
+</script>
 {% endblock %}
