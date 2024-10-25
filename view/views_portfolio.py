@@ -54,8 +54,9 @@ def config_portfolio(id):
     formItem = FormPortfolioItem()
 
     # Definir as choices para os campos 'cliente' e 'prospect' do modal
-    clientes = [(cliente.id, cliente.nome) for cliente in Customer.query.all()]
+    clientes = [(cliente.id, cliente.razao_social) for cliente in Customer.query.all()]
     formItem.cliente.choices = [(0, "Selecione um usuário")] + clientes
+    prospects = [(prospect.id, prospect.nome_completo) for prospect in Prospect.query.all()]
     formItem.cliente.choices = [(0, "Selecione um responsável")] + clientes
 
     # Buscar o portfólio atual
