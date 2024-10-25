@@ -264,3 +264,38 @@ def delete_item_proposal(id, id_item):
         flash('O usuário logado não tem autorização para excluir o item da proposta, apenas administradores ou o responsável.', 'danger')
 
     return redirect(url_for('edit_proposal', id=id))
+
+
+@app.route('/proposal/<int:id>/item/edit/<int:id_item>/', methods=['GET', 'POST'])
+def edit_item_proposal(id, id_item):
+    usuario_id = session.get('usuario_id')
+    usuario = User.query.get(usuario_id)
+    proposta = Proposal.query.get(id)
+    item_proposta = ItemProposta.query.get(id_item)
+
+    formItem = FormItemProposta()
+    formItem.plan_id.choices = [(plano.id, plano.nome) for plano in Plan.query.all()]
+
+    if request.method == 'GET':
+        if item_proposta:
+            formItem.plan_id.data = item_proposta.plan_id
+            formItem.quantidade.data = item_proposta.quantidade
+            formItem.total.data = item_proposta.total
+            formItem.desconto.data = item_proposta.desconto
+
+        # Retorna o template edit_item.html com o ID do item
+        return render_template('proposal/edit_item.html', formItemProposta=formItem, id=id, id_item=id_item)
+
+    if request.method == 'POST' and formItem.validate_on_submit():
+        item_proposta.plan_id = formItem.plan_id.data
+        item_proposta.quantidade = formItem.quantidade.data
+        item_proposta.desconto = formItem.desconto.data
+        item_proposta.total = formItem.total.data
+        db.session.commit()
+        flash('Item atualizado com sucesso!')
+        return redirect(url_for('edit_proposal', id=id))
+
+    return redirect(url_for('edit_proposal', id=id))
+
+
+
