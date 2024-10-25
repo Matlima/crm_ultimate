@@ -21,6 +21,7 @@ from view.views_prospect import *
 from view.views_plans import *
 from view.views_portfolio import *
 from view.views_proposal import *
+from view.views_portfolio_user import *
 
 if __name__ == '__main__':
     app.run(debug=True)
