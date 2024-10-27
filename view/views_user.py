@@ -7,6 +7,16 @@ from sqlalchemy.exc import IntegrityError
 
 
 # Method Routes:
+
+@app.route('/construction')
+def construction():
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login', proxima=url_for('dashboard')))
+
+    return render_template('shared/construction.html',
+                           titulo='Em desenvolvimento'
+                           )
+
 @app.route('/users')
 def users():
 
