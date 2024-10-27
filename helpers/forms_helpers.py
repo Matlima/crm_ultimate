@@ -157,7 +157,7 @@ class FormActivity(FlaskForm):
     titulo = StringField('Título', validators=[DataRequired(), Length(min=1, max=100)])
     descricao = TextAreaField('Descrição')
     status = SelectField('Status', choices=[('Pendente', 'Pendente'), ('Em andamento', 'Em andamento'), ('Concluído', 'Concluído'),])
-    tipo = SelectField('Status', choices=[('Atividade', 'Atividade'), ('Relatório', 'Relatório'), ('Solicitação', 'Solicitação'),])
+    tipo = SelectField('Status', choices=[('Atividade', 'Atividade'), ('Visita', 'Visita'), ('Relatório', 'Relatório'),  ('Solicitação', 'Solicitação'),])
     salvar = SubmitField('Salvar')
     concluir = SubmitField('Concluir')
 
