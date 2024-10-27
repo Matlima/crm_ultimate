@@ -41,7 +41,7 @@ def my_portfolio_new_activity():
     usuario_id = session["usuario_id"]
     adm = is_admin()
     # grupo = type_user()
-    return render_template('activities/add_activity.html',
+    return render_template('activities/add_activity_my.html',
                            titulo='Nova atividade',
                            form=form,
                            clientes=Customer.query.all(),
