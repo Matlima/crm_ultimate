@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, session, flash, url_for
 from application import app, db
 from models.models import Customer, CustomerPortfolio, User, PortfolioItem, Prospect
-from helpers.forms_helpers import FormCustomerPortfolio, is_admin, FormPortfolioItem
+from helpers.forms_helpers import FormCustomerPortfolio, is_admin, FormPortfolioItem, FormActivity
 from datetime import datetime
 
 
@@ -32,3 +32,20 @@ def my_portfolio_customers_prospect():
                            is_admin=adm
                            )
 
+
+@app.route('/my_portfolio/activities/new')
+def my_portfolio_new_activity():
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login', proxima=url_for('novo')))
+    form = FormActivity()
+    usuario_id = session["usuario_id"]
+    adm = is_admin()
+    # grupo = type_user()
+    return render_template('activities/add_activity.html',
+                           titulo='Nova atividade',
+                           form=form,
+                           clientes=Customer.query.all(),
+                           prospects=Prospect.query.all(),
+                           usuarios=User.query.all(),
+                           is_admin=adm
+                           )
