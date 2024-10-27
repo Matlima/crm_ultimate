@@ -6,7 +6,7 @@ from flask_bcrypt import generate_password_hash
 from sqlalchemy.exc import IntegrityError
 
 
-
+# Method Routes:
 @app.route('/users')
 def users():
 
@@ -36,39 +36,6 @@ def new_user():
     form = FormUser()
     return render_template('users/add_user.html', titulo='Novo usuário', form=form)
 
-
-@app.route('/users/add', methods=['POST',])
-def created_user():
-    form = FormUser(request.form)
-
-    if not form.validate_on_submit():
-        return redirect(url_for('register'))
-    nome = form.nome.data
-    email = form.email.data
-    login = form.login.data
-    senha = generate_password_hash(form.senha.data).decode('utf-8')
-    grupo = form.grupo.data
-    ativo = form.ativo.data
-    telefone = form.telefone.data
-    cargo = form.cargo.data
-    setor = form.setor.data
-
-    usuario = User.query.filter_by(login=login).first()
-
-    if usuario:
-        flash('Login indisponível, escolha outro')
-        return redirect(url_for('register'))
-
-    novo_usuario = User(nome=nome, email=email, login=login, senha=senha, grupo=grupo,
-                           telefone=telefone, cargo=cargo, setor=setor, ativo=ativo)
-    db.session.add(novo_usuario)
-    db.session.commit()
-    flash('Usuário adicionado com sucesso!', 'success')
-
-    return redirect(url_for('users'))
-
-
-# Edição de Usuário
 @app.route('/users/edit/<int:id>')
 def edit_user(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
@@ -90,6 +57,34 @@ def edit_user(id):
                            id=id,
                            form=form
                            )
+
+@app.route('/users/profile')
+def profile():
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login', proxima=url_for('editar', id=id)))
+    id = session["usuario_id"]
+    user = User.query.filter_by(id=id).first()
+    qtd_activities = Activity.query.filter_by(usuario_id=id).count()
+    form = FormUser()
+    form.nome.data = user.nome
+    form.login.data = user.login
+    form.email.data = user.email
+    form.grupo.data = user.grupo
+    form.telefone.data = user.telefone
+    form.cargo.data = user.cargo
+    form.setor.data = user.setor
+    form.ativo.data = user.ativo
+    return render_template('users/profile.html',
+                           titulo='Perfil',
+                           id=id,
+                           form=form,
+                           user=user,
+                           qtd_activities=qtd_activities
+                           )
+
+
+
+# Methods Action:
 
 @app.route('/users/delete/<int:id>')
 def delete_user(id):
@@ -145,29 +140,37 @@ def desative_user(id):
     return redirect(url_for('users'))
 
 
-@app.route('/users/profile')
-def profile():
-    if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        return redirect(url_for('login', proxima=url_for('editar', id=id)))
-    id = session["usuario_id"]
-    user = User.query.filter_by(id=id).first()
-    qtd_activities = Activity.query.filter_by(usuario_id=id).count()
-    form = FormUser()
-    form.nome.data = user.nome
-    form.login.data = user.login
-    form.email.data = user.email
-    form.grupo.data = user.grupo
-    form.telefone.data = user.telefone
-    form.cargo.data = user.cargo
-    form.setor.data = user.setor
-    form.ativo.data = user.ativo
-    return render_template('users/profile.html',
-                           titulo='Perfil',
-                           id=id,
-                           form=form,
-                           user=user,
-                           qtd_activities=qtd_activities
-                           )
+@app.route('/users/add', methods=['POST',])
+def created_user():
+    form = FormUser(request.form)
+
+    if not form.validate_on_submit():
+        return redirect(url_for('register'))
+    nome = form.nome.data
+    email = form.email.data
+    login = form.login.data
+    senha = generate_password_hash(form.senha.data).decode('utf-8')
+    grupo = form.grupo.data
+    ativo = form.ativo.data
+    telefone = form.telefone.data
+    cargo = form.cargo.data
+    setor = form.setor.data
+
+    usuario = User.query.filter_by(login=login).first()
+
+    if usuario:
+        flash('Login indisponível, escolha outro')
+        return redirect(url_for('register'))
+
+    novo_usuario = User(nome=nome, email=email, login=login, senha=senha, grupo=grupo,
+                           telefone=telefone, cargo=cargo, setor=setor, ativo=ativo)
+    db.session.add(novo_usuario)
+    db.session.commit()
+    flash('Usuário adicionado com sucesso!', 'success')
+
+    return redirect(url_for('users'))
+
+
 
 
 @app.route('/users/profile/edit', methods=['POST'])
