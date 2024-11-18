@@ -6,6 +6,7 @@ from datetime import datetime
 
 
 # Methods Routes:
+
 @app.route('/portfolios')
 def portfolio():
 
@@ -112,7 +113,6 @@ def config_portfolio(id):
 
 
 # Methods Action:
-
 
 @app.route('/portfolio/add', methods=['GET', 'POST'])
 def created_portfolio():
@@ -263,10 +263,9 @@ def edit_portfolio(id):
 
 
 
-
-
-
+# --------------------------------
 # Item de carteira:
+
 @app.route('/portfolio/<int:id>/item/add', methods=['GET', 'POST'])
 def created_item_portfolio(id):
     formItem = FormPortfolioItem(request.form)
@@ -323,11 +322,6 @@ def created_item_portfolio(id):
 
     # Renderize a página com os dados necessários
     return redirect(url_for('portfolio'))
-
-
-
-
-
 
 @app.route('/portfolio/<int:id>/item/delete')
 def delete_item_portfolio(id):
