@@ -1,5 +1,23 @@
 {% extends "shared/template.html" %}
 {% block conteudo %}
+<style>
+    table {
+        width: 100%;
+        table-layout: auto;
+    }
+    td, th {
+        word-wrap: break-word;
+        word-break: break-word;
+        white-space: normal;
+    }
+    .btn {
+        max-width: 100%;
+        white-space: nowrap;
+    }
+    .table-responsive {
+        overflow-x: auto;
+    }
+</style>
 <div class="container mt-4">
     <div class="row my-3">
         <div class="d-flex justify-content-between align-items-center">
