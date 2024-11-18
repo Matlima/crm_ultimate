@@ -267,60 +267,66 @@ def edit_portfolio(id):
 
 
 # Item de carteira:
-
 @app.route('/portfolio/<int:id>/item/add', methods=['GET', 'POST'])
 def created_item_portfolio(id):
     formItem = FormPortfolioItem(request.form)
 
-    # Populando as opções dos selects antes da validação
-    clientes = Customer.query.all()
-    prospects = Prospect.query.all()
-    usuarios = User.query.all()
+    # Obtenha o portfólio e verifique sua existência
     portfolio = CustomerPortfolio.query.get(id)
+    if not portfolio:
+        flash("Portfólio não encontrado.", "danger")
+        return redirect(url_for('config_portfolio', id=id))
 
-    # Assegura que os choices estão sempre preenchidos
-    formItem.cliente.choices = [("", "Selecione um cliente")] + [(cliente.id, cliente.razao_social) for cliente in clientes]
-    formItem.prospect.choices = [("", "Selecione um prospect")] + [(prospect.id, prospect.nome_completo) for prospect in prospects]
-    formItem.usuario.choices = [(usuario.id, usuario.nome) for usuario in usuarios]
-    formItem.portfolio.choices = [(portfolio.id, portfolio.nome)]
+    # Obtenha o ID do usuário logado
+    usuario_id = session.get('usuario_id')
+    if not usuario_id:
+        flash("Usuário não autenticado. Faça login novamente.", "danger")
+        return redirect(url_for('login'))
+
+    # Preencha os campos ocultos do formulário
+    formItem.usuario.data = usuario_id
+    formItem.portfolio.data = id
+
+    # Defina os choices apenas para cliente e prospect
+    formItem.cliente.choices = [("", "Selecione um cliente")] + [
+        (cliente.id, cliente.razao_social) for cliente in Customer.query.all()
+    ]
+    formItem.prospect.choices = [("", "Selecione um prospect")] + [
+        (prospect.id, prospect.nome_completo) for prospect in Prospect.query.all()
+    ]
 
     if formItem.validate_on_submit():
-        cliente = formItem.cliente.data
-        prospect = formItem.prospect.data
-        usuario = formItem.usuario.data
-        portfolio = formItem.portfolio.data
+        # Captura apenas cliente e prospect do formulário
+        cliente = int(formItem.cliente.data) if formItem.cliente.data else None
+        prospect = int(formItem.prospect.data) if formItem.prospect.data else None
 
-        # Criar o novo item no portfólio
+        # Criação do novo item no portfólio
         new_item = PortfolioItem(
-            cliente_id=cliente if cliente else None,
-            prospect_id=prospect if prospect else None,
-            portfolio_id=portfolio,
-            usuario_id=usuario
+            cliente_id=cliente,
+            prospect_id=prospect,
+            portfolio_id=id,  # ID do portfólio da rota
+            usuario_id=usuario_id  # ID do usuário logado
         )
 
-        db.session.add(new_item)
-        db.session.commit()
-
-        flash("Item adicionado na carteira de cliente com sucesso!")
-        return redirect(url_for('config_portfolio', id=id))
+        try:
+            db.session.add(new_item)
+            db.session.commit()
+            flash("Item adicionado na carteira de cliente com sucesso!")
+            return redirect(url_for('portfolio'))
+        except Exception as e:
+            db.session.rollback()
+            print("Erro ao adicionar item no portfólio:", str(e))
+            flash("Erro ao salvar o item no banco de dados. Tente novamente.", "danger")
     else:
-        print("Erros de validação do formulário:", formItem.errors)
-        flash(f"Erro ao adicionar o item ao portfólio: {formItem.errors}", "danger")
+        # Depuração para identificar problemas no formulário
+        print("Erros do formulário:", formItem.errors)
 
-    form = FormCustomerPortfolio()
-    adm = is_admin()
-    page = request.args.get('page', 1, type=int)
-    itens_carteiras = PortfolioItem.query.filter_by(portfolio_id=id).paginate(page=page, per_page=10)
+    # Renderize a página com os dados necessários
+    return redirect(url_for('portfolio'))
 
-    return render_template('customers/portfolio/config_portfolio.html',
-                           form=form,
-                           formItem=formItem,
-                           id=id,
-                           itens_carteiras=itens_carteiras,
-                           carteiras=CustomerPortfolio.query.all(),
-                           clientes=Customer.query.all(),
-                           prospects=Prospect.query.all(),
-                           usuarios=User.query.all())
+
+
+
 
 
 @app.route('/portfolio/<int:id>/item/delete')
