@@ -48,9 +48,16 @@
 
                <!-- Botão para abrir o modal de transferência individual -->
                <td>
-                  <a type="button" class="btn btn-sm w-100 btn-secondary mb-1" href="#">
+                  {% if item.cliente %}
+                  <a type="button" class="btn btn-sm w-100 btn-secondary mb-1" href="{{ url_for('my_portfolio_new_activity', tipo='cliente', id=item.id) }}">
                   <i class="fas fa-tasks me-1"></i> Nova atividade
                   </a>
+                  {% elif item.prospect %}
+                  <a type="button" class="btn btn-sm w-100 btn-secondary mb-1" href="{{ url_for('my_portfolio_new_activity', tipo='prospect', id=item.id) }}">
+                  <i class="fas fa-tasks me-1"></i> Nova atividade
+                  {% endif %}
+
+
                </td>
 
                <td>
