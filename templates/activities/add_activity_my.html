@@ -1,11 +1,10 @@
 {% extends "shared/template.html" %}
 {% block conteudo %}
-
-<form class="container mt-4" action="{{ url_for('created_activity') }}" method="post">
+<form class="container mt-4" action="{{ url_for('my_portfolio_add_activity') }}" method="post">
     <fieldset class="p-4 border rounded">
         {{ form.csrf_token() }}
-
         <h5 class="mb-4">Nova atividade</h5>
+        <input type="hidden" name="tipo" value="{{ tipo }}">
         <input type="hidden" name="id" value="{{ id }}">
         <div class="row mb-3">
             <div class="col-md-2 mb-3">
@@ -21,14 +20,12 @@
                   {{ form.titulo(class="form-control") }}
             </div>
         </div>
-
         <div class="row mb-3">
             <div class="col-md-12 mb-3">
                 {{ form.descricao.label(class="form-label") }}
                 {{ form.descricao(class="form-control") }}
             </div>
         </div>
-
         <div class="row mt-3">
             <div class="col-12 text-center">
                 <button type="submit" class="btn btn-primary">Salvar</button>
@@ -37,6 +34,4 @@
         </div>
     </fieldset>
 </form>
-
-
 {% endblock %}
