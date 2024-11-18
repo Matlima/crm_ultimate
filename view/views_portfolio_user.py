@@ -33,14 +33,16 @@ def my_portfolio_customers_prospect():
                            )
 
 
-@app.route('/my_portfolio/activities/new/<int:id>')
-def my_portfolio_new_activity(id):
+@app.route('/my_portfolio/activities/new/<int:id>/<string:tipo>', methods=['GET', "POST"])
+def my_portfolio_new_activity(tipo, id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
     form = FormActivity()
     usuario_id = session["usuario_id"]
     adm = is_admin()
     # grupo = type_user()
+    tipo = request.args.get('tipo')
+    id = request.args.get('id')
     return render_template('activities/add_activity_my.html',
                            titulo='Nova atividade',
                            form=form,
@@ -48,24 +50,6 @@ def my_portfolio_new_activity(id):
                            prospects=Prospect.query.all(),
                            usuarios=User.query.all(),
                            is_admin=adm,
-                           id=id
-                           )
-
-@app.route('/my_portfolio/activities/add')
-def my_portfolio_add_activity():
-    if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        return redirect(url_for('login', proxima=url_for('novo')))
-
-
-    usuario_id = session["usuario_id"]
-    adm = is_admin()
-    # grupo = type_user()
-    return render_template('activities/add_activity_my.html',
-                           titulo='Nova atividade',
-                           # form=form,
-                           clientes=Customer.query.all(),
-                           prospects=Prospect.query.all(),
-                           usuarios=User.query.all(),
-                           is_admin=adm,
-                           id=id
+                           id=id,
+                           tipo=tipo
                            )
