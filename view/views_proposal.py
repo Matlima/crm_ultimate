@@ -4,6 +4,7 @@ from models.models import Activity, User, Customer, Prospect, Proposal, ItemProp
 from helpers.forms_helpers import FormActivity, is_admin, FormProposal, FormItemProposta
 from datetime import datetime
 
+## Methods Routes:
 
 @app.route('/proposal')
 def proposal():
@@ -45,7 +46,6 @@ def proposal():
                            form=form
                            )
 
-
 @app.route('/proposal/add', methods=['GET', 'POST'])
 def new_proposal():
     if 'usuario_logado' not in session or session['usuario_logado'] is None:
@@ -82,6 +82,7 @@ def new_proposal():
                            form=form,
                            is_admin=adm
                            )
+
 @app.route('/proposal/add', methods=['GET', 'POST'])
 def created_proposal():
     form = FormProposal()
@@ -137,7 +138,6 @@ def created_proposal():
                            form=form
                            )
 
-
 @app.route('/proposal/edit/<int:id>', methods=['GET', 'POST'])
 def edit_proposal(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
@@ -184,33 +184,7 @@ def edit_proposal(id):
 
 
 
-@app.route('/proposal/delete/<int:id>', methods=['GET', 'POST'])
-def delete_proposal(id):
-    usuario_id = session['usuario_id']
-    usuario = User.query.filter_by(id=usuario_id).first()
-    proposta = Proposal.query.filter_by(id=id).first()
-
-    # Verificar se a proposta existe
-    if not proposta:
-        flash('Proposta não encontrada.', 'danger')
-        return redirect(url_for('proposal'))
-
-    # Verificar permissões de exclusão
-    if usuario.grupo == 'Administrador' or proposta.responsavel_id == usuario.id:
-        # Verificar se há itens associados à proposta
-        if proposta.items_proposta:
-            flash('Não é possível excluir a proposta, pois há itens associados.', 'danger')
-        else:
-            # Excluir a proposta, pois não há itens associados
-            Proposal.query.filter_by(id=id).delete()
-            db.session.commit()
-            flash('Proposta excluída com sucesso!', 'success')
-    else:
-        flash('O usuário logado não tem autorização para excluir a proposta, apenas administradores ou o responsável.', 'danger')
-
-    return redirect(url_for('proposal'))
-
-
+# --------------------------------
 # ItemProposta:
 
 @app.route('/proposal/<int:id>/item/create', methods=['GET', 'POST'])
@@ -240,31 +214,6 @@ def created_item_proposta(id):
         flash(f"Erro ao adicionar o item da proposta: {formItem.errors}", "danger")
 
     return redirect(url_for('edit_proposal', id=id))
-
-
-@app.route('/proposal/<int:id>/item/delete/<int:id_item>', methods=['GET', 'POST'])
-def delete_item_proposal(id, id_item):
-    usuario_id = session['usuario_id']
-    usuario = User.query.filter_by(id=usuario_id).first()
-    proposta = Proposal.query.filter_by(id=id).first()
-    item_proposta = ItemProposta.query.filter_by(id=id_item)
-
-    # Verificar se a proposta existe
-    if not proposta:
-        flash('Proposta não encontrada.', 'danger')
-        return redirect(url_for('edit_proposal', id=id))
-
-    # Verificar permissões de exclusão
-    if usuario.grupo == 'Administrador' or proposta.responsavel_id == usuario.id:
-        # Excluir o item da proposta
-        ItemProposta.query.filter_by(id=id_item).delete()
-        db.session.commit()
-        flash('Item excluído com sucesso!', 'success')
-    else:
-        flash('O usuário logado não tem autorização para excluir o item da proposta, apenas administradores ou o responsável.', 'danger')
-
-    return redirect(url_for('edit_proposal', id=id))
-
 
 @app.route('/proposal/<int:id>/item/edit/<int:id_item>/', methods=['GET', 'POST'])
 def edit_item_proposal(id, id_item):
@@ -298,4 +247,57 @@ def edit_item_proposal(id, id_item):
     return redirect(url_for('edit_proposal', id=id))
 
 
+## Methods Actions:
 
+@app.route('/proposal/delete/<int:id>', methods=['GET', 'POST'])
+def delete_proposal(id):
+    usuario_id = session['usuario_id']
+    usuario = User.query.filter_by(id=usuario_id).first()
+    proposta = Proposal.query.filter_by(id=id).first()
+
+    # Verificar se a proposta existe
+    if not proposta:
+        flash('Proposta não encontrada.', 'danger')
+        return redirect(url_for('proposal'))
+
+    # Verificar permissões de exclusão
+    if usuario.grupo == 'Administrador' or proposta.responsavel_id == usuario.id:
+        # Verificar se há itens associados à proposta
+        if proposta.items_proposta:
+            flash('Não é possível excluir a proposta, pois há itens associados.', 'danger')
+        else:
+            # Excluir a proposta, pois não há itens associados
+            Proposal.query.filter_by(id=id).delete()
+            db.session.commit()
+            flash('Proposta excluída com sucesso!', 'success')
+    else:
+        flash('O usuário logado não tem autorização para excluir a proposta, apenas administradores ou o responsável.', 'danger')
+
+    return redirect(url_for('proposal'))
+
+
+
+# --------------------------------
+# ItemProposta:
+@app.route('/proposal/<int:id>/item/delete/<int:id_item>', methods=['GET', 'POST'])
+def delete_item_proposal(id, id_item):
+    usuario_id = session['usuario_id']
+    usuario = User.query.filter_by(id=usuario_id).first()
+    proposta = Proposal.query.filter_by(id=id).first()
+    item_proposta = ItemProposta.query.filter_by(id=id_item)
+
+    # Verificar se a proposta existe
+    if not proposta:
+        flash('Proposta não encontrada.', 'danger')
+        return redirect(url_for('edit_proposal', id=id))
+
+    # Verificar permissões de exclusão
+    if usuario.grupo == 'Administrador' or proposta.responsavel_id == usuario.id:
+        # Excluir o item da proposta
+        ItemProposta.query.filter_by(id=id_item).delete()
+        db.session.commit()
+        flash('Item excluído com sucesso!', 'success')
+    else:
+        flash('O usuário logado não tem autorização para excluir o item da proposta, apenas administradores ou o responsável.', 'danger')
+
+    return redirect(url_for('edit_proposal', id=id))

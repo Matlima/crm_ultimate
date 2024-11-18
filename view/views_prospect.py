@@ -6,6 +6,9 @@ from templates.customers import *
 from uploads import *
 from datetime import datetime
 
+
+## Methods Routes:
+
 @app.route('/prospects')
 def prospect():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
@@ -47,26 +50,6 @@ def created_prospect():
     flash('Prospect adicionado com sucesso!')
     return redirect(url_for('prospect'))
 
-
-@app.route('/prospects/delete/<int:id>')
-def delete_prospect(id):
-    if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        return redirect(url_for('login', proxima=url_for('novo')))
-
-    try:
-        Prospect.query.filter_by(id=id).delete()
-        db.session.commit()
-        flash('Prospect excluido com sucesso!')
-    except InterruptedError:
-        db.session.rollback()
-        flash('Erro: Prospect está vinculado a outras atividades. Exclua as atividades relacionadas primeiro.', 'error')
-    except Exception as e:
-        db.session.rollback()
-        flash(f"Erro ao excluir prospect: {str(e)}", "error")
-
-    return redirect(url_for('prospect'))
-
-
 @app.route('/prospects/edit/<int:id>')
 def edit_prospect(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
@@ -81,6 +64,13 @@ def edit_prospect(id):
                            id=id,
                            form=form
                            )
+
+
+
+
+
+
+## Methods Actions:
 
 
 @app.route('/prospects/update', methods=['POST'])
@@ -110,8 +100,20 @@ def update_prospect():
         flash("Form validation failed", "error")
     return redirect(url_for('edit_prospect', id=request.form['id']))
 
+@app.route('/prospects/delete/<int:id>')
+def delete_prospect(id):
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login', proxima=url_for('novo')))
 
+    try:
+        Prospect.query.filter_by(id=id).delete()
+        db.session.commit()
+        flash('Prospect excluido com sucesso!')
+    except InterruptedError:
+        db.session.rollback()
+        flash('Erro: Prospect está vinculado a outras atividades. Exclua as atividades relacionadas primeiro.', 'error')
+    except Exception as e:
+        db.session.rollback()
+        flash(f"Erro ao excluir prospect: {str(e)}", "error")
 
-
-
-
+    return redirect(url_for('prospect'))

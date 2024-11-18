@@ -6,7 +6,7 @@ from templates.customers import *
 from uploads import *
 
 
-# Methods Routes:
+## Methods Routes:
 
 @app.route('/customers')
 def customer():
@@ -71,7 +71,6 @@ def created_customer():
     flash('Cliente adicionado com sucesso!')
     return redirect(url_for('customer'))
 
-
 @app.route('/customers/edit/<int:id>')
 def edit_customer(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
@@ -101,8 +100,6 @@ def edit_customer(id):
                            id=id,
                            form=form
                            )
-
-
 
 @app.route('/customers/info/<int:id>')
 def info_customer(id):
@@ -134,6 +131,10 @@ def info_customer(id):
                            form=form
                            )
 
+
+
+
+## Methods Actions:
 
 @app.route('/customers/update', methods=['POST'])
 def update_customer():
@@ -174,7 +175,6 @@ def update_customer():
                 flash(f"Error in {fieldName}: {err}", "error")
         flash("Form validation failed", "error")
     return redirect(url_for('edit_customer', id=request.form['id']))
-
 
 @app.route('/customers/delete/<int:id>')
 def delete_customer(id):

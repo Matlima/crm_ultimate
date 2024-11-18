@@ -4,7 +4,7 @@ from models.models import Activity, User, Customer, Prospect
 from helpers.forms_helpers import FormActivity, is_admin
 from datetime import datetime
 
-# Method Router Principal:
+## Method Router Principal:
 
 @app.route('/')
 def index():
@@ -22,7 +22,7 @@ def index():
                            )
 
 
-# Method Routes:
+## Method Routes:
 
 @app.route('/activities')
 def activity():
@@ -93,6 +93,37 @@ def new_activity():
                            is_admin=adm
                            )
 
+@app.route('/activities/info/<int:id>/<string:action>')
+def info_activity(id, action):
+    activity = Activity.query.filter_by(id=id).first()
+
+    form = FormActivity()
+    # Preenchendo dados do SelectField na view
+    form.usuario_id.choices = [(user.id, user.nome) for user in User.query.all()]
+    form.cliente_id.choices = [(customer.id, customer.razao_social) for customer in Customer.query.all()]
+    # Definindo o usuário selecionado
+    form.usuario_id.default = activity.usuario_id
+    form.cliente_id.default = activity.cliente_id
+    # Processando definições para a view
+    form.process()
+    form.data_inicio.data = activity.data_inicio
+    form.data_fim.data = activity.data_fim
+    form.titulo.data = activity.titulo
+    form.descricao.data = activity.descricao
+    form.tipo.data = activity.tipo
+    form.status.data = activity.status
+
+    return render_template('activities/info_activity.html',
+                           titulo="Informações da atividade",
+                           id=id,
+                           form=form,
+                           action=action
+                           )
+
+
+
+## Methods Actions:
+
 @app.route('/activities/add', methods=['POST'])
 def created_activity():
     form = FormActivity(request.form)
@@ -156,32 +187,3 @@ def complete_activity(id):
     else:
         flash('Atividade não encontrada')
     return redirect(url_for('activity'))
-
-@app.route('/activities/info/<int:id>/<string:action>')
-def info_activity(id, action):
-    activity = Activity.query.filter_by(id=id).first()
-
-    form = FormActivity()
-    # Preenchendo dados do SelectField na view
-    form.usuario_id.choices = [(user.id, user.nome) for user in User.query.all()]
-    form.cliente_id.choices = [(customer.id, customer.razao_social) for customer in Customer.query.all()]
-    # Definindo o usuário selecionado
-    form.usuario_id.default = activity.usuario_id
-    form.cliente_id.default = activity.cliente_id
-    # Processando definições para a view
-    form.process()
-    form.data_inicio.data = activity.data_inicio
-    form.data_fim.data = activity.data_fim
-    form.titulo.data = activity.titulo
-    form.descricao.data = activity.descricao
-    form.tipo.data = activity.tipo
-    form.status.data = activity.status
-
-    return render_template('activities/info_activity.html',
-                           titulo="Informações da atividade",
-                           id=id,
-                           form=form,
-                           action=action
-                           )
-
-

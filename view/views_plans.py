@@ -34,8 +34,6 @@ def plan():
                            # is_admin=adm
                            )
 
-
-# Plan:
 @app.route('/products/new')
 def new_plan():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
@@ -98,55 +96,7 @@ def edit_plan(id):
                            )
 
 
-@app.route('/products/update', methods=['POST'])
-def update_plan():
-    form = FormPlano(request.form)
-
-    # Adicionar as opções de categoria dinamicamente
-    form.id_category.choices = [(category.id, category.nome) for category in CategoryPlan.query.all()]
-
-    plan = Plan.query.filter_by(id=request.form['id']).first()
-
-    if form.validate_on_submit():
-        if plan:
-            plan.nome = form.nome.data
-            plan.status = form.status.data
-            plan.descricao = form.descricao.data
-            plan.preco = form.preco.data
-            plan.periodicidade = form.periodicidade.data
-            plan.tipo = form.tipo.data
-            plan.id_category = form.id_category.data
-            db.session.commit()
-            flash('Plan atualizado com sucesso', 'success')
-            return redirect(url_for('plan'))
-        else:
-            flash('Plano não encontrado', 'error')
-            return redirect(url_for('edit_plan', id=request.form['id']))
-
-    # Se houver erros de validação, você pode exibi-los aqui ou redirecionar o usuário
-    flash('Erro ao validar o formulário', 'error')
-    return redirect(url_for('edit_plan', id=request.form['id']))
-
-
-
-@app.route('/products/delete/<int:id>')
-def delete_plan(id):
-    if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        return redirect(url_for('login', proximo=url_for('novo')))
-
-    try:
-        Plan.query.filter_by(id=id).delete()
-        db.session.commit()
-        flash("Produto excluida com sucesso!")
-    except InterruptedError:
-        db.session.rollback()
-        flash('Erro: Produto está vinculado a outras(os) proposta/contrato. Exclua as(os) proposta/contrato relacionados primeiro.', 'error')
-    except Exception as e:
-        db.session.rollback()
-        flash(f"Erro ao excluir produto: {str(e)}", "error")
-
-    return redirect(url_for('plan'))
-
+# --------------------------------
 # Category Plan:
 
 @app.route('/products/category/new')
@@ -199,6 +149,82 @@ def edit_category_plan(id):
                            )
 
 
+
+
+
+
+## Methods Actions:
+
+@app.route('/products/update', methods=['POST'])
+def update_plan():
+    form = FormPlano(request.form)
+
+    # Adicionar as opções de categoria dinamicamente
+    form.id_category.choices = [(category.id, category.nome) for category in CategoryPlan.query.all()]
+
+    plan = Plan.query.filter_by(id=request.form['id']).first()
+
+    if form.validate_on_submit():
+        if plan:
+            plan.nome = form.nome.data
+            plan.status = form.status.data
+            plan.descricao = form.descricao.data
+            plan.preco = form.preco.data
+            plan.periodicidade = form.periodicidade.data
+            plan.tipo = form.tipo.data
+            plan.id_category = form.id_category.data
+            db.session.commit()
+            flash('Plan atualizado com sucesso', 'success')
+            return redirect(url_for('plan'))
+        else:
+            flash('Plano não encontrado', 'error')
+            return redirect(url_for('edit_plan', id=request.form['id']))
+
+    # Se houver erros de validação, você pode exibi-los aqui ou redirecionar o usuário
+    flash('Erro ao validar o formulário', 'error')
+    return redirect(url_for('edit_plan', id=request.form['id']))
+
+
+@app.route('/products/delete/<int:id>')
+def delete_plan(id):
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login', proximo=url_for('novo')))
+
+    try:
+        Plan.query.filter_by(id=id).delete()
+        db.session.commit()
+        flash("Produto excluida com sucesso!")
+    except InterruptedError:
+        db.session.rollback()
+        flash('Erro: Produto está vinculado a outras(os) proposta/contrato. Exclua as(os) proposta/contrato relacionados primeiro.', 'error')
+    except Exception as e:
+        db.session.rollback()
+        flash(f"Erro ao excluir produto: {str(e)}", "error")
+
+    return redirect(url_for('plan'))
+
+
+# --------------------------------
+# Category Plan:
+@app.route('/products/category/delete/<int:id>')
+def delete_category_plan(id):
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login', proximo=url_for('novo')))
+
+    try:
+        CategoryPlan.query.filter_by(id=id).delete()
+        db.session.commit()
+        flash("Categoria excluida com sucesso!")
+    except InterruptedError:
+        db.session.rollback()
+        flash('Erro: Categoria está vinculado a outros produto. Exclua os produtos relacionados primeiro.', 'error')
+    except Exception as e:
+        db.session.rollback()
+        flash(f"Erro ao excluir categoria: {str(e)}", "error")
+
+    return redirect(url_for('plan'))
+
+
 @app.route('/products/category/update', methods=['POST'])
 def update_category_plan():
     form = FormCategoryPlano(request.form)
@@ -219,24 +245,5 @@ def update_category_plan():
         for field, errors in form.errors.items():
             for error in errors:
                 flash(f"Erro no campo {getattr(form, field).label.text}: {error}", "error")
-
-    return redirect(url_for('plan'))
-
-
-@app.route('/products/category/delete/<int:id>')
-def delete_category_plan(id):
-    if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        return redirect(url_for('login', proximo=url_for('novo')))
-
-    try:
-        CategoryPlan.query.filter_by(id=id).delete()
-        db.session.commit()
-        flash("Categoria excluida com sucesso!")
-    except InterruptedError:
-        db.session.rollback()
-        flash('Erro: Categoria está vinculado a outros produto. Exclua os produtos relacionados primeiro.', 'error')
-    except Exception as e:
-        db.session.rollback()
-        flash(f"Erro ao excluir categoria: {str(e)}", "error")
 
     return redirect(url_for('plan'))

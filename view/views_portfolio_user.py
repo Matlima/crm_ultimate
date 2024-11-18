@@ -5,7 +5,8 @@ from helpers.forms_helpers import FormCustomerPortfolio, is_admin, FormPortfolio
 from datetime import datetime
 
 
-# Methods Routes:
+## Methods Routes:
+
 @app.route('/my_portfolio')
 def my_portfolio_customers_prospect():
     if 'usuario_logado' not in session or session['usuario_logado'] is None:
@@ -32,7 +33,6 @@ def my_portfolio_customers_prospect():
                            is_admin=adm
                            )
 
-
 @app.route('/my_portfolio/activities/new/<int:id>/<string:tipo>', methods=['GET', "POST"])
 def my_portfolio_new_activity(tipo, id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
@@ -52,6 +52,10 @@ def my_portfolio_new_activity(tipo, id):
                            id=id,
                            tipo=tipo
                            )
+
+
+
+## Methods Actions:
 
 @app.route('/my_portfolio/activities/add', methods=['POST'])
 def my_portfolio_add_activity():
