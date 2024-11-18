@@ -56,13 +56,13 @@ def my_portfolio_add_activity():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
 
-    
+
     usuario_id = session["usuario_id"]
     adm = is_admin()
     # grupo = type_user()
     return render_template('activities/add_activity_my.html',
                            titulo='Nova atividade',
-                           form=form,
+                           # form=form,
                            clientes=Customer.query.all(),
                            prospects=Prospect.query.all(),
                            usuarios=User.query.all(),
