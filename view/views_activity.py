@@ -4,6 +4,8 @@ from models.models import Activity, User, Customer, Prospect
 from helpers.forms_helpers import FormActivity, is_admin
 from datetime import datetime
 
+# Method Router Principal:
+
 @app.route('/')
 def index():
     lista = Activity.query.order_by(Activity.id)
@@ -19,6 +21,8 @@ def index():
                            form=form
                            )
 
+
+# Method Routes:
 
 @app.route('/activities')
 def activity():
@@ -44,7 +48,6 @@ def activity():
                            is_admin=adm,
                            form=form
                            )
-
 
 @app.route('/activities/my-activities')
 def my_activity():
@@ -72,8 +75,6 @@ def my_activity():
                            prospects=Prospect.query.all(),
                            page=page
                            )
-
-
 
 @app.route('/activities/new')
 def new_activity():
