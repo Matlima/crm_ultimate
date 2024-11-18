@@ -1,4 +1,7 @@
 import os
+
+from wtforms.fields.simple import HiddenField
+
 from application import app
 from flask import session
 from models.models import User,Customer, Activity
@@ -139,8 +142,8 @@ class FormCustomer(FlaskForm):
 
 
 class FormPortfolioItem(FlaskForm):
-    usuario = SelectField('Usuário', coerce=int,  choices=[])
-    portfolio = SelectField('Carteira de cliente', coerce=int, choices=[])
+    usuario = HiddenField('Usuário')
+    portfolio = HiddenField('Carteira de cliente')
 
     # Tratar valores vazios como None
     cliente = SelectField('Cliente', coerce=lambda x: int(x) if x else None, choices=[])
