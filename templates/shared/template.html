@@ -107,6 +107,7 @@
                 <li class="nav-item mb-3">
                     <a href="{{ url_for('profile') }}" class="nav-link"><i class="fas fa-user me-2"></i> Perfil</a>
                 </li>
+                {% if grupo == 'Administrador' %}
                 <li class="nav-item dropdown mb-3">
                     <a href="{{ url_for('profile') }}" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-book me-2"></i> Administração</a>
                     <ul class="dropdown-menu">
@@ -127,8 +128,8 @@
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item"  href="{{ url_for('report') }}">Relatórios</a></li>
                     </ul>
-
                 </li>
+                {% endif %}
                 <li class="nav-item mb-3">
                     <a href="{{ url_for('my_portfolio_customers_prospect') }}" class="nav-link"><i class="fas fa-wallet me-2"></i> Clientes/Prospects</a>
                 </li>
