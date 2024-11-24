@@ -2,6 +2,7 @@ from flask import render_template, request, redirect, session, flash, url_for
 from application import app, db
 from models.models import Activity, User, Customer, Prospect
 from helpers.forms_helpers import FormActivity, is_admin
+from helpers.validation_helpers import type_user
 from datetime import datetime
 
 ## Method Router Principal:
@@ -11,14 +12,15 @@ def index():
     lista = Activity.query.order_by(Activity.id)
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('index')))
-    # admin = is_admin()
+    grupo = type_user()
     activities = db.session.query(Activity).join(User).all()
     form = FormActivity()
     return render_template('menu/main-menu.html',
                            titulo='Menu Principal',
                            atividades=activities,
                            # admin=admin,
-                           form=form
+                           form=form,
+                           grupo=grupo
                            )
 
 
