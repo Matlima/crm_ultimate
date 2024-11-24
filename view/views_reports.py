@@ -13,3 +13,13 @@ def report():
     return render_template('reports/reports.html',
                            titulo='Relatórios'
                            )
+
+
+@app.route('/report')
+def report_user():
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login', proxima=url_for('dashboard')))
+
+    return render_template('reports/reports_user.html',
+                           titulo='Relatórios'
+                           )
