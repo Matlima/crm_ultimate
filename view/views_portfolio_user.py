@@ -53,6 +53,25 @@ def my_portfolio_new_activity(tipo, id):
                            tipo=tipo
                            )
 
+@app.route('/my_portfolio/proposal/new/<int:id>/<string:tipo>', methods=['GET', "POST"])
+def my_portfolio_new_proposal(tipo, id):
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login', proxima=url_for('novo')))
+    form = FormActivity()
+    usuario_id = session["usuario_id"]
+    adm = is_admin()
+    # grupo = type_user()
+
+    return render_template('proposal/add_proposal.html',
+                           titulo='Nova proposta',
+                           form=form,
+                           clientes=Customer.query.all(),
+                           prospects=Prospect.query.all(),
+                           usuarios=User.query.all(),
+                           is_admin=adm,
+                           id=id,
+                           tipo=tipo
+                           )
 
 
 ## Methods Actions:
