@@ -5,7 +5,7 @@ from helpers.forms_helpers import FormActivity, is_admin
 from helpers.validation_helpers import type_user
 from datetime import datetime
 
-## Method Router Principal:
+## Method Routers Principal:
 
 @app.route('/')
 def index():
@@ -24,7 +24,7 @@ def index():
                            )
 
 
-## Method Routes:
+## Methods Routes:
 
 @app.route('/activities')
 def activity():
