@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank Dashboard</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-</head>
+{% extends "shared/template.html" %}
+{% block conteudo %}
 <style>
     body {
     background-color: #f8f9fa;
@@ -46,25 +36,8 @@
 
 </style>
 
-<body>
     <div class="container my-5">
-        <!-- Header Section -->
-        <header class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="fs-3 text-primary">NevBank</h1>
-            <nav>
-                <ul class="nav">
-                    <li class="nav-item"><a class="nav-link text-secondary" href="#">My Account</a></li>
-                    <li class="nav-item"><a class="nav-link text-secondary" href="#">Transactions</a></li>
-                    <li class="nav-item"><a class="nav-link text-secondary" href="#">Cards</a></li>
-                    <li class="nav-item"><a class="nav-link text-secondary" href="#">Offers</a></li>
-                    <li class="nav-item"><a class="nav-link text-secondary" href="#">Investments</a></li>
-                </ul>
-            </nav>
-            <div class="profile d-flex align-items-center">
-                <span class="me-2 text-secondary">Dorothy Wilkins</span>
-                <img src="https://via.placeholder.com/40" alt="Profile" class="rounded-circle">
-            </div>
-        </header>
+
 
         <!-- Main Account Section -->
         <div class="row g-4">
@@ -91,25 +64,25 @@
 
         <!-- Cards Section -->
         <div class="row g-4 mt-4">
-            <div class="col-lg-2 col-md-4">
+            <div class="col-lg-3 col-md-4">
                 <div class="card p-3 shadow-sm text-center">
                     <h6>Santander</h6>
                     <h5 class="fw-bold">$12,220.65</h5>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-4">
+            <div class="col-lg-3 col-md-4">
                 <div class="card p-3 shadow-sm text-center">
                     <h6>CityBank</h6>
                     <h5 class="fw-bold">$25,070.65</h5>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-4">
+            <div class="col-lg-3 col-md-4">
                 <div class="card p-3 shadow-sm text-center">
                     <h6>Deutsche Bank</h6>
                     <h5 class="fw-bold">$570.00</h5>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-4">
+            <div class="col-lg-3 col-md-4">
                 <div class="card p-3 shadow-sm text-center">
                     <h6>Credit Agricole</h6>
                     <h5 class="fw-bold">$2,680.50</h5>
@@ -149,8 +122,4 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
+ {% endblock %}
