@@ -60,9 +60,15 @@
                </td>
 
                <td>
-                  <a class="btn btn-sm btn-secondary w-100 mb-1 text-white" href="{{ url_for('delete_item_portfolio', id=item.id) }}">
-                  <i class="fas fa-file-signature me-1"></i> Nova Proposta
+                  {% if item.cliente %}
+                  <a type="button" class="btn btn-sm w-100 btn-secondary mb-1" href="{{ url_for('my_portfolio_new_proposal', tipo='cliente', id=item.cliente.id) }}">
+                  <i class="fas fa-tasks me-1"></i> Nova Proposta
                   </a>
+                  {% elif item.prospect %}
+                  <a type="button" class="btn btn-sm w-100 btn-danger mb-1 disabled" href="#">
+                  <i class="fas fa-tasks me-1"></i> Disponível apenas para clientes
+                  </a>
+                  {% endif %}
                </td>
             </tr>
             {% endfor %}
