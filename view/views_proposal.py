@@ -52,7 +52,6 @@ def new_proposal():
         return redirect(url_for('login', proxima=url_for('proposal')))
 
     adm = is_admin()
-
     form = FormProposal()
 
     # Preencher os choices para cliente e responsável
